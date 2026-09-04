@@ -4,124 +4,94 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
-
-<title>Court of Love ⚖️</title>
+<title>The Court of Love ⚖️</title>
 
 <style>
 
 * {
-  box-sizing: border-box;
+box-sizing:border-box;
 }
 
 body {
-  margin: 0;
-
-  min-height: 100vh;
-
-  padding: 25px 15px 50px;
-
-  background:
-    radial-gradient(
-      circle at top,
-      rgba(255,100,150,.18),
-      transparent 45%
-    ),
-    #09050a;
-
-  color: white;
-
-  font-family: Arial, sans-serif;
-
-  text-align: center;
-}
-
-.container {
-  max-width: 700px;
-
-  margin: auto;
-}
-
-h1 {
-  font-family: Georgia, serif;
-
-  font-size: clamp(40px, 10vw, 65px);
-}
-
-.court {
-  margin-top: 30px;
-
-  padding: 30px;
-
-  border-radius: 25px;
-
-  background: rgba(255,255,255,.05);
-
-  border: 1px solid rgba(255,180,200,.15);
-}
-
-.gavel {
-  font-size: 70px;
-}
-
-.charge {
-  margin: 20px 0;
-
-  padding: 20px;
-
-  border-radius: 18px;
-
-  background: rgba(255,255,255,.05);
-
-  text-align: left;
-}
-
-.charge strong {
-  color: #ffabc0;
-}
-
-button {
-  margin-top: 20px;
-
-  padding: 15px 25px;
-
-  border: none;
-
-  border-radius: 999px;
-
-  background: #d94f79;
-
-  color: white;
-
-  font-weight: bold;
-
-  cursor: pointer;
-}
-
-.verdict {
-  min-height: 60px;
-
-  margin-top: 25px;
-
-  color: #ffabc0;
-
-  font-family: Georgia, serif;
-
-  font-size: 23px;
+margin:0;
+min-height:100vh;
+background:
+radial-gradient(circle at 50% 20%,rgba(160,80,255,.15),transparent 40%),
+#100818;
+color:white;
+font-family:Arial,sans-serif;
+text-align:center;
+padding:30px 18px;
 }
 
 .back {
-  display: inline-block;
+display:block;
+color:#c5b0ca;
+font-size:11px;
+text-decoration:none;
+margin-bottom:50px;
+}
 
-  margin-top: 30px;
+.court {
+max-width:550px;
+margin:auto;
+}
 
-  color: white;
+.gavel {
+font-size:55px;
+}
 
-  text-decoration: none;
+h1 {
+font-family:Georgia,serif;
+font-size:52px;
+font-weight:400;
+}
+
+.subtitle {
+color:#c5b0ca;
+font-size:12px;
+line-height:1.7;
+}
+
+.case {
+margin-top:40px;
+padding:30px 22px;
+border:1px solid rgba(255,255,255,.12);
+border-radius:22px;
+background:rgba(255,255,255,.04);
+}
+
+.case-title {
+color:#ffb5dc;
+font-size:9px;
+letter-spacing:3px;
+}
+
+.allegation {
+font-family:Georgia,serif;
+font-size:26px;
+line-height:1.4;
+margin:25px 0;
+}
+
+button {
+margin:6px;
+padding:12px 20px;
+border-radius:999px;
+border:1px solid rgba(255,170,220,.3);
+background:rgba(255,255,255,.05);
+color:white;
+cursor:pointer;
+}
+
+.verdict {
+margin-top:30px;
+font-family:Georgia,serif;
+font-size:25px;
+color:#ffb5dc;
+min-height:40px;
 }
 
 </style>
@@ -130,100 +100,71 @@ button {
 
 <body>
 
-<div class="container">
-
-<h1>
-⚖️ Court of Love
-</h1>
-
-<p>
-The case of <strong>Riti vs. Being Way Too Adorable</strong>
-</p>
-
+<a href="mini-games.html" class="back">
+← back to the games
+</a>
 
 <div class="court">
 
-<div class="gavel">
-🔨
+<div class="gavel">⚖️</div>
+
+<h1>
+The Court<br>
+of Love
+</h1>
+
+<p class="subtitle">
+The people vs. Riti.<br>
+The charges are serious.
+</p>
+
+<div class="case">
+
+<div class="case-title">
+CASE #018 · THE PEOPLE VS RITI
 </div>
 
-<h2>
-The Court Is Now In Session
-</h2>
-
-
-<div class="charge">
-
-<strong>Charge #1</strong>
-
-<br><br>
-
-Being unnecessarily adorable.
+<div class="allegation">
+“Being dangerously adorable
+without a permit.”
 </div>
 
-
-<div class="charge">
-
-<strong>Charge #2</strong>
-
-<br><br>
-
-Making people smile without permission.
-</div>
-
-
-<div class="charge">
-
-<strong>Charge #3</strong>
-
-<br><br>
-
-Looking suspiciously good at 18.
-</div>
-
-
-<div class="charge">
-
-<strong>Charge #4</strong>
-
-<br><br>
-
-Being someone's favorite person.
-</div>
-
-
-<button onclick="verdict()">
-⚖️ Deliver The Verdict
+<button onclick="verdict('guilty')">
+Guilty
 </button>
 
+<button onclick="verdict('innocent')">
+Innocent
+</button>
 
-<div id="verdict" class="verdict">
-</div>
-
-</div>
-
-
-<a href="mini-games.html" class="back">
-← Back to Mini Games
-</a>
+<div class="verdict" id="verdict"></div>
 
 </div>
 
+</div>
 
 <script>
 
-function verdict() {
+function verdict(choice) {
 
-document.getElementById("verdict")
-.innerHTML =
-"👩‍⚖️ VERDICT: GUILTY.<br><br>" +
-"Sentence: One lifetime supply of love, hugs, " +
-"cake and birthday wishes. ❤️";
+const output =
+document.getElementById("verdict");
+
+if(choice === "guilty") {
+
+output.innerHTML =
+"VERDICT: GUILTY. 💗<br><small>sentence: unlimited affection.</small>";
+
+} else {
+
+output.innerHTML =
+"VERDICT: suspiciously guilty. 💜<br><small>nice try though.</small>";
+
+}
 
 }
 
 </script>
 
 </body>
-
 </html>
