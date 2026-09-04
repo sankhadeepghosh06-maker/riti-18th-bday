@@ -1,145 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>💗 Our Memories</title>
+    <title>For You ❤️</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+    <meta name="description" content="A little something made just for you ❤️">
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #000;
-      font-family: Arial, sans-serif;
-    }
+    <link rel="stylesheet" href="style.css">
 
-    body {
-      display: flex;
-      justify-content: center;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 720px;
-      min-height: 100vh;
-      background: #111;
-      text-align: center;
-      padding-bottom: 35px;
-    }
-
-    /* Main picture */
-    .main-photo {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* Instagram Highlight */
-    .highlight-link {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 4px;
-      border-radius: 50%;
-
-      background: linear-gradient(
-        135deg,
-        #feda75,
-        #fa7e1e,
-        #d62976,
-        #962fbf,
-        #4f5bd5
-      );
-
-      transition: transform 0.25s ease;
-    }
-
-    .highlight-link:hover {
-      transform: scale(1.1);
-    }
-
-    .highlight {
-      width: 90px;
-      height: 90px;
-      display: block;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid #111;
-    }
-
-    .instagram-text {
-      color: white;
-      margin-top: 10px;
-      font-size: 14px;
-    }
-
-    /* Optional button */
-    .instagram-button {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
-      border-radius: 25px;
-
-      background: white;
-      color: black;
-
-      text-decoration: none;
-      font-weight: bold;
-
-      transition: 0.2s;
-    }
-
-    .instagram-button:hover {
-      transform: scale(1.05);
-    }
-  </style>
+    <!-- Romantic font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-  <div class="container">
-
-    <!-- YOUR IMAGE -->
-    <img
-      src="photo.png"
-      class="main-photo"
-      alt="Our memories"
-    >
-
-    <!-- INSTAGRAM HIGHLIGHT -->
-    <!-- REPLACE THE URL BELOW -->
-    <a
-      href="https://www.instagram.com/"
-      class="highlight-link"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <img
-        src="photo.png"
-        class="highlight"
-        alt="Instagram"
-      >
-    </a>
-
-    <div class="instagram-text">
-      Instagram 💗
+    <!-- Animated background -->
+    <div class="background">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="glow glow-3"></div>
     </div>
 
-    <!-- OPTIONAL INSTAGRAM BUTTON -->
-    <a
-      href="https://www.instagram.com/stories/highlights/17926944879204043/"
-      class="instagram-button"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Open Instagram
-    </a>
+    <!-- Floating hearts -->
+    <div id="hearts-container"></div>
 
-  </div>
+    <!-- Opening screen -->
+    <section id="opening-screen" class="opening-screen">
+
+        <div class="opening-content">
+
+            <div class="tiny-heart">♥</div>
+
+            <p class="small-title">A little something</p>
+
+            <h1>
+                Made<br>
+                <span>For You</span>
+            </h1>
+
+            <p class="opening-subtitle">
+                I made this little corner of the internet<br>
+                just for you.
+            </p>
+
+            <button id="enter-button" class="enter-button">
+                <span>Open it</span>
+                <span class="button-heart">♥</span>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- Main page -->
+    <main id="main-content" class="main-content hidden">
+
+        <!-- Hero -->
+        <section class="hero">
+
+            <p class="eyebrow">JUST FOR YOU</p>
+
+            <h2>
+                Some things<br>
+                are better <em>felt.</em>
+            </h2>
+
+            <div class="heart-divider">
+                <span></span>
+                ♥
+                <span></span>
+            </div>
+
+        </section>
+
+
+        <!-- Photo -->
+        <section class="photo-section">
+
+            <div class="photo-frame">
+
+                <!--
+                    CHANGE THIS IMAGE LATER.
+
+                    Put your photo inside the "images" folder
+                    and change "your-photo.jpg" below to its filename.
+
+                    Example:
+                    src="images/photo.jpg"
+                -->
+
+                <img
+                    src="images/your-photo.jpg"
+                    alt="A special memory"
+                    class="main-photo"
+                    onerror="this.style.display='none'; document.getElementById('photo-placeholder').style.display='flex';"
+                >
+
+                <div id="photo-placeholder" class="photo-placeholder">
+
+                    <div class="placeholder-heart">♡</div>
+
+                    <p>Your photo goes here</p>
+
+                    <small>
+                        Replace<br>
+                        images/your-photo.jpg
+                    </small>
+
+                </div>
+
+                <div class="photo-decoration decoration-1">✦</div>
+                <div class="photo-decoration decoration-2">♡</div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Message -->
+        <section class="message-section">
+
+            <p class="section-label">A FEW WORDS</p>
+
+            <!--
+                CHANGE THIS MESSAGE.
+
+                Replace the text inside .message-text
+                with whatever you want.
+            -->
+
+            <div class="message-card">
+
+                <div class="quote-mark">“</div>
+
+                <p class="message-text">
+                    Write your message here...
+                    <br><br>
+                    You can make it as long or as short as you want.
+                    This little space is yours. ❤️
+                </p>
+
+                <div class="quote-mark quote-end">”</div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Spotify -->
+        <section class="music-section">
+
+            <p class="section-label">PRESS PLAY</p>
+
+            <h3>A song for you</h3>
+
+            <p class="section-description">
+                Because sometimes a song says what words can't.
+            </p>
+
+            <div class="music-card">
+
+                <div class="vinyl">
+                    <div class="vinyl-center">♥</div>
+                </div>
+
+                <div class="music-info">
+
+                    <span class="music-small">
+                        OUR LITTLE SOUNDTRACK
+                    </span>
+
+                    <strong>
+                        Listen to this
+                    </strong>
+
+                    <span>
+                        Tap below to open Spotify
+                    </span>
+
+                </div>
+
+                <a
+                    href="https://open.spotify.com/track/1jXfVzMk8cSbvAXMML4Y4f?autoplay_ok=1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="spotify-button"
+                >
+                    <span>♫</span>
+                    <span>Open Spotify</span>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- Instagram -->
+        <section class="instagram-section">
+
+            <div class="instagram-card">
+
+                <div class="instagram-icon">
+                    ◎
+                </div>
+
+                <p class="section-label">
+                    ONE MORE THING
+                </p>
+
+                <h3>
+                    Some memories<br>
+                    are worth keeping.
+                </h3>
+
+                <p>
+                    I saved a little collection of memories
+                    for you.
+                </p>
+
+                <a
+                    href="https://www.instagram.com/stories/highlights/17926944879204043/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="instagram-button"
+                >
+                    <span>View the memories</span>
+                    <span>↗</span>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- Final message -->
+        <section class="final-section">
+
+            <div class="final-heart">♥</div>
+
+            <h2>
+                That's all...
+                <br>
+                <em>for now.</em>
+            </h2>
+
+            <p>
+                Made with a little bit of love
+                <br>
+                and a lot of thought.
+            </p>
+
+            <div class="final-divider">
+                ✦ ♥ ✦
+            </div>
+
+        </section>
+
+
+        <footer>
+            Made especially for you ♥
+        </footer>
+
+    </main>
+
+
+    <script src="script.js"></script>
 
 </body>
 </html>
