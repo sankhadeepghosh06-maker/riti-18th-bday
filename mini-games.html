@@ -10,7 +10,7 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>Riti's Little World ❤️</title>
+  <title>Little Things For Riti ❤️</title>
 
   <link
     rel="preconnect"
@@ -18,7 +18,13 @@
   >
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Serif+Display&family=Great+Vibes&family=Inter:wght@300;400;500&display=swap"
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Serif+Display&family=Great+Vibes&family=Inter:wght@400;500;600&display=swap"
     rel="stylesheet"
   >
 
@@ -26,330 +32,179 @@
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     body {
-
+      margin: 0;
       min-height: 100vh;
-      min-height: 100svh;
+
+      padding: 30px 18px 60px;
 
       background:
         radial-gradient(
           circle at top,
-          #2a101a,
-          #10070b 55%,
-          #080506
-        );
+          rgba(255, 90, 145, 0.18),
+          transparent 40%
+        ),
+        #09050a;
 
-      color: #f8edf0;
+      color: white;
 
       font-family: "Inter", sans-serif;
-
-      overflow-x: hidden;
-
     }
 
-
     .page {
+      width: 100%;
+      max-width: 900px;
 
-      width: min(
-        900px,
-        calc(100% - 32px)
-      );
+      margin: 0 auto;
+    }
 
-      min-height: 100vh;
-      min-height: 100svh;
+    .top {
+      text-align: center;
+
+      padding: 50px 0 35px;
+    }
+
+    .top .heart {
+      font-size: 48px;
+
+      color: #ff8eae;
+    }
+
+    h1 {
+      margin: 15px 0 10px;
+
+      font-family: "DM Serif Display", serif;
+
+      font-size: clamp(42px, 10vw, 70px);
+
+      font-weight: 400;
+    }
+
+    .subtitle {
+      max-width: 550px;
 
       margin: 0 auto;
 
-      padding:
-        50px
-        0
-        70px;
-
-      display: flex;
-
-      flex-direction: column;
-
-      align-items: center;
-
-    }
-
-
-    .back {
-
-      align-self: flex-start;
-
-      color: #a98a93;
-
-      font-size: 13px;
-
-      margin-bottom: 70px;
-
-      transition: .3s;
-
-    }
-
-    .back:hover {
-      color: #f0b0c0;
-      transform: translateX(-4px);
-    }
-
-
-    .label {
-
-      font-size: 10px;
-
-      letter-spacing: 4px;
-
-      text-transform: uppercase;
-
-      color: #a98690;
-
-      margin-bottom: 15px;
-
-      text-align: center;
-
-    }
-
-
-    h1 {
-
-      font-family: "Great Vibes", cursive;
-
-      font-size: clamp(
-        4rem,
-        13vw,
-        7rem
-      );
-
-      font-weight: 400;
-
-      text-align: center;
-
-      color: #f0dbe0;
-
-      line-height: 1;
-
-    }
-
-
-    .subtitle {
-
-      max-width: 500px;
-
-      margin-top: 15px;
-
-      text-align: center;
-
-      color: #a9929a;
-
-      line-height: 1.7;
-
-    }
-
-
-    .games {
-
-      width: 100%;
-
-      margin-top: 55px;
-
-      display: grid;
-
-      grid-template-columns:
-        repeat(2, 1fr);
-
-      gap: 15px;
-
-    }
-
-
-    .game {
-
-      position: relative;
-
-      min-height: 170px;
-
-      padding: 25px;
-
-      display: flex;
-
-      flex-direction: column;
-
-      justify-content: center;
-
-      align-items: flex-start;
-
-      border-radius: 18px;
-
-      border: 1px solid
-        rgba(255,255,255,.08);
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255,255,255,.07),
-          rgba(255,255,255,.025)
-        );
-
-      transition:
-        transform .3s ease,
-        background .3s ease,
-        border-color .3s ease;
-
-    }
-
-
-    .game:hover {
-
-      transform: translateY(-6px);
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255,255,255,.11),
-          rgba(255,255,255,.04)
-        );
-
-      border-color:
-        rgba(220,130,155,.3);
-
-    }
-
-
-    .icon {
-
-      width: 55px;
-      height: 55px;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 50%;
-
-      background:
-        rgba(255,255,255,.06);
-
-      font-size: 26px;
-
-      margin-bottom: 18px;
-
-    }
-
-
-    .game h2 {
-
-      font-family:
-        "DM Serif Display",
-        serif;
-
-      font-size: 1.6rem;
-
-      font-weight: 400;
-
-    }
-
-
-    .game p {
-
-      margin-top: 6px;
-
-      color: #927d85;
-
-      font-size: 12px;
-
-      line-height: 1.5;
-
-    }
-
-
-    .arrow {
-
-      position: absolute;
-
-      right: 22px;
-      bottom: 20px;
-
-      color: #c98098;
+      font-family: "Cormorant Garamond", serif;
 
       font-size: 20px;
 
+      color: rgba(255, 225, 235, 0.72);
     }
 
+    .games {
+      display: grid;
 
-    .bottom-heart {
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
-      margin-top: 70px;
-
-      color: #d47b94;
-
-      font-size: 25px;
-
-      animation: pulse 2s infinite;
-
+      gap: 18px;
     }
 
+    .game {
+      position: relative;
 
-    @keyframes pulse {
+      padding: 28px;
 
-      0%,100% {
-        transform: scale(1);
-      }
+      min-height: 220px;
 
-      50% {
-        transform: scale(1.15);
-      }
+      display: flex;
+      flex-direction: column;
 
+      justify-content: space-between;
+
+      border: 1px solid rgba(255, 180, 200, 0.14);
+
+      border-radius: 24px;
+
+      background: rgba(255, 255, 255, 0.045);
+
+      text-decoration: none;
+
+      color: white;
+
+      overflow: hidden;
+
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
     }
 
+    .game:hover {
+      transform: translateY(-5px);
 
-    @media(max-width:650px) {
+      background: rgba(255, 255, 255, 0.07);
 
-      .page {
+      border-color: rgba(255, 150, 180, 0.35);
+    }
 
-        padding:
-          30px
-          0
-          50px;
+    .game-icon {
+      font-size: 48px;
+    }
 
-      }
+    .game h2 {
+      margin: 15px 0 5px;
 
-      .back {
+      font-family: "Cormorant Garamond", serif;
 
-        margin-bottom: 55px;
+      font-size: 31px;
 
+      font-weight: 600;
+    }
+
+    .game p {
+      margin: 0;
+
+      line-height: 1.5;
+
+      color: rgba(255, 225, 235, 0.68);
+    }
+
+    .play {
+      margin-top: 22px;
+
+      color: #ff9fba;
+
+      font-size: 13px;
+
+      letter-spacing: 1px;
+    }
+
+    .back {
+      display: block;
+
+      width: fit-content;
+
+      margin: 40px auto 0;
+
+      padding: 13px 22px;
+
+      border: 1px solid rgba(255, 180, 200, 0.2);
+
+      border-radius: 999px;
+
+      color: white;
+
+      text-decoration: none;
+
+      background: rgba(255,255,255,0.04);
+    }
+
+    @media (max-width: 650px) {
+
+      body {
+        padding: 15px 14px 40px;
       }
 
       .games {
-
         grid-template-columns: 1fr;
-
-        gap: 12px;
-
       }
 
       .game {
-
-        min-height: 145px;
-
-        padding: 22px;
-
-      }
-
-      h1 {
-
-        font-size:
-          clamp(
-            3.8rem,
-            18vw,
-            6rem
-          );
-
+        min-height: 190px;
       }
 
     }
@@ -358,188 +213,190 @@
 
 </head>
 
-
 <body>
 
   <main class="page">
 
-    <a
-      href="index.html"
-      class="back"
-    >
-      ← Back to Riti's birthday
+    <section class="top">
+
+      <div class="heart">
+        ♡
+      </div>
+
+      <h1>
+        Little Things
+      </h1>
+
+      <p class="subtitle">
+        Six tiny worlds made just for you.
+      </p>
+
+    </section>
+
+
+    <section class="games">
+
+      <a class="game" href="bouquet.html">
+
+        <div>
+
+          <div class="game-icon">
+            🌹
+          </div>
+
+          <h2>
+            Bouquet Builder
+          </h2>
+
+          <p>
+            Build yourself a bouquet.
+            Pick the flowers, ribbon and little details.
+          </p>
+
+        </div>
+
+        <div class="play">
+          BUILD IT →
+        </div>
+
+      </a>
+
+
+      <a class="game" href="love-room.html">
+
+        <div>
+
+          <div class="game-icon">
+            🏠
+          </div>
+
+          <h2>
+            Little Love Room
+          </h2>
+
+          <p>
+            Step into a tiny room and meet your
+            very tiny virtual companion.
+          </p>
+
+        </div>
+
+        <div class="play">
+          ENTER →
+        </div>
+
+      </a>
+
+
+      <a class="game" href="memory.html">
+
+        <div>
+
+          <div class="game-icon">
+            🧠
+          </div>
+
+          <h2>
+            Memory Match
+          </h2>
+
+          <p>
+            Find all the matching pairs.
+            Let's see how good your memory is.
+          </p>
+
+        </div>
+
+        <div class="play">
+          PLAY →
+        </div>
+
+      </a>
+
+
+      <a class="game" href="phone.html">
+
+        <div>
+
+          <div class="game-icon">
+            📱
+          </div>
+
+          <h2>
+            Tiny Phone
+          </h2>
+
+          <p>
+            A completely fictional little phone
+            filled with surprises.
+          </p>
+
+        </div>
+
+        <div class="play">
+          OPEN →
+        </div>
+
+      </a>
+
+
+      <a class="game" href="court.html">
+
+        <div>
+
+          <div class="game-icon">
+            ⚖️
+          </div>
+
+          <h2>
+            Court of Love
+          </h2>
+
+          <p>
+            You have been charged with being
+            dangerously adorable.
+          </p>
+
+        </div>
+
+        <div class="play">
+          SEE THE EVIDENCE →
+        </div>
+
+      </a>
+
+
+      <a class="game" href="heart.html">
+
+        <div>
+
+          <div class="game-icon">
+            🎨
+          </div>
+
+          <h2>
+            Draw Your Heart
+          </h2>
+
+          <p>
+            Draw anything you want.
+            Preferably a heart.
+          </p>
+
+        </div>
+
+        <div class="play">
+          DRAW →
+        </div>
+
+      </a>
+
+    </section>
+
+
+    <a href="index.html" class="back">
+      ← Back to Riti's Birthday
     </a>
-
-
-    <p class="label">
-      A SECRET LITTLE PLACE
-    </p>
-
-
-    <h1>
-      Riti's Little World
-    </h1>
-
-
-    <p class="subtitle">
-      Six tiny things I made for you.
-      Explore them all. ❤️
-    </p>
-
-
-    <div class="games">
-
-
-      <a
-        href="bouquet.html"
-        class="game"
-      >
-
-        <div class="icon">
-          🌹
-        </div>
-
-        <h2>
-          Bouquet Builder
-        </h2>
-
-        <p>
-          Build yourself a bouquet.
-        </p>
-
-        <span class="arrow">
-          →
-        </span>
-
-      </a>
-
-
-      <a
-        href="love-room.html"
-        class="game"
-      >
-
-        <div class="icon">
-          🏠
-        </div>
-
-        <h2>
-          Little Love Room
-        </h2>
-
-        <p>
-          Something is hiding inside.
-        </p>
-
-        <span class="arrow">
-          →
-        </span>
-
-      </a>
-
-
-      <a
-        href="memory.html"
-        class="game"
-      >
-
-        <div class="icon">
-          🧠
-        </div>
-
-        <h2>
-          Memory Match
-        </h2>
-
-        <p>
-          Let's see what you remember.
-        </p>
-
-        <span class="arrow">
-          →
-        </span>
-
-      </a>
-
-
-      <a
-        href="phone.html"
-        class="game"
-      >
-
-        <div class="icon">
-          📱
-        </div>
-
-        <h2>
-          Riti's Phone
-        </h2>
-
-        <p>
-          Maybe there's something inside.
-        </p>
-
-        <span class="arrow">
-          →
-        </span>
-
-      </a>
-
-
-      <a
-        href="court.html"
-        class="game"
-      >
-
-        <div class="icon">
-          ⚖️
-        </div>
-
-        <h2>
-          Court of Love
-        </h2>
-
-        <p>
-          You have been accused...
-        </p>
-
-        <span class="arrow">
-          →
-        </span>
-
-      </a>
-
-
-      <a
-        href="heart.html"
-        class="game"
-      >
-
-        <div class="icon">
-          🎨
-        </div>
-
-        <h2>
-          Draw Your Heart
-        </h2>
-
-        <p>
-          Leave something behind for me.
-        </p>
-
-        <span class="arrow">
-          →
-        </span>
-
-      </a>
-
-
-    </div>
-
-
-    <div class="bottom-heart">
-      ♥
-    </div>
 
   </main>
 
