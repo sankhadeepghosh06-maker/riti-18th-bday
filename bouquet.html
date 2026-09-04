@@ -1,206 +1,1683 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Bouquet Builder 🌹</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#170b24">
+  <title>Bouquet Builder 🌸</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
   <style>
-
     :root {
-      --bg:#100818;
-      --pink:#ff72b6;
-      --pink2:#ffb6dc;
-      --purple:#a579ff;
-      --white:#fff8fd;
-      --muted:#c4aec8;
+      --bg: #100818;
+      --bg2: #1b0d27;
+      --purple: #9a6cff;
+      --purple-light: #c7adff;
+      --pink: #ff73b7;
+      --pink-light: #ffb9df;
+      --lavender: #dfd1ff;
+      --white: #fff8fd;
+      --muted: #c7b3cb;
+      --glass: rgba(255,255,255,0.07);
+      --glass-border: rgba(255,255,255,0.12);
     }
 
     * {
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--bg);
     }
 
     body {
-      min-height:100vh;
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100svh;
       background:
-        radial-gradient(circle at 50% 20%,rgba(170,80,255,.15),transparent 35%),
-        #100818;
-      color:var(--white);
-      font-family:"DM Sans",sans-serif;
-      text-align:center;
-      padding:35px 18px;
+        radial-gradient(circle at 20% 10%, rgba(154,108,255,.18), transparent 32%),
+        radial-gradient(circle at 85% 30%, rgba(255,115,183,.15), transparent 30%),
+        linear-gradient(145deg, #100818, #180b24 55%, #100818);
+      color: var(--white);
+      font-family: "DM Sans", sans-serif;
+      overflow-x: hidden;
     }
 
-    .back {
-      display:block;
-      width:max-content;
-      margin:0 auto 45px;
-      color:var(--muted);
-      text-decoration:none;
-      font-size:11px;
-    }
-
-    h1 {
-      font-family:"Cormorant Garamond",serif;
-      font-size:60px;
-      font-weight:500;
-    }
-
-    .script {
-      display:block;
-      font-family:"Great Vibes",cursive;
-      color:var(--pink2);
-      font-size:34px;
-    }
-
-    .intro {
-      max-width:350px;
-      margin:18px auto 30px;
-      color:var(--muted);
-      font-size:12px;
-      line-height:1.7;
-    }
-
-    .bouquet {
-      position:relative;
-      width:280px;
-      height:350px;
-      margin:20px auto;
-    }
-
-    .flower {
-      position:absolute;
-      font-size:48px;
-      cursor:pointer;
-      transition:.3s;
-      user-select:none;
-      filter:drop-shadow(0 5px 15px rgba(255,80,180,.15));
-    }
-
-    .flower:hover {
-      transform:scale(1.18) rotate(5deg);
-    }
-
-    .f1 { left:30px; top:65px; }
-    .f2 { left:110px; top:20px; }
-    .f3 { right:25px; top:70px; }
-    .f4 { left:65px; top:120px; }
-    .f5 { right:65px; top:125px; }
-
-    .stems {
-      position:absolute;
-      left:50%;
-      top:135px;
-      width:4px;
-      height:180px;
-      transform:translateX(-50%);
-      background:#6c965f;
-      border-radius:10px;
-      box-shadow:
-        -35px 20px #6c965f,
-        35px 20px #6c965f,
-        -55px 50px #6c965f,
-        55px 50px #6c965f;
-      opacity:.7;
-    }
-
-    .ribbon {
-      position:absolute;
-      bottom:25px;
-      left:50%;
-      transform:translateX(-50%);
-      padding:8px 25px;
-      border-radius:20px;
-      background:linear-gradient(90deg,#ff69ad,#9b6aff);
-      font-size:10px;
-      letter-spacing:1px;
-    }
-
-    .result {
-      min-height:35px;
-      color:var(--pink2);
-      font-family:"Great Vibes",cursive;
-      font-size:27px;
-      margin:15px;
+    button,
+    input {
+      font: inherit;
     }
 
     button {
-      border:1px solid rgba(255,170,220,.3);
-      background:rgba(255,255,255,.05);
-      color:white;
-      border-radius:999px;
-      padding:13px 24px;
-      cursor:pointer;
+      border: 0;
     }
 
+    .background-glow {
+      position: fixed;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      opacity: .28;
+      z-index: 0;
+    }
+
+    .glow-one {
+      background: #9a6cff;
+      top: -180px;
+      left: -160px;
+    }
+
+    .glow-two {
+      background: #ff73b7;
+      right: -180px;
+      top: 42%;
+    }
+
+    .glow-three {
+      background: #a77cff;
+      bottom: -220px;
+      left: 25%;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(1100px, 100%);
+      margin: auto;
+      padding: 22px 18px 70px;
+    }
+
+    /* ---------------- HEADER ---------------- */
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--lavender);
+      text-decoration: none;
+      padding: 11px 15px;
+      border: 1px solid var(--glass-border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.05);
+      backdrop-filter: blur(12px);
+      transition: .25s ease;
+      font-size: 13px;
+    }
+
+    .back-button:hover {
+      background: rgba(255,255,255,.1);
+      transform: translateX(-2px);
+    }
+
+    .game-number {
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--pink-light);
+    }
+
+    .heading {
+      text-align: center;
+      margin: 12px auto 28px;
+      max-width: 700px;
+    }
+
+    .heading-kicker {
+      color: var(--pink-light);
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      font-size: 10px;
+      margin-bottom: 9px;
+    }
+
+    .heading h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(44px, 9vw, 78px);
+      line-height: .9;
+      font-weight: 500;
+      margin: 0;
+      letter-spacing: -.035em;
+    }
+
+    .heading h1 span {
+      font-family: "Great Vibes", cursive;
+      color: var(--pink-light);
+      font-size: .75em;
+      display: block;
+      margin-top: 8px;
+    }
+
+    .heading p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+      max-width: 520px;
+      margin: 17px auto 0;
+    }
+
+    /* ---------------- PROGRESS ---------------- */
+
+    .progress-wrap {
+      width: min(600px, 100%);
+      margin: 0 auto 25px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 8px;
+    }
+
+    .progress-track {
+      height: 5px;
+      border-radius: 99px;
+      background: rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--purple), var(--pink));
+      transition: width .4s ease;
+    }
+
+    /* ---------------- GAME LAYOUT ---------------- */
+
+    .game-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 390px);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .panel {
+      border: 1px solid var(--glass-border);
+      background: rgba(255,255,255,.045);
+      border-radius: 28px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 25px 70px rgba(0,0,0,.22);
+    }
+
+    /* ---------------- FLOWER SHOP ---------------- */
+
+    .shop-panel {
+      padding: 22px;
+    }
+
+    .panel-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 5px;
+    }
+
+    .panel-title h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 28px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .panel-title span {
+      font-size: 19px;
+    }
+
+    .panel-subtitle {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+      margin: 0 0 19px;
+    }
+
+    .flower-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 10px;
+    }
+
+    .flower-card {
+      position: relative;
+      min-height: 112px;
+      border-radius: 19px;
+      border: 1px solid rgba(255,255,255,.09);
+      background: rgba(255,255,255,.055);
+      cursor: grab;
+      user-select: none;
+      touch-action: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+
+    .flower-card:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,.095);
+      border-color: rgba(255,182,220,.35);
+    }
+
+    .flower-card:active {
+      cursor: grabbing;
+      transform: scale(.96);
+    }
+
+    .flower-card.used {
+      opacity: .72;
+    }
+
+    .flower-emoji {
+      font-size: 42px;
+      line-height: 1;
+      filter: drop-shadow(0 6px 8px rgba(0,0,0,.18));
+      margin-bottom: 8px;
+      pointer-events: none;
+    }
+
+    .flower-name {
+      font-size: 10px;
+      color: var(--lavender);
+      letter-spacing: .03em;
+      pointer-events: none;
+    }
+
+    .flower-colour {
+      font-size: 8px;
+      color: #a992ad;
+      margin-top: 3px;
+      pointer-events: none;
+    }
+
+    /* ---------------- BOUQUET AREA ---------------- */
+
+    .bouquet-panel {
+      padding: 18px;
+      position: sticky;
+      top: 15px;
+    }
+
+    .bouquet-stage {
+      position: relative;
+      min-height: 510px;
+      border-radius: 23px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 35%, rgba(255,181,220,.10), transparent 35%),
+        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .stage-title {
+      position: absolute;
+      top: 17px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      color: rgba(255,248,253,.5);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 17px;
+      pointer-events: none;
+    }
+
+    .drop-zone {
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      top: 60px;
+      bottom: 72px;
+      border: 1px dashed rgba(255,182,220,.25);
+      border-radius: 45% 45% 35% 35%;
+      transition: .2s ease;
+    }
+
+    .drop-zone.drag-over {
+      border-color: var(--pink);
+      background: rgba(255,115,183,.07);
+      box-shadow: 0 0 45px rgba(255,115,183,.12);
+    }
+
+    .empty-message {
+      position: absolute;
+      top: 43%;
+      left: 15%;
+      right: 15%;
+      text-align: center;
+      color: rgba(255,248,253,.42);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 20px;
+      line-height: 1.35;
+      pointer-events: none;
+      transition: opacity .3s ease;
+    }
+
+    .empty-message small {
+      display: block;
+      margin-top: 7px;
+      font-family: "DM Sans", sans-serif;
+      font-size: 10px;
+      color: rgba(255,248,253,.3);
+    }
+
+    .bouquet-items {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .bouquet-flower {
+      position: absolute;
+      width: 66px;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 49px;
+      cursor: grab;
+      user-select: none;
+      pointer-events: auto;
+      touch-action: none;
+      filter: drop-shadow(0 9px 8px rgba(0,0,0,.25));
+      animation: flowerPop .45s cubic-bezier(.2,.9,.2,1.2);
+      transition: filter .2s ease;
+      z-index: 2;
+    }
+
+    .bouquet-flower:hover {
+      filter: drop-shadow(0 10px 12px rgba(255,130,190,.28));
+    }
+
+    .bouquet-flower.dragging {
+      z-index: 20;
+      transform: scale(1.13) rotate(-4deg);
+      filter: drop-shadow(0 15px 15px rgba(0,0,0,.35));
+    }
+
+    @keyframes flowerPop {
+      from {
+        opacity: 0;
+        transform: scale(.25) rotate(-18deg);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+      }
+    }
+
+    /* stems */
+
+    .stem {
+      position: absolute;
+      width: 3px;
+      height: 180px;
+      bottom: 40px;
+      left: 50%;
+      background: linear-gradient(180deg, #75a477, #315c42);
+      border-radius: 5px;
+      transform-origin: bottom;
+      opacity: .9;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .leaf {
+      position: absolute;
+      width: 26px;
+      height: 12px;
+      background: #568866;
+      border-radius: 100% 0 100% 0;
+      bottom: 125px;
+      left: calc(50% - 3px);
+      transform: rotate(-25deg);
+      opacity: .8;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .leaf.two {
+      transform: rotate(25deg);
+      left: calc(50% + 1px);
+      bottom: 155px;
+    }
+
+    .wrapping {
+      position: absolute;
+      width: 235px;
+      height: 175px;
+      left: 50%;
+      bottom: -42px;
+      transform: translateX(-50%) rotate(2deg);
+      clip-path: polygon(5% 0, 95% 0, 77% 100%, 23% 100%);
+      background: linear-gradient(135deg, #dcbcff, #9b6bd7);
+      z-index: 4;
+      box-shadow: 0 -15px 30px rgba(0,0,0,.18);
+      transition: .3s ease;
+      pointer-events: none;
+    }
+
+    .wrapping::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(130deg, transparent 40%, rgba(255,255,255,.2) 40.5%, transparent 42%),
+        linear-gradient(50deg, transparent 55%, rgba(255,255,255,.12) 55.5%, transparent 57%);
+      opacity: .7;
+    }
+
+    .ribbon {
+      position: absolute;
+      width: 112px;
+      height: 20px;
+      left: 50%;
+      bottom: 76px;
+      transform: translateX(-50%);
+      border-radius: 5px;
+      background: #ff73b7;
+      z-index: 6;
+      pointer-events: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,.2);
+    }
+
+    .ribbon::before,
+    .ribbon::after {
+      content: "";
+      position: absolute;
+      width: 39px;
+      height: 32px;
+      border: 5px solid currentColor;
+      top: -9px;
+      border-radius: 50% 50% 50% 10%;
+    }
+
+    .ribbon::before {
+      right: 80px;
+      transform: rotate(27deg);
+    }
+
+    .ribbon::after {
+      left: 80px;
+      transform: scaleX(-1) rotate(27deg);
+    }
+
+    .stage-count {
+      position: absolute;
+      bottom: 13px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 10px;
+      color: rgba(255,248,253,.4);
+      z-index: 10;
+    }
+
+    /* ---------------- CUSTOMIZATION ---------------- */
+
+    .customization {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .custom-box {
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 18px;
+      padding: 14px;
+      background: rgba(255,255,255,.035);
+    }
+
+    .custom-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: var(--muted);
+      margin-bottom: 11px;
+    }
+
+    .swatches {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .swatch {
+      width: 31px;
+      height: 31px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: .2s ease;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.25);
+    }
+
+    .swatch:hover {
+      transform: scale(1.1);
+    }
+
+    .swatch.active {
+      border-color: white;
+      box-shadow:
+        0 0 0 3px rgba(255,255,255,.1),
+        inset 0 0 0 1px rgba(255,255,255,.3);
+    }
+
+    /* ---------------- NAME + FINISH ---------------- */
+
+    .finish-area {
+      margin-top: 15px;
+    }
+
+    .name-input {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.11);
+      outline: none;
+      background: rgba(255,255,255,.055);
+      color: var(--white);
+      padding: 14px 15px;
+      border-radius: 15px;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .name-input::placeholder {
+      color: rgba(255,248,253,.35);
+    }
+
+    .name-input:focus {
+      border-color: rgba(255,115,183,.55);
+      box-shadow: 0 0 0 3px rgba(255,115,183,.08);
+    }
+
+    .finish-button {
+      width: 100%;
+      padding: 15px 18px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #a77aff, #ff73b7);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 14px 30px rgba(154,108,255,.2);
+      transition: .25s ease;
+    }
+
+    .finish-button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 35px rgba(255,115,183,.22);
+    }
+
+    .finish-button:disabled {
+      opacity: .38;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .finish-hint {
+      text-align: center;
+      color: rgba(255,248,253,.35);
+      font-size: 10px;
+      margin: 9px 0 0;
+    }
+
+    /* ---------------- REWARD ---------------- */
+
+    .reward-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(8,3,13,.76);
+      backdrop-filter: blur(15px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: .45s ease;
+    }
+
+    .reward-overlay.show {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .reward-card {
+      width: min(580px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 30px;
+      padding: 35px 28px 28px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,115,183,.15), transparent 40%),
+        linear-gradient(145deg, #251235, #160b22);
+      border: 1px solid rgba(255,182,220,.22);
+      box-shadow: 0 30px 100px rgba(0,0,0,.55);
+      transform: translateY(30px) scale(.95);
+      transition: .5s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .reward-overlay.show .reward-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .reward-bouquet {
+      font-size: 65px;
+      line-height: 1;
+      margin-bottom: 13px;
+      animation: rewardFloat 2.2s ease-in-out infinite;
+    }
+
+    @keyframes rewardFloat {
+      0%,100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-7px) rotate(2deg); }
+    }
+
+    .reward-kicker {
+      color: var(--pink-light);
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      font-size: 9px;
+      margin-bottom: 8px;
+    }
+
+    .reward-card h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(34px, 7vw, 52px);
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .reward-card h2 span {
+      color: var(--pink-light);
+    }
+
+    .reward-divider {
+      color: var(--purple-light);
+      margin: 17px 0;
+    }
+
+    .reward-text {
+      color: #dfcfe1;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 19px;
+      line-height: 1.55;
+      text-align: left;
+    }
+
+    .reward-text p {
+      margin: 0 0 14px;
+    }
+
+    .reward-signature {
+      color: var(--muted);
+      font-family: "Great Vibes", cursive;
+      font-size: 25px;
+      margin: 17px 0 22px;
+    }
+
+    .continue-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 15px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: .2s ease;
+    }
+
+    .continue-button:hover {
+      background: rgba(255,255,255,.13);
+    }
+
+    /* ---------------- PETALS ---------------- */
+
+    .petal {
+      position: fixed;
+      top: -40px;
+      pointer-events: none;
+      z-index: 90;
+      animation: fall linear forwards;
+      opacity: .75;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-30px) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: .8;
+      }
+      100% {
+        transform: translateY(110vh) rotate(540deg);
+        opacity: 0;
+      }
+    }
+
+    /* ---------------- RESPONSIVE ---------------- */
+
+    @media (max-width: 850px) {
+      .game-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .bouquet-panel {
+        position: static;
+        order: -1;
+      }
+
+      .bouquet-stage {
+        min-height: 460px;
+      }
+
+      .flower-grid {
+        grid-template-columns: repeat(4, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page {
+        padding: 15px 12px 55px;
+      }
+
+      .topbar {
+        margin-bottom: 18px;
+      }
+
+      .heading {
+        margin-bottom: 21px;
+      }
+
+      .heading h1 {
+        font-size: 51px;
+      }
+
+      .heading p {
+        font-size: 12px;
+        padding: 0 12px;
+      }
+
+      .shop-panel,
+      .bouquet-panel {
+        padding: 13px;
+        border-radius: 22px;
+      }
+
+      .flower-grid {
+        grid-template-columns: repeat(3, minmax(0,1fr));
+        gap: 7px;
+      }
+
+      .flower-card {
+        min-height: 95px;
+        border-radius: 15px;
+      }
+
+      .flower-emoji {
+        font-size: 35px;
+      }
+
+      .flower-name {
+        font-size: 9px;
+      }
+
+      .flower-colour {
+        font-size: 7px;
+      }
+
+      .bouquet-stage {
+        min-height: 420px;
+      }
+
+      .bouquet-flower {
+        width: 57px;
+        height: 57px;
+        font-size: 42px;
+      }
+
+      .wrapping {
+        width: 200px;
+        height: 155px;
+      }
+
+      .customization {
+        grid-template-columns: 1fr;
+      }
+
+      .reward-card {
+        padding: 29px 20px 22px;
+        border-radius: 24px;
+      }
+
+      .reward-text {
+        font-size: 18px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <a href="mini-games.html" class="back">← back to the games</a>
+  <div class="background-glow glow-one"></div>
+  <div class="background-glow glow-two"></div>
+  <div class="background-glow glow-three"></div>
 
-  <h1>
-    Bouquet
-    <span class="script">for you ♡</span>
-  </h1>
+  <main class="page">
 
-  <p class="intro">
-    Tap the flowers to arrange your own little bouquet.
-    Because apparently buying a real one wasn't enough.
-  </p>
+    <div class="topbar">
+      <a href="mini-games.html" class="back-button">← Mini Games</a>
+      <div class="game-number">Game 01 · 06</div>
+    </div>
 
-  <div class="bouquet">
+    <header class="heading">
+      <div class="heading-kicker">A little something for you</div>
+      <h1>Bouquet <span>Builder</span></h1>
+      <p>
+        Don't just choose a bouquet.
+        Make one. Drag the flowers you like into the little garden below
+        and create something that's completely yours.
+      </p>
+    </header>
 
-    <div class="stems"></div>
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>Your bouquet</span>
+        <span id="progressText">0 flowers</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </div>
 
-    <div class="flower f1" onclick="flower('🌹')">🌹</div>
-    <div class="flower f2" onclick="flower('🌷')">🌷</div>
-    <div class="flower f3" onclick="flower('🌸')">🌸</div>
-    <div class="flower f4" onclick="flower('🌺')">🌺</div>
-    <div class="flower f5" onclick="flower('🌻')">🌻</div>
+    <section class="game-layout">
 
-    <div class="ribbon">FOR RITI</div>
+      <!-- FLOWER SHOP -->
+
+      <div class="panel shop-panel">
+
+        <div class="panel-title">
+          <h2>Choose your flowers</h2>
+          <span>🌸</span>
+        </div>
+
+        <p class="panel-subtitle">
+          Press and drag any flower into your bouquet.
+          You can also drag flowers around after placing them.
+        </p>
+
+        <div class="flower-grid" id="flowerGrid">
+
+          <div class="flower-card" data-emoji="🌹" data-name="Rose">
+            <div class="flower-emoji">🌹</div>
+            <div class="flower-name">Rose</div>
+            <div class="flower-colour">romance</div>
+          </div>
+
+          <div class="flower-card" data-emoji="🌷" data-name="Tulip">
+            <div class="flower-emoji">🌷</div>
+            <div class="flower-name">Tulip</div>
+            <div class="flower-colour">sweetness</div>
+          </div>
+
+          <div class="flower-card" data-emoji="🌻" data-name="Sunflower">
+            <div class="flower-emoji">🌻</div>
+            <div class="flower-name">Sunflower</div>
+            <div class="flower-colour">happiness</div>
+          </div>
+
+          <div class="flower-card" data-emoji="🌸" data-name="Cherry Blossom">
+            <div class="flower-emoji">🌸</div>
+            <div class="flower-name">Blossom</div>
+            <div class="flower-colour">gentleness</div>
+          </div>
+
+          <div class="flower-card" data-emoji="🌺" data-name="Hibiscus">
+            <div class="flower-emoji">🌺</div>
+            <div class="flower-name">Hibiscus</div>
+            <div class="flower-colour">passion</div>
+          </div>
+
+          <div class="flower-card" data-emoji="🌼" data-name="Daisy">
+            <div class="flower-emoji">🌼</div>
+            <div class="flower-name">Daisy</div>
+            <div class="flower-colour">joy</div>
+          </div>
+
+          <div class="flower-card" data-emoji="🪻" data-name="Lavender">
+            <div class="flower-emoji">🪻</div>
+            <div class="flower-name">Lavender</div>
+            <div class="flower-colour">calm</div>
+          </div>
+
+          <div class="flower-card" data-emoji="💐" data-name="Flower Bunch">
+            <div class="flower-emoji">💐</div>
+            <div class="flower-name">Flower Bunch</div>
+            <div class="flower-colour">celebration</div>
+          </div>
+
+          <div class="flower-card" data-emoji="🪷" data-name="Lotus">
+            <div class="flower-emoji">🪷</div>
+            <div class="flower-name">Lotus</div>
+            <div class="flower-colour">peace</div>
+          </div>
+
+          <div class="flower-card" data-emoji="🏵️" data-name="Marigold">
+            <div class="flower-emoji">🏵️</div>
+            <div class="flower-name">Marigold</div>
+            <div class="flower-colour">warmth</div>
+          </div>
+
+          <div class="flower-card" data-emoji="🌿" data-name="Eucalyptus">
+            <div class="flower-emoji">🌿</div>
+            <div class="flower-name">Eucalyptus</div>
+            <div class="flower-colour">freshness</div>
+          </div>
+
+          <div class="flower-card" data-emoji="🍃" data-name="Olive Branch">
+            <div class="flower-emoji">🍃</div>
+            <div class="flower-name">Olive Branch</div>
+            <div class="flower-colour">peace</div>
+          </div>
+
+          <div class="flower-card" data-emoji="🌱" data-name="Fern">
+            <div class="flower-emoji">🌱</div>
+            <div class="flower-name">Fern</div>
+            <div class="flower-colour">growth</div>
+          </div>
+
+          <div class="flower-card" data-emoji="🌾" data-name="Wild Grass">
+            <div class="flower-emoji">🌾</div>
+            <div class="flower-name">Wild Grass</div>
+            <div class="flower-colour">freedom</div>
+          </div>
+
+          <div class="flower-card" data-emoji="🌹" data-name="Deep Rose">
+            <div class="flower-emoji">🥀</div>
+            <div class="flower-name">Deep Rose</div>
+            <div class="flower-colour">devotion</div>
+          </div>
+
+          <div class="flower-card" data-emoji="🌸" data-name="Pink Blossom">
+            <div class="flower-emoji">🌷</div>
+            <div class="flower-name">Pink Tulip</div>
+            <div class="flower-colour">affection</div>
+          </div>
+
+          <div class="flower-card" data-emoji="🌼" data-name="Daffodil">
+            <div class="flower-emoji">🌼</div>
+            <div class="flower-name">Daffodil</div>
+            <div class="flower-colour">hope</div>
+          </div>
+
+          <div class="flower-card" data-emoji="💮" data-name="White Flower">
+            <div class="flower-emoji">💮</div>
+            <div class="flower-name">White Bloom</div>
+            <div class="flower-colour">purity</div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- BOUQUET -->
+
+      <div class="panel bouquet-panel">
+
+        <div class="bouquet-stage" id="bouquetStage">
+
+          <div class="stage-title">your little bouquet ♡</div>
+
+          <div class="drop-zone" id="dropZone"></div>
+
+          <div class="empty-message" id="emptyMessage">
+            Your bouquet is waiting...
+            <small>drag flowers here</small>
+          </div>
+
+          <div class="bouquet-items" id="bouquetItems"></div>
+
+          <div class="stem"></div>
+          <div class="leaf"></div>
+          <div class="leaf two"></div>
+
+          <div class="wrapping" id="wrapping"></div>
+          <div class="ribbon" id="ribbon"></div>
+
+          <div class="stage-count" id="stageCount">
+            0 / 5 flowers
+          </div>
+
+        </div>
+
+        <div class="customization">
+
+          <div class="custom-box">
+            <div class="custom-label">Wrapping paper</div>
+
+            <div class="swatches">
+
+              <button
+                class="swatch active"
+                data-wrap="linear-gradient(135deg,#dcbcff,#9b6bd7)"
+                style="background:linear-gradient(135deg,#dcbcff,#9b6bd7)"
+                aria-label="Lavender wrapping">
+              </button>
+
+              <button
+                class="swatch"
+                data-wrap="linear-gradient(135deg,#ffc6e4,#d85f9c)"
+                style="background:linear-gradient(135deg,#ffc6e4,#d85f9c)"
+                aria-label="Pink wrapping">
+              </button>
+
+              <button
+                class="swatch"
+                data-wrap="linear-gradient(135deg,#f7e9ef,#cfaec1)"
+                style="background:linear-gradient(135deg,#f7e9ef,#cfaec1)"
+                aria-label="White wrapping">
+              </button>
+
+              <button
+                class="swatch"
+                data-wrap="linear-gradient(135deg,#b7d8c2,#608b70)"
+                style="background:linear-gradient(135deg,#b7d8c2,#608b70)"
+                aria-label="Green wrapping">
+              </button>
+
+              <button
+                class="swatch"
+                data-wrap="linear-gradient(135deg,#b9c8f5,#687cc0)"
+                style="background:linear-gradient(135deg,#b9c8f5,#687cc0)"
+                aria-label="Blue wrapping">
+              </button>
+
+            </div>
+          </div>
+
+          <div class="custom-box">
+            <div class="custom-label">Ribbon</div>
+
+            <div class="swatches">
+
+              <button
+                class="swatch active"
+                data-ribbon="#ff73b7"
+                style="background:#ff73b7"
+                aria-label="Pink ribbon">
+              </button>
+
+              <button
+                class="swatch"
+                data-ribbon="#9a6cff"
+                style="background:#9a6cff"
+                aria-label="Purple ribbon">
+              </button>
+
+              <button
+                class="swatch"
+                data-ribbon="#fff1f8"
+                style="background:#fff1f8"
+                aria-label="White ribbon">
+              </button>
+
+              <button
+                class="swatch"
+                data-ribbon="#d9b36c"
+                style="background:#d9b36c"
+                aria-label="Gold ribbon">
+              </button>
+
+              <button
+                class="swatch"
+                data-ribbon="#e35d73"
+                style="background:#e35d73"
+                aria-label="Red ribbon">
+              </button>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="finish-area">
+
+          <input
+            type="text"
+            class="name-input"
+            id="bouquetName"
+            maxlength="32"
+            placeholder="Give your bouquet a name...">
+
+          <button
+            class="finish-button"
+            id="finishButton"
+            disabled>
+            Give the bouquet to Riti ♡
+          </button>
+
+          <p class="finish-hint" id="finishHint">
+            Add at least 5 flowers to continue.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- REWARD -->
+
+  <div class="reward-overlay" id="rewardOverlay">
+
+    <div class="reward-card">
+
+      <div class="reward-bouquet">💐</div>
+
+      <div class="reward-kicker">Bouquet delivered ♡</div>
+
+      <h2>
+        For <span>Riti</span>
+      </h2>
+
+      <div class="reward-divider">✦ ───── ♡ ───── ✦</div>
+
+      <div class="reward-text">
+
+        <!--
+          ================================
+          EDIT YOUR REWARD MESSAGE HERE
+          ================================
+        -->
+
+        <p>
+          If I could give you one thing for your eighteenth birthday,
+          it would be a reminder of just how loved you are.
+        </p>
+
+        <p>
+          Every flower in this little bouquet is just a tiny excuse
+          to say that you deserve beautiful things, beautiful moments,
+          and people who make you smile for no reason.
+        </p>
+
+        <p>
+          So here's your tiny bouquet — made especially for you,
+          because an ordinary birthday message simply wasn't enough.
+        </p>
+
+      </div>
+
+      <div class="reward-signature">
+        Happy 18th, Riti ♡
+      </div>
+
+      <a href="mini-games.html" class="continue-button">
+        Continue exploring the little world → 
+      </a>
+
+    </div>
 
   </div>
 
-  <div class="result" id="result">
-    choose a flower ♡
-  </div>
-
-  <button onclick="finish()">
-    finish my bouquet
-  </button>
 
   <script>
 
-    let flowers = [];
+    /* =========================================================
+       BOUQUET BUILDER
+       ========================================================= */
 
-    function flower(type) {
+    const bouquetStage = document.getElementById("bouquetStage");
+    const dropZone = document.getElementById("dropZone");
+    const bouquetItems = document.getElementById("bouquetItems");
+    const emptyMessage = document.getElementById("emptyMessage");
 
-      flowers.push(type);
+    const progressText = document.getElementById("progressText");
+    const progressBar = document.getElementById("progressBar");
+    const stageCount = document.getElementById("stageCount");
 
-      document.getElementById("result").textContent =
-        flowers.join(" ") + " ♡";
+    const finishButton = document.getElementById("finishButton");
+    const finishHint = document.getElementById("finishHint");
+
+    const bouquetName = document.getElementById("bouquetName");
+
+    const wrapping = document.getElementById("wrapping");
+    const ribbon = document.getElementById("ribbon");
+
+    const rewardOverlay = document.getElementById("rewardOverlay");
+
+    let bouquet = [];
+    let flowerId = 0;
+
+    const MIN_FLOWERS = 5;
+    const MAX_FLOWERS = 12;
+
+
+    /* =========================================================
+       FLOWER CARDS
+       ========================================================= */
+
+    document.querySelectorAll(".flower-card").forEach(card => {
+
+      card.addEventListener("pointerdown", startNewFlower);
+
+    });
+
+
+    function startNewFlower(e) {
+
+      if (bouquet.length >= MAX_FLOWERS) {
+        showHint("Your bouquet is already beautifully full ♡");
+        return;
+      }
+
+      e.preventDefault();
+
+      const card = e.currentTarget;
+
+      const flower = {
+        id: ++flowerId,
+        emoji: card.querySelector(".flower-emoji").textContent,
+        name: card.dataset.name,
+        x: 50,
+        y: 45
+      };
+
+      bouquet.push(flower);
+
+      createBouquetFlower(flower);
+
+      card.classList.add("used");
+
+      updateUI();
+
+      /* Start dragging immediately */
+      const element = document.querySelector(
+        `.bouquet-flower[data-id="${flower.id}"]`
+      );
+
+      if (element) {
+        beginDragging(element, e);
+      }
 
     }
 
-    function finish() {
 
-      document.getElementById("result").textContent =
-        "A bouquet made with love. 🌷💗";
+    /* =========================================================
+       CREATE FLOWER IN BOUQUET
+       ========================================================= */
+
+    function createBouquetFlower(flower) {
+
+      const element = document.createElement("div");
+
+      element.className = "bouquet-flower";
+      element.dataset.id = flower.id;
+      element.textContent = flower.emoji;
+      element.title = flower.name;
+
+      positionFlower(element, flower.x, flower.y);
+
+      element.addEventListener("pointerdown", function(e) {
+        beginDragging(element, e);
+      });
+
+      bouquetItems.appendChild(element);
 
     }
+
+
+    function positionFlower(element, x, y) {
+
+      element.style.left = `calc(${x}% - 33px)`;
+      element.style.top = `calc(${y}% - 33px)`;
+
+    }
+
+
+    /* =========================================================
+       TOUCH + MOUSE DRAGGING
+       ========================================================= */
+
+    let dragging = null;
+    let dragOffsetX = 0;
+    let dragOffsetY = 0;
+
+
+    function beginDragging(element, e) {
+
+      e.preventDefault();
+
+      dragging = element;
+
+      dragging.classList.add("dragging");
+
+      const rect = element.getBoundingClientRect();
+
+      dragOffsetX = e.clientX - rect.left - rect.width / 2;
+      dragOffsetY = e.clientY - rect.top - rect.height / 2;
+
+      document.addEventListener("pointermove", dragMove);
+      document.addEventListener("pointerup", endDragging, { once: true });
+
+    }
+
+
+    function dragMove(e) {
+
+      if (!dragging) return;
+
+      e.preventDefault();
+
+      const stageRect = bouquetStage.getBoundingClientRect();
+
+      let x =
+        ((e.clientX - stageRect.left - dragOffsetX)
+        / stageRect.width) * 100;
+
+      let y =
+        ((e.clientY - stageRect.top - dragOffsetY)
+        / stageRect.height) * 100;
+
+      /*
+        Keep flowers inside the stage.
+      */
+
+      x = Math.max(10, Math.min(90, x));
+      y = Math.max(15, Math.min(82, y));
+
+      const flower = bouquet.find(
+        item => item.id == dragging.dataset.id
+      );
+
+      if (flower) {
+        flower.x = x;
+        flower.y = y;
+      }
+
+      positionFlower(dragging, x, y);
+
+    }
+
+
+    function endDragging() {
+
+      if (!dragging) return;
+
+      dragging.classList.remove("dragging");
+
+      dragging = null;
+
+      document.removeEventListener("pointermove", dragMove);
+
+    }
+
+
+    /* =========================================================
+       DROP ZONE VISUAL
+       ========================================================= */
+
+    document.addEventListener("pointermove", e => {
+
+      const rect = dropZone.getBoundingClientRect();
+
+      const inside =
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom;
+
+      if (inside && dragging) {
+        dropZone.classList.add("drag-over");
+      } else {
+        dropZone.classList.remove("drag-over");
+      }
+
+    });
+
+
+    /* =========================================================
+       UI
+       ========================================================= */
+
+    function updateUI() {
+
+      const count = bouquet.length;
+
+      progressText.textContent =
+        `${count} flower${count === 1 ? "" : "s"}`;
+
+      const percentage =
+        Math.min(100, (count / MIN_FLOWERS) * 100);
+
+      progressBar.style.width = `${percentage}%`;
+
+      stageCount.textContent =
+        `${count} / ${MIN_FLOWERS} flowers`;
+
+      emptyMessage.style.opacity =
+        count === 0 ? "1" : "0";
+
+      finishButton.disabled =
+        count < MIN_FLOWERS;
+
+      if (count < MIN_FLOWERS) {
+
+        finishHint.textContent =
+          `Add ${MIN_FLOWERS - count} more flower${MIN_FLOWERS - count === 1 ? "" : "s"} to continue.`;
+
+      } else if (count < MAX_FLOWERS) {
+
+        finishHint.textContent =
+          "You have enough flowers — but you can add a few more if you want.";
+
+      } else {
+
+        finishHint.textContent =
+          "Your bouquet is beautifully full ♡";
+
+      }
+
+    }
+
+
+    function showHint(message) {
+
+      finishHint.textContent = message;
+
+      setTimeout(() => {
+        updateUI();
+      }, 2200);
+
+    }
+
+
+    /* =========================================================
+       WRAPPING
+       ========================================================= */
+
+    document.querySelectorAll("[data-wrap]").forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        document
+          .querySelectorAll("[data-wrap]")
+          .forEach(item => item.classList.remove("active"));
+
+        button.classList.add("active");
+
+        wrapping.style.background =
+          button.dataset.wrap;
+
+      });
+
+    });
+
+
+    /* =========================================================
+       RIBBON
+       ========================================================= */
+
+    document.querySelectorAll("[data-ribbon]").forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        document
+          .querySelectorAll("[data-ribbon]")
+          .forEach(item => item.classList.remove("active"));
+
+        button.classList.add("active");
+
+        const colour = button.dataset.ribbon;
+
+        ribbon.style.background = colour;
+        ribbon.style.color = colour;
+
+      });
+
+    });
+
+
+    /* =========================================================
+       FINISH BOUQUET
+       ========================================================= */
+
+    finishButton.addEventListener("click", finishBouquet);
+
+
+    function finishBouquet() {
+
+      if (bouquet.length < MIN_FLOWERS) {
+        return;
+      }
+
+      /*
+        Save completion.
+        This lets mini-games.html know that Game 1 was completed.
+      */
+
+      try {
+
+        const existing =
+          JSON.parse(localStorage.getItem("ritiGameProgress")) || {};
+
+        existing.bouquet = true;
+
+        localStorage.setItem(
+          "ritiGameProgress",
+          JSON.stringify(existing)
+        );
+
+      } catch (error) {
+        console.log("Progress could not be saved.");
+      }
+
+
+      /*
+        Give the bouquet a little celebration.
+      */
+
+      createPetals(35);
+
+      bouquetStage.style.transition = "transform .5s ease";
+
+      bouquetStage.style.transform =
+        "scale(1.025)";
+
+      setTimeout(() => {
+        bouquetStage.style.transform = "scale(1)";
+      }, 500);
+
+
+      setTimeout(() => {
+
+        rewardOverlay.classList.add("show");
+
+      }, 750);
+
+    }
+
+
+    /* =========================================================
+       FALLING PETALS
+       ========================================================= */
+
+    function createPetals(amount) {
+
+      const petals = ["🌸", "💗", "✦", "♡", "🌷"];
+
+      for (let i = 0; i < amount; i++) {
+
+        const petal = document.createElement("div");
+
+        petal.className = "petal";
+
+        petal.textContent =
+          petals[Math.floor(Math.random() * petals.length)];
+
+        petal.style.left =
+          Math.random() * 100 + "vw";
+
+        petal.style.fontSize =
+          (10 + Math.random() * 14) + "px";
+
+        petal.style.animationDuration =
+          (3 + Math.random() * 4) + "s";
+
+        petal.style.animationDelay =
+          Math.random() * 1.4 + "s";
+
+        document.body.appendChild(petal);
+
+        setTimeout(() => {
+          petal.remove();
+        }, 8500);
+
+      }
+
+    }
+
+
+    /* =========================================================
+       INITIALISE
+       ========================================================= */
+
+    updateUI();
 
   </script>
 
 </body>
 </html>
+```
