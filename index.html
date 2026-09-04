@@ -1,561 +1,383 @@
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#100818">
-  <title>Riti — 18 ✨</title>
+```javascript
+document.addEventListener("DOMContentLoaded", () => {
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  /* =========================================================
+     ELEMENTS
+     ========================================================= */
 
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  const envelopeWrapper =
+    document.getElementById("envelopeWrapper");
 
-  <link rel="stylesheet" href="style.css">
-</head>
+  const openLetterButton =
+    document.getElementById("openLetterButton");
 
-<body>
+  const letterOpening =
+    document.getElementById("letterOpening");
 
-  <!-- Ambient background -->
-  <div class="ambient ambient-1"></div>
-  <div class="ambient ambient-2"></div>
-  <div class="ambient ambient-3"></div>
+  const revealedLetter =
+    document.getElementById("revealedLetter");
 
-  <div class="stars"></div>
+  const continueAfterLetter =
+    document.getElementById("continueAfterLetter");
 
-  <div class="floating-heart heart-1">♡</div>
-  <div class="floating-heart heart-2">♥</div>
-  <div class="floating-heart heart-3">♡</div>
-  <div class="floating-heart heart-4">✦</div>
+  const mainContent =
+    document.getElementById("mainContent");
 
+  const celebration =
+    document.getElementById("celebration");
 
-  <!-- =====================================================
-       ENVELOPE OPENING EXPERIENCE
-       ===================================================== -->
 
-  <section class="letter-opening" id="letterOpening">
+  /* =========================================================
+     OPEN THE ENVELOPE
+     ========================================================= */
 
-    <div class="opening-glow"></div>
+  let envelopeOpened = false;
 
-    <div class="opening-content">
 
-      <p class="opening-eyebrow">
-        A little something made just for you
-      </p>
+  function openEnvelope() {
 
-      <div class="opening-line"></div>
+    if (envelopeOpened) {
+      return;
+    }
 
-      <h1>
-        Happy <span>18th</span>
-        Birthday
-      </h1>
+    envelopeOpened = true;
 
-      <p class="opening-name">
-        Riti ♡
-      </p>
 
-      <p class="opening-subtitle">
-        There's something I wanted to tell you...
-      </p>
+    /*
+      Start envelope animation.
+    */
 
+    envelopeWrapper.classList.add("opened");
 
-      <!-- ENVELOPE -->
 
-      <div class="envelope-wrapper" id="envelopeWrapper">
+    /*
+      Disable the button while the animation happens.
+    */
 
-        <div class="envelope-shadow"></div>
+    openLetterButton.disabled = true;
 
-        <div class="envelope" id="envelope">
+    openLetterButton.style.opacity = "0";
 
-          <!-- Letter inside -->
-          <div class="envelope-letter">
+    openLetterButton.style.transform =
+      "translateY(8px)";
 
-            <div class="letter-paper-content">
 
-              <p class="paper-small">
-                A little letter for you
-              </p>
+    /*
+      Create a small burst of hearts.
+    */
 
-              <div class="paper-heart">♡</div>
+    createCelebration(18);
 
-              <p class="paper-name">
-                Dear Riti,
-              </p>
 
-            </div>
+    /*
+      Wait for the envelope to open,
+      then reveal the actual letter.
+    */
 
-          </div>
+    setTimeout(() => {
 
+      revealedLetter.classList.add("show");
 
-          <!-- Back of envelope -->
-          <div class="envelope-back"></div>
+    }, 850);
 
+  }
 
-          <!-- Envelope pocket -->
-          <div class="envelope-pocket"></div>
 
+  /* =========================================================
+     CLICK BUTTON
+     ========================================================= */
 
-          <!-- Flap -->
-          <div class="envelope-flap"></div>
+  openLetterButton.addEventListener(
+    "click",
+    openEnvelope
+  );
 
 
-          <!-- Heart seal -->
-          <div class="envelope-seal">
-            ♥
-          </div>
+  /* =========================================================
+     CLICK ENVELOPE
+     ========================================================= */
 
-        </div>
+  envelopeWrapper.addEventListener(
+    "click",
+    openEnvelope
+  );
 
-      </div>
 
+  /* =========================================================
+     KEYBOARD SUPPORT
+     ========================================================= */
 
-      <button class="open-letter-button" id="openLetterButton">
-        <span>Open my letter</span>
-        <span class="open-arrow">♡</span>
-      </button>
+  envelopeWrapper.setAttribute(
+    "role",
+    "button"
+  );
 
-      <p class="tap-hint">
-        tap the envelope to open it ✦
-      </p>
+  envelopeWrapper.setAttribute(
+    "tabindex",
+    "0"
+  );
 
-    </div>
+  envelopeWrapper.addEventListener(
+    "keydown",
+    event => {
 
-  </section>
+      if (
+        event.key === "Enter" ||
+        event.key === " "
+      ) {
 
+        event.preventDefault();
 
+        openEnvelope();
 
-  <!-- =====================================================
-       ACTUAL BIRTHDAY LETTER
-       ===================================================== -->
+      }
 
-  <section class="revealed-letter" id="revealedLetter">
+    }
+  );
 
-    <div class="revealed-letter-card">
 
-      <div class="revealed-paper">
+  /* =========================================================
+     CONTINUE FROM LETTER
+     ========================================================= */
 
-        <div class="paper-corner"></div>
+  continueAfterLetter.addEventListener(
+    "click",
+    () => {
 
-        <p class="revealed-kicker">
-          A letter for you
-        </p>
+      /*
+        Close the letter overlay.
+      */
 
-        <div class="revealed-heart">
-          ♡
-        </div>
+      revealedLetter.classList.remove("show");
 
-        <p class="revealed-dear">
-          Dear Riti,
-        </p>
 
-        <h2>
-          Eighteen looks
-          <span>beautiful</span> on you.
-        </h2>
+      /*
+        Fade out the opening section completely.
+      */
 
-        <div class="revealed-divider">
-          ✦ ───── ♡ ───── ✦
-        </div>
+      setTimeout(() => {
 
+        letterOpening.classList.add("closed");
 
-        <!-- =================================================
-             YOUR PERSONAL BIRTHDAY MESSAGE
-             Replace the paragraphs below with your message.
-             ================================================= -->
+      }, 250);
 
-        <div class="revealed-message">
 
-          <p>
-            Happy 18th birthday to someone who deserves
-            nothing but the most beautiful things in life.
-          </p>
+      /*
+        Make sure the main page is visible.
+      */
 
-          <p>
-            I hope this new chapter brings you countless
-            reasons to smile, memories you'll want to keep
-            forever, and people who remind you just how
-            special you really are.
-          </p>
+      mainContent.style.display = "block";
 
-          <p>
-            And more than anything, I hope you know that
-            you are loved, appreciated, and incredibly
-            important.
-          </p>
 
-        </div>
+      /*
+        Give the page a moment to settle,
+        then move to Chapter Eighteen.
+      */
 
+      setTimeout(() => {
 
-        <div class="revealed-signature">
-          with love,
-          <span>♡</span>
-        </div>
+        const hero =
+          document.querySelector(".hero");
 
-        <button class="continue-after-letter" id="continueAfterLetter">
-          There's more waiting for you ↓
-        </button>
+        if (hero) {
 
-      </div>
+          hero.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
 
-    </div>
+        }
 
-  </section>
+      }, 750);
 
+    }
+  );
 
 
-  <!-- =====================================================
-       MAIN PAGE
-       ===================================================== -->
+  /* =========================================================
+     CELEBRATION HEARTS
+     ========================================================= */
 
-  <main class="main-content" id="mainContent">
+  function createCelebration(amount) {
 
+    const symbols = [
+      "♡",
+      "♥",
+      "✦",
+      "✧",
+      "💗",
+      "🌸"
+    ];
 
-    <!-- HERO -->
 
-    <section class="hero section">
+    for (let i = 0; i < amount; i++) {
 
-      <div class="hero-eyebrow">
-        ✦ SEPTEMBER 2026 ✦
-      </div>
+      const heart =
+        document.createElement("div");
 
-      <div class="hero-number">
-        18
-      </div>
+      heart.className =
+        "celebration-heart";
 
-      <div class="hero-title">
-        <span>Chapter</span>
-        <strong>Eighteen</strong>
-      </div>
 
-      <p class="hero-description">
-        Here's to the girl who makes ordinary moments
-        feel a little more magical.
-      </p>
+      heart.textContent =
+        symbols[
+          Math.floor(
+            Math.random() * symbols.length
+          )
+        ];
 
-      <div class="scroll-indicator">
-        <span></span>
-        scroll slowly
-      </div>
 
-    </section>
+      /*
+        Random direction.
+      */
 
+      const x =
+        (Math.random() - 0.5) * 520;
 
+      const y =
+        -80 -
+        Math.random() * 430;
 
-    <!-- =====================================================
-         PHOTO
-         ===================================================== -->
 
-    <section class="photo-section section">
+      const rotation =
+        (Math.random() - 0.5) * 80;
 
-      <div class="section-label">
-        01 · A little memory
-      </div>
 
-      <div class="photo-frame">
+      heart.style.setProperty(
+        "--x",
+        `${x}px`
+      );
 
-        <div class="photo-glow"></div>
+      heart.style.setProperty(
+        "--y",
+        `${y}px`
+      );
 
-        <div class="photo-card">
+      heart.style.setProperty(
+        "--rotation",
+        `${rotation}deg`
+      );
 
-          <img
-            src="images/your-photo.jpg"
-            alt="A special memory"
-          >
 
-          <div class="photo-caption">
-            <span>one of my favourite views</span>
-            <span>♡</span>
-          </div>
+      heart.style.animationDelay =
+        `${Math.random() * .45}s`;
 
-        </div>
 
-      </div>
+      heart.style.fontSize =
+        `${10 + Math.random() * 18}px`;
 
-      <p class="photo-note">
-        Replace <strong>your-photo.jpg</strong> in the
-        <strong>images</strong> folder with your actual photo.
-      </p>
 
-    </section>
+      celebration.appendChild(heart);
 
 
+      setTimeout(() => {
 
-    <!-- =====================================================
-         LETTER / SECOND MESSAGE
-         ===================================================== -->
+        heart.remove();
 
-    <section class="letter-section section">
+      }, 3300);
 
-      <div class="section-label">
-        02 · For you
-      </div>
+    }
 
-      <div class="letter-card">
+  }
 
-        <div class="letter-decoration">
-          ♡
-        </div>
 
-        <p class="letter-kicker">
-          Dear Riti,
-        </p>
+  /* =========================================================
+     OPTIONAL: LITTLE HEARTS WHILE SCROLLING
+     ========================================================= */
 
-        <h2>
-          Eighteen looks<br>
-          beautiful on you.
-        </h2>
+  let lastScrollTime = 0;
 
-        <div class="letter-divider">
-          ✦
-        </div>
 
-        <div class="letter-text">
+  window.addEventListener(
+    "scroll",
+    () => {
 
-          <p>
-            Write another little message here if you want.
-          </p>
+      const now =
+        Date.now();
 
-          <p>
-            This section can be used for memories,
-            inside jokes, things you love about her,
-            or anything else that couldn't fit into
-            the opening letter.
-          </p>
 
-          <p>
-            Make it personal. Make it yours.
-          </p>
+      /*
+        Don't create too many particles.
+      */
 
-        </div>
+      if (
+        now - lastScrollTime < 1000
+      ) {
+        return;
+      }
 
-        <div class="letter-signature">
-          with love,<br>
-          <span>someone who adores you ♡</span>
-        </div>
 
-      </div>
+      /*
+        Only occasionally create
+        a tiny floating heart.
+      */
 
-    </section>
+      if (
+        Math.random() < 0.22
+      ) {
 
+        createScrollHeart();
 
+      }
 
-    <!-- =====================================================
-         MUSIC
-         ===================================================== -->
 
-    <section class="music-section section">
+      lastScrollTime = now;
 
-      <div class="section-label">
-        03 · Press play
-      </div>
+    },
+    { passive: true }
+  );
 
-      <div class="music-card">
 
-        <div class="music-top">
+  function createScrollHeart() {
 
-          <div class="vinyl">
-            <div class="vinyl-center">
-              ♡
-            </div>
-          </div>
+    const heart =
+      document.createElement("div");
 
-          <div>
+    heart.className =
+      "celebration-heart";
 
-            <p class="music-small">
-              a song for you
-            </p>
 
-            <h2>
-              Listen closely...
-            </h2>
+    heart.textContent =
+      Math.random() > .5
+        ? "♡"
+        : "✦";
 
-            <p class="music-caption">
-              Maybe this one reminds you of us.
-            </p>
 
-          </div>
+    heart.style.left =
+      `${20 + Math.random() * 60}%`;
 
-        </div>
+    heart.style.top =
+      `${70 + Math.random() * 20}%`;
 
 
-        <div class="spotify-wrapper">
+    heart.style.setProperty(
+      "--x",
+      `${(Math.random() - .5) * 100}px`
+    );
 
-          <iframe
-            src="https://open.spotify.com/embed/track/1jXfVzMk8cSbvAXMML4Y4f?utm_source=generator&theme=0"
-            width="100%"
-            height="152"
-            frameborder="0"
-            allowfullscreen=""
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy">
-          </iframe>
 
-        </div>
+    heart.style.setProperty(
+      "--y",
+      `${-80 - Math.random() * 120}px`
+    );
 
-      </div>
 
-    </section>
+    heart.style.setProperty(
+      "--rotation",
+      `${(Math.random() - .5) * 60}deg`
+    );
 
 
+    celebration.appendChild(heart);
 
-    <!-- =====================================================
-         MINI GAMES
-         ===================================================== -->
 
-    <section class="games-section section">
+    setTimeout(() => {
 
-      <div class="section-label">
-        04 · Something fun
-      </div>
+      heart.remove();
 
-      <div class="games-intro">
+    }, 3000);
 
-        <div>
+  }
 
-          <p class="games-kicker">
-            A tiny playground
-          </p>
-
-          <h2>
-            You found<br>
-            the secret part.
-          </h2>
-
-        </div>
-
-        <div class="game-symbol">
-          ♡
-        </div>
-
-      </div>
-
-      <p class="games-description">
-        Six little experiences made for you.
-        No scores. No pressure. Just play.
-      </p>
-
-
-      <a href="mini-games.html" class="games-button">
-
-        <span class="games-icon">
-          🎮
-        </span>
-
-        <span class="games-button-text">
-
-          <strong>
-            Explore the Mini Games
-          </strong>
-
-          <small>
-            six tiny things to discover
-          </small>
-
-        </span>
-
-        <span class="games-arrow">
-          →
-        </span>
-
-      </a>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         INSTAGRAM MEMORIES
-         ===================================================== -->
-
-    <section class="social-section section">
-
-      <div class="section-label">
-        05 · Memories
-      </div>
-
-      <div class="social-card">
-
-        <div class="social-icon">
-          ◎
-        </div>
-
-        <p class="social-small">
-          A little archive
-        </p>
-
-        <h2>
-          Our little<br>
-          collection of moments.
-        </h2>
-
-        <p>
-          There's a few more memories waiting here.
-        </p>
-
-        <a
-          href="https://www.instagram.com/stories/highlights/17926944879204043/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="social-button">
-          Open the memories ↗
-        </a>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         FINALE
-         ===================================================== -->
-
-    <section class="finale section">
-
-      <div class="finale-sparkle">
-        ✦
-      </div>
-
-      <p class="finale-small">
-        AND FINALLY...
-      </p>
-
-      <h2>
-        Happy<br>
-        <span>18th</span>
-      </h2>
-
-      <p class="finale-message">
-        May this chapter be softer,<br>
-        brighter, louder, messier,<br>
-        and somehow even more beautiful.
-      </p>
-
-      <div class="final-heart">
-        ♥
-      </div>
-
-      <p class="finale-end">
-        Here's to eighteen. ♡
-      </p>
-
-    </section>
-
-
-    <footer>
-      made with entirely too much love ♡
-    </footer>
-
-  </main>
-
-
-  <!-- Falling hearts container -->
-  <div id="celebration"></div>
-
-
-  <script src="script.js"></script>
-
-</body>
-</html>
+});
 ```
