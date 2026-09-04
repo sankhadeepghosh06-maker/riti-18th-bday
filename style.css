@@ -1,0 +1,1069 @@
+/* =========================================
+   BASIC RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    font-family: "Poppins", sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            #5b263f 0%,
+            #24111c 42%,
+            #0e080c 100%
+        );
+
+    color: #fff4f7;
+}
+
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: -5;
+}
+
+.glow {
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    border-radius: 50%;
+
+    filter: blur(100px);
+
+    opacity: 0.18;
+
+    animation: glowMove 12s ease-in-out infinite alternate;
+}
+
+.glow-1 {
+    top: -200px;
+    left: -200px;
+    background: #ff6f9f;
+}
+
+.glow-2 {
+    right: -250px;
+    top: 35%;
+    background: #b83b70;
+    animation-delay: -4s;
+}
+
+.glow-3 {
+    left: 20%;
+    bottom: -350px;
+    background: #ff9cbd;
+    animation-delay: -8s;
+}
+
+@keyframes glowMove {
+
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(70px, 50px) scale(1.15);
+    }
+}
+
+
+/* =========================================
+   FLOATING HEARTS
+========================================= */
+
+#hearts-container {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 20;
+}
+
+.floating-heart {
+    position: absolute;
+
+    bottom: -40px;
+
+    color: #ff9dbb;
+
+    opacity: 0;
+
+    font-size: 18px;
+
+    animation: floatHeart linear forwards;
+
+    text-shadow:
+        0 0 10px rgba(255, 120, 160, 0.5);
+}
+
+@keyframes floatHeart {
+
+    0% {
+        transform:
+            translateY(0)
+            translateX(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.7;
+    }
+
+    80% {
+        opacity: 0.4;
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            translateX(var(--drift))
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   OPENING SCREEN
+========================================= */
+
+.opening-screen {
+
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    z-index: 100;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #57263d 0%,
+            #24111c 45%,
+            #0d080b 100%
+        );
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+.opening-screen.hide {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+.opening-content {
+
+    animation: openingAppear 1.5s ease forwards;
+}
+
+@keyframes openingAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tiny-heart {
+
+    font-size: 30px;
+
+    color: #ff9ebd;
+
+    margin-bottom: 20px;
+
+    animation: heartPulse 2s infinite;
+}
+
+@keyframes heartPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.small-title {
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+
+    color: #dba5b8;
+
+    margin-bottom: 18px;
+}
+
+.opening-content h1 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(70px, 17vw, 150px);
+
+    line-height: 0.75;
+
+    font-weight: 500;
+
+    letter-spacing: -4px;
+
+    color: #fff6f8;
+}
+
+.opening-content h1 span {
+
+    color: #ffabc5;
+
+    font-style: italic;
+}
+
+.opening-subtitle {
+
+    margin-top: 35px;
+
+    color: #cfa8b6;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    font-weight: 300;
+}
+
+.enter-button {
+
+    margin-top: 40px;
+
+    padding: 15px 27px;
+
+    border: 1px solid rgba(255, 180, 205, 0.35);
+
+    border-radius: 50px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: white;
+
+    font-family: "Poppins", sans-serif;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+
+    backdrop-filter: blur(10px);
+}
+
+.enter-button:hover {
+
+    transform: translateY(-3px);
+
+    background: rgba(255, 170, 200, 0.15);
+
+    border-color: rgba(255, 180, 205, 0.7);
+
+    box-shadow:
+        0 10px 40px rgba(255, 100, 150, 0.2);
+}
+
+.button-heart {
+
+    margin-left: 8px;
+
+    color: #ff9ebd;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.main-content {
+
+    opacity: 1;
+
+    transition: opacity 1s ease;
+
+    max-width: 700px;
+
+    margin: auto;
+
+    padding: 0 22px;
+}
+
+.main-content.hidden {
+
+    opacity: 0;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+
+    min-height: 90vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding-top: 80px;
+}
+
+.eyebrow,
+.section-label {
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    color: #d990aa;
+
+    text-transform: uppercase;
+}
+
+.hero h2 {
+
+    margin-top: 25px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-weight: 500;
+
+    font-size: clamp(55px, 13vw, 95px);
+
+    line-height: 0.85;
+
+    letter-spacing: -2px;
+}
+
+.hero h2 em {
+
+    color: #ff9fbc;
+
+    font-weight: 400;
+}
+
+.heart-divider {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-top: 40px;
+
+    color: #ff9fbc;
+}
+
+.heart-divider span {
+
+    width: 60px;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            to right,
+            transparent,
+            rgba(255, 159, 188, 0.5)
+        );
+}
+
+.heart-divider span:last-child {
+
+    background:
+        linear-gradient(
+            to left,
+            transparent,
+            rgba(255, 159, 188, 0.5)
+        );
+}
+
+
+/* =========================================
+   PHOTO
+========================================= */
+
+.photo-section {
+
+    padding: 50px 0 100px;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+.photo-frame {
+
+    position: relative;
+
+    width: min(100%, 500px);
+
+    padding: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.12),
+            rgba(255,150,190,0.08)
+        );
+
+    border: 1px solid rgba(255, 190, 210, 0.25);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.45);
+
+    transform: rotate(-1deg);
+
+    transition: transform 0.5s ease;
+}
+
+.photo-frame:hover {
+
+    transform: rotate(0deg) scale(1.015);
+}
+
+.main-photo {
+
+    display: block;
+
+    width: 100%;
+
+    aspect-ratio: 4 / 5;
+
+    object-fit: cover;
+
+    border-radius: 2px;
+}
+
+.photo-placeholder {
+
+    width: 100%;
+
+    aspect-ratio: 4 / 5;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 174, 199, 0.08),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    color: #c99aaa;
+}
+
+.placeholder-heart {
+
+    font-family: serif;
+
+    font-size: 70px;
+
+    color: #ff9fbc;
+
+    margin-bottom: 10px;
+}
+
+.photo-placeholder p {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 28px;
+
+    color: #f1c4d1;
+}
+
+.photo-placeholder small {
+
+    margin-top: 10px;
+
+    font-size: 10px;
+
+    line-height: 1.7;
+
+    color: #a77b8c;
+}
+
+.photo-decoration {
+
+    position: absolute;
+
+    color: #ffabc5;
+
+    font-size: 25px;
+
+    text-shadow:
+        0 0 20px rgba(255, 100, 150, 0.5);
+}
+
+.decoration-1 {
+
+    top: -18px;
+
+    right: 25px;
+}
+
+.decoration-2 {
+
+    bottom: -20px;
+
+    left: 25px;
+
+    font-size: 35px;
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+.message-section {
+
+    text-align: center;
+
+    padding: 50px 0 110px;
+}
+
+.message-card {
+
+    position: relative;
+
+    margin-top: 35px;
+
+    padding: 45px 35px;
+
+    border-top: 1px solid rgba(255, 170, 195, 0.25);
+
+    border-bottom: 1px solid rgba(255, 170, 195, 0.25);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 120, 160, 0.035),
+            transparent
+        );
+}
+
+.message-text {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(23px, 5vw, 31px);
+
+    line-height: 1.5;
+
+    color: #f5d9e1;
+
+    font-weight: 500;
+}
+
+.quote-mark {
+
+    position: absolute;
+
+    top: 0;
+    left: 5px;
+
+    font-family: Georgia, serif;
+
+    font-size: 80px;
+
+    line-height: 1;
+
+    color: rgba(255, 150, 180, 0.18);
+}
+
+.quote-end {
+
+    top: auto;
+
+    left: auto;
+
+    right: 5px;
+
+    bottom: -30px;
+}
+
+
+/* =========================================
+   MUSIC
+========================================= */
+
+.music-section {
+
+    padding: 40px 0 100px;
+
+    text-align: center;
+}
+
+.music-section h3,
+.instagram-card h3 {
+
+    margin-top: 15px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 44px;
+
+    font-weight: 500;
+}
+
+.section-description {
+
+    margin-top: 10px;
+
+    color: #b993a2;
+
+    font-size: 12px;
+}
+
+.music-card {
+
+    margin-top: 35px;
+
+    padding: 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    text-align: left;
+
+    border: 1px solid rgba(255, 180, 200, 0.16);
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,0.035);
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.2);
+}
+
+.vinyl {
+
+    flex-shrink: 0;
+
+    width: 70px;
+
+    height: 70px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        repeating-radial-gradient(
+            circle,
+            #171116 0px,
+            #171116 3px,
+            #272027 4px,
+            #171116 6px
+        );
+
+    animation: vinylSpin 7s linear infinite;
+}
+
+.vinyl-center {
+
+    width: 23px;
+
+    height: 23px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #ff87aa;
+
+    color: #451426;
+
+    font-size: 10px;
+}
+
+@keyframes vinylSpin {
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.music-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+    flex: 1;
+}
+
+.music-small {
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    color: #bb8296;
+}
+
+.music-info strong {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 24px;
+
+    font-weight: 600;
+}
+
+.music-info span:last-child {
+
+    color: #987a86;
+
+    font-size: 10px;
+}
+
+.spotify-button,
+.instagram-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 12px 18px;
+
+    border-radius: 30px;
+
+    text-decoration: none;
+
+    color: white;
+
+    font-size: 11px;
+
+    border: 1px solid rgba(255, 180, 200, 0.25);
+
+    background: rgba(255,255,255,0.07);
+
+    transition: all 0.3s ease;
+
+    white-space: nowrap;
+}
+
+.spotify-button:hover,
+.instagram-button:hover {
+
+    transform: translateY(-3px);
+
+    background: rgba(255, 150, 180, 0.15);
+
+    border-color: rgba(255, 180, 200, 0.5);
+}
+
+
+/* =========================================
+   INSTAGRAM
+========================================= */
+
+.instagram-section {
+
+    padding: 20px 0 110px;
+
+    text-align: center;
+}
+
+.instagram-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 55px 30px;
+
+    border: 1px solid rgba(255, 180, 200, 0.18);
+
+    border-radius: 25px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255, 100, 160, 0.13),
+            transparent 65%
+        ),
+        rgba(255,255,255,0.025);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.25);
+}
+
+.instagram-icon {
+
+    margin-bottom: 20px;
+
+    font-size: 45px;
+
+    color: #ffabc5;
+
+    font-family: Arial, sans-serif;
+}
+
+.instagram-card p:not(.section-label) {
+
+    margin-top: 15px;
+
+    color: #b993a2;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+.instagram-button {
+
+    margin-top: 30px;
+
+    padding: 14px 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 110, 160, 0.22),
+            rgba(255, 180, 200, 0.08)
+        );
+}
+
+
+/* =========================================
+   FINAL
+========================================= */
+
+.final-section {
+
+    min-height: 75vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 50px 0;
+}
+
+.final-heart {
+
+    font-size: 30px;
+
+    color: #ff9dbb;
+
+    animation: heartPulse 2s infinite;
+}
+
+.final-section h2 {
+
+    margin-top: 25px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(55px, 13vw, 90px);
+
+    line-height: 0.9;
+
+    font-weight: 500;
+}
+
+.final-section h2 em {
+
+    color: #ff9fbc;
+
+    font-weight: 400;
+}
+
+.final-section p {
+
+    margin-top: 30px;
+
+    color: #a98795;
+
+    font-size: 11px;
+
+    line-height: 1.8;
+}
+
+.final-divider {
+
+    margin-top: 35px;
+
+    color: #c97d98;
+
+    letter-spacing: 10px;
+}
+
+footer {
+
+    padding: 30px 0 50px;
+
+    text-align: center;
+
+    color: #765764;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .main-content {
+        padding: 0 18px;
+    }
+
+    .hero {
+        min-height: 80vh;
+    }
+
+    .music-card {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .music-info {
+        flex: initial;
+        width: calc(100% - 100px);
+        text-align: left;
+    }
+
+    .spotify-button {
+        width: 100%;
+    }
+
+    .message-card {
+        padding: 40px 20px;
+    }
+
+    .opening-content h1 {
+        letter-spacing: -2px;
+    }
+
+}
+
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        scroll-behavior: auto !important;
+
+    }
+}
