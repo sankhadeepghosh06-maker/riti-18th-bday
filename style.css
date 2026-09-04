@@ -8,28 +8,38 @@ body {
   padding: 0;
   width: 100%;
   min-height: 100%;
+
+  background: #09050a;
 }
 
 body {
-  background: #09050a;
   color: #fff5f7;
   font-family: "Inter", sans-serif;
   overflow-x: hidden;
 }
 
-button,
 a {
-  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+label {
+  -webkit-tap-highlight-color: transparent;
 }
 
 
-/* =========================
+/* =================================
    OPENING SCREEN
-========================= */
+   ================================= */
+
+.open-surprise {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
 
 .opening-screen {
   position: fixed;
-  z-index: 9999;
 
   top: 0;
   left: 0;
@@ -38,6 +48,9 @@ a {
 
   width: 100vw;
   height: 100vh;
+  height: 100svh;
+
+  z-index: 9999;
 
   display: flex;
   align-items: center;
@@ -48,19 +61,21 @@ a {
   text-align: center;
 
   background:
-    radial-gradient(circle at 50% 35%, rgba(255, 90, 145, 0.18), transparent 35%),
-    radial-gradient(circle at 20% 80%, rgba(160, 40, 100, 0.15), transparent 35%),
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(255, 90, 145, 0.20),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(160, 40, 100, 0.15),
+      transparent 35%
+    ),
     #09050a;
 
   transition:
     opacity 0.8s ease,
     visibility 0.8s ease;
-}
-
-.opening-screen.hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
 }
 
 .opening-content {
@@ -71,6 +86,7 @@ a {
 
   display: flex;
   flex-direction: column;
+
   align-items: center;
   justify-content: center;
 
@@ -88,10 +104,10 @@ a {
 }
 
 .opening-heart {
+  margin-bottom: 18px;
+
   font-size: 52px;
   line-height: 1;
-
-  margin-bottom: 18px;
 
   color: #ff8eae;
 
@@ -150,14 +166,12 @@ a {
 
   background: rgba(255, 105, 145, 0.13);
 
-  color: #fff;
+  color: white;
 
   font-size: 14px;
   font-weight: 600;
 
   cursor: pointer;
-
-  -webkit-tap-highlight-color: transparent;
 
   transition:
     transform 0.2s ease,
@@ -182,11 +196,29 @@ a {
 }
 
 
-/* =========================
+/* =================================
+   OPENING SCREEN TO MAIN PAGE
+   NO JAVASCRIPT REQUIRED
+   ================================= */
+
+.open-surprise:checked ~ .opening-screen {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.open-surprise:checked ~ .main-content {
+  display: block;
+}
+
+
+/* =================================
    MAIN CONTENT
-========================= */
+   ================================= */
 
 .main-content {
+  display: none;
+
   width: 100%;
   max-width: 900px;
 
@@ -195,11 +227,17 @@ a {
   padding: 80px 20px;
 }
 
+
+/* =================================
+   HERO
+   ================================= */
+
 .hero {
   min-height: 80vh;
 
   display: flex;
   flex-direction: column;
+
   align-items: center;
   justify-content: center;
 
@@ -225,7 +263,7 @@ a {
 
   background: linear-gradient(
     180deg,
-    #fff,
+    #ffffff,
     #ff8eae
   );
 
@@ -244,6 +282,7 @@ a {
   font-family: "Cormorant Garamond", serif;
 
   font-size: clamp(30px, 7vw, 50px);
+
   font-weight: 500;
 }
 
@@ -256,9 +295,9 @@ a {
 }
 
 
-/* =========================
+/* =================================
    PHOTO
-========================= */
+   ================================= */
 
 .photo-section {
   padding: 40px 0;
@@ -308,9 +347,9 @@ a {
 
   padding: 30px;
 
-  color: rgba(255, 220, 230, 0.65);
-
   text-align: center;
+
+  color: rgba(255, 220, 230, 0.65);
 }
 
 .photo-frame.photo-placeholder .photo-placeholder-text {
@@ -318,9 +357,9 @@ a {
 }
 
 
-/* =========================
+/* =================================
    LETTER
-========================= */
+   ================================= */
 
 .letter-section,
 .music-section,
@@ -366,9 +405,9 @@ a {
 }
 
 
-/* =========================
+/* =================================
    SPOTIFY
-========================= */
+   ================================= */
 
 .spotify-wrapper {
   width: 100%;
@@ -376,15 +415,15 @@ a {
 
   margin: 30px auto 0;
 
-  border-radius: 14px;
-
   overflow: hidden;
+
+  border-radius: 14px;
 }
 
 
-/* =========================
-   MINI GAMES
-========================= */
+/* =================================
+   MINI GAMES BUTTON
+   ================================= */
 
 .mini-games-button {
   display: inline-flex;
@@ -400,8 +439,6 @@ a {
 
   border-radius: 999px;
 
-  text-decoration: none;
-
   background: linear-gradient(
     135deg,
     #ff719b,
@@ -410,10 +447,13 @@ a {
 
   color: white;
 
+  text-decoration: none;
+
   font-size: 15px;
   font-weight: 600;
 
-  box-shadow: 0 15px 45px rgba(255, 80, 130, 0.18);
+  box-shadow:
+    0 15px 45px rgba(255, 80, 130, 0.18);
 
   transition:
     transform 0.2s ease,
@@ -423,13 +463,14 @@ a {
 .mini-games-button:hover {
   transform: translateY(-3px);
 
-  box-shadow: 0 18px 50px rgba(255, 80, 130, 0.3);
+  box-shadow:
+    0 18px 50px rgba(255, 80, 130, 0.3);
 }
 
 
-/* =========================
+/* =================================
    INSTAGRAM
-========================= */
+   ================================= */
 
 .instagram-section {
   padding: 40px 0;
@@ -446,23 +487,24 @@ a {
 
   border-radius: 999px;
 
+  background: rgba(255, 255, 255, 0.04);
+
   color: white;
 
   text-decoration: none;
-
-  background: rgba(255, 255, 255, 0.04);
 }
 
 
-/* =========================
+/* =================================
    FINALE
-========================= */
+   ================================= */
 
 .finale {
   min-height: 70vh;
 
   display: flex;
   flex-direction: column;
+
   align-items: center;
   justify-content: center;
 
@@ -486,11 +528,12 @@ a {
 }
 
 
-/* =========================
+/* =================================
    ANIMATION
-========================= */
+   ================================= */
 
 @keyframes heartbeat {
+
   0%,
   100% {
     transform: scale(1);
@@ -499,21 +542,22 @@ a {
   50% {
     transform: scale(1.12);
   }
+
 }
 
 
-/* =========================
-   PHONE
-========================= */
+/* =================================
+   MOBILE
+   ================================= */
 
 @media (max-width: 600px) {
 
   .opening-screen {
     padding:
-      max(20px, env(safe-area-inset-left))
-      max(20px, env(safe-area-inset-right))
+      20px
+      20px
       max(20px, env(safe-area-inset-bottom))
-      max(20px, env(safe-area-inset-left));
+      20px;
   }
 
   .opening-content {
@@ -534,13 +578,14 @@ a {
   }
 
   .opening-subtitle {
-    font-size: 17px;
     max-width: 330px;
+
+    font-size: 17px;
+
     margin-bottom: 25px;
   }
 
   .open-button {
-    width: auto;
     max-width: 90%;
   }
 
@@ -558,6 +603,7 @@ a {
 
   .letter-card {
     padding: 25px;
+
     font-size: 19px;
   }
 
@@ -566,10 +612,13 @@ a {
   .games-section {
     padding: 70px 0;
   }
+
 }
 
 
-/* VERY SMALL PHONES */
+/* =================================
+   VERY SMALL PHONES
+   ================================= */
 
 @media (max-width: 360px) {
 
@@ -579,6 +628,7 @@ a {
 
   .opening-heart {
     font-size: 36px;
+
     margin-bottom: 10px;
   }
 
@@ -588,17 +638,22 @@ a {
 
   .opening-name {
     font-size: 40px;
+
     margin: 10px 0;
   }
 
   .opening-subtitle {
     font-size: 15px;
+
     margin-bottom: 20px;
   }
 
   .open-button {
     min-height: 50px;
+
     padding: 13px 22px;
+
     font-size: 13px;
   }
+
 }
