@@ -4,185 +4,132 @@
 <head>
 
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Little Love Room 🏠</title>
 
 <style>
 
 * {
-  box-sizing: border-box;
+box-sizing:border-box;
 }
 
 body {
-  margin: 0;
-
-  min-height: 100vh;
-
-  background:
-    radial-gradient(
-      circle at top,
-      #33101f,
-      #09050a 60%
-    );
-
-  color: white;
-
-  font-family: Arial, sans-serif;
-
-  padding: 20px;
-}
-
-.container {
-  width: 100%;
-  max-width: 700px;
-
-  margin: auto;
-
-  text-align: center;
-}
-
-h1 {
-  font-family: Georgia, serif;
-
-  font-size: clamp(38px, 9vw, 60px);
+margin:0;
+min-height:100vh;
+background:
+radial-gradient(circle at 50% 30%,rgba(185,100,255,.16),transparent 40%),
+#100818;
+color:#fff;
+font-family:Arial,sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:25px;
 }
 
 .room {
-  position: relative;
-
-  width: 100%;
-
-  max-width: 650px;
-
-  height: 420px;
-
-  margin: 25px auto;
-
-  border-radius: 30px;
-
-  overflow: hidden;
-
-  background:
-    linear-gradient(
-      #24101b 0 70%,
-      #4d2933 70% 100%
-    );
-
-  border: 2px solid rgba(255,180,200,.15);
-}
-
-.window {
-  position: absolute;
-
-  top: 45px;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  width: 150px;
-  height: 110px;
-
-  border: 8px solid #754451;
-
-  background:
-    radial-gradient(circle, #ff9ab8, #401526);
-}
-
-.couch {
-  position: absolute;
-
-  bottom: 70px;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  width: 230px;
-  height: 75px;
-
-  border-radius: 30px 30px 15px 15px;
-
-  background: #8b4058;
-}
-
-.lamp {
-  position: absolute;
-
-  right: 60px;
-  bottom: 75px;
-
-  font-size: 60px;
-}
-
-.character {
-  position: absolute;
-
-  bottom: 125px;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  font-size: 75px;
-
-  cursor: pointer;
-
-  transition: transform .2s;
-}
-
-.character:hover {
-  transform:
-    translateX(-50%)
-    scale(1.1);
-}
-
-.controls {
-  display: flex;
-
-  justify-content: center;
-
-  flex-wrap: wrap;
-
-  gap: 10px;
-}
-
-button {
-  padding: 13px 18px;
-
-  border: 1px solid rgba(255,180,200,.25);
-
-  border-radius: 999px;
-
-  background: rgba(255,255,255,.05);
-
-  color: white;
-
-  cursor: pointer;
-}
-
-.message {
-  min-height: 50px;
-
-  margin: 20px;
-
-  color: #ffabc0;
-
-  font-family: Georgia, serif;
-
-  font-size: 21px;
+width:min(100%,500px);
+text-align:center;
 }
 
 .back {
-  display: inline-block;
+display:block;
+margin-bottom:25px;
+color:#c9b4ce;
+font-size:11px;
+text-decoration:none;
+}
 
-  margin-top: 20px;
+h1 {
+font-family:Georgia,serif;
+font-size:42px;
+font-weight:400;
+}
 
-  color: white;
+.sub {
+color:#c9b4ce;
+font-size:12px;
+line-height:1.7;
+}
 
-  text-decoration: none;
+.house {
+position:relative;
+height:320px;
+margin:35px auto;
+border:1px solid rgba(255,255,255,.12);
+border-radius:25px;
+overflow:hidden;
+background:
+linear-gradient(#21132f 0 60%,#171021 60%);
+box-shadow:0 25px 70px rgba(0,0,0,.3);
+}
+
+.moon {
+position:absolute;
+right:40px;
+top:30px;
+font-size:45px;
+}
+
+.window {
+position:absolute;
+left:35px;
+top:65px;
+width:100px;
+height:110px;
+border-radius:10px;
+background:
+linear-gradient(135deg,#ff9fd7,#9168ff);
+box-shadow:0 0 40px rgba(255,120,200,.25);
+}
+
+.couch {
+position:absolute;
+bottom:45px;
+left:50%;
+transform:translateX(-50%);
+width:220px;
+height:75px;
+border-radius:25px 25px 10px 10px;
+background:#58365f;
+}
+
+.bear {
+position:absolute;
+bottom:95px;
+left:50%;
+transform:translateX(-50%);
+font-size:75px;
+cursor:pointer;
+transition:.3s;
+}
+
+.bear:hover {
+transform:translateX(-50%) scale(1.08);
+}
+
+.lamp {
+position:absolute;
+right:45px;
+bottom:45px;
+font-size:55px;
+}
+
+.message {
+min-height:45px;
+font-family:Georgia,serif;
+font-size:20px;
+color:#ffb7dc;
+}
+
+button {
+padding:12px 20px;
+border-radius:999px;
+border:1px solid rgba(255,170,220,.3);
+background:rgba(255,255,255,.05);
+color:white;
+cursor:pointer;
 }
 
 </style>
@@ -191,154 +138,79 @@ button {
 
 <body>
 
-<div class="container">
+<div class="room">
 
-<h1>🏠 Little Love Room</h1>
+<a href="mini-games.html" class="back">← back to the games</a>
 
-<p>
-Welcome to your tiny little world.
+<h1>Little Love Room 🏠</h1>
+
+<p class="sub">
+Someone tiny lives here.<br>
+Tap them.
 </p>
 
-<div class="room">
+<div class="house">
+
+<div class="moon">☾</div>
 
 <div class="window"></div>
 
 <div class="couch"></div>
 
+<div class="bear" onclick="talk()">
+🐻
+</div>
+
 <div class="lamp">
 💡
 </div>
 
-<div
-  id="character"
-  class="character"
-  onclick="pokeCharacter()"
->
-🐻
 </div>
 
+<div class="message" id="message">
+...
 </div>
 
+<br>
 
-<div class="controls">
-
-<button onclick="saySomething()">
-💬 Talk
-</button>
-
-<button onclick="giveHug()">
-🤗 Hug
-</button>
-
-<button onclick="dance()">
-💃 Dance
-</button>
-
-<button onclick="giveFlower()">
-🌹 Give Flower
+<button onclick="talk()">
+talk to the bear
 </button>
 
 </div>
-
-
-<div id="message" class="message">
-Your tiny companion is waiting...
-</div>
-
-
-<a href="mini-games.html" class="back">
-← Back to Mini Games
-</a>
-
-</div>
-
 
 <script>
 
 const messages = [
 
-"Your tiny companion says: you are adorable. ❤️",
+"hi riti ♡",
 
-"🐻 says: I hope you're having the best birthday.",
+"you look very birthday-ish today.",
 
-"Someone clearly loves you very much.",
+"i have something to tell you...",
 
-"Emergency hug incoming. 🤗",
+"you're very very loved.",
 
-"You're officially 18 levels more fabulous.",
-
-"Don't forget to smile today. ❤️"
+"okay that's all. i'm shy now. 🐻"
 
 ];
 
+let index = 0;
 
-function showMessage(text) {
+function talk() {
 
-document.getElementById("message")
-.textContent = text;
+document.getElementById("message").textContent =
+messages[index];
 
+index++;
+
+if(index >= messages.length) {
+index = 0;
 }
-
-
-function pokeCharacter() {
-
-showMessage(
-messages[
-Math.floor(Math.random() * messages.length)
-]
-);
-
-}
-
-
-function saySomething() {
-
-showMessage(
-"🐻: If nobody told you today... you're pretty amazing."
-);
-
-}
-
-
-function giveHug() {
-
-showMessage(
-"🐻 gives you the biggest tiny hug. 🤗❤️"
-);
-
-}
-
-
-function dance() {
-
-const character =
-document.getElementById("character");
-
-character.textContent = "🕺";
-
-showMessage(
-"🐻 is absolutely destroying the dance floor."
-);
-
-setTimeout(() => {
-
-character.textContent = "🐻";
-
-}, 1200);
-
-}
-
-
-function giveFlower() {
-
-showMessage(
-"🌹 You gave your tiny companion a flower. It is very happy."
-);
 
 }
 
 </script>
 
 </body>
-
 </html>
