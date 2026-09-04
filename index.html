@@ -1,13 +1,15 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#170b24">
+  <meta name="theme-color" content="#100818">
   <title>Riti — 18 ✨</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
@@ -18,57 +20,199 @@
   <!-- Ambient background -->
   <div class="ambient ambient-1"></div>
   <div class="ambient ambient-2"></div>
+  <div class="ambient ambient-3"></div>
+
   <div class="stars"></div>
 
-  <!-- Floating decorations -->
   <div class="floating-heart heart-1">♡</div>
   <div class="floating-heart heart-2">♥</div>
   <div class="floating-heart heart-3">♡</div>
   <div class="floating-heart heart-4">✦</div>
 
-  <!--
-    CSS-only opening screen.
-    The button does NOT depend on JavaScript.
-  -->
-  <input type="checkbox" id="openSurprise" class="open-surprise">
 
-  <section class="opening-screen">
+  <!-- =====================================================
+       ENVELOPE OPENING EXPERIENCE
+       ===================================================== -->
+
+  <section class="letter-opening" id="letterOpening">
+
+    <div class="opening-glow"></div>
 
     <div class="opening-content">
 
-      <div class="opening-small">
+      <p class="opening-eyebrow">
         A little something made just for you
-      </div>
+      </p>
 
       <div class="opening-line"></div>
 
       <h1>
-        Happy
-        <span>18th</span>
+        Happy <span>18th</span>
         Birthday
       </h1>
 
-      <p class="opening-name">Riti ♡</p>
-
-      <p class="opening-subtitle">
-        Some birthdays deserve more than just a message.
+      <p class="opening-name">
+        Riti ♡
       </p>
 
-      <label for="openSurprise" class="open-button">
-        <span>Open your surprise</span>
-        <span class="button-arrow">→</span>
-      </label>
+      <p class="opening-subtitle">
+        There's something I wanted to tell you...
+      </p>
 
-      <p class="tap-hint">tap to begin ✦</p>
+
+      <!-- ENVELOPE -->
+
+      <div class="envelope-wrapper" id="envelopeWrapper">
+
+        <div class="envelope-shadow"></div>
+
+        <div class="envelope" id="envelope">
+
+          <!-- Letter inside -->
+          <div class="envelope-letter">
+
+            <div class="letter-paper-content">
+
+              <p class="paper-small">
+                A little letter for you
+              </p>
+
+              <div class="paper-heart">♡</div>
+
+              <p class="paper-name">
+                Dear Riti,
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- Back of envelope -->
+          <div class="envelope-back"></div>
+
+
+          <!-- Envelope pocket -->
+          <div class="envelope-pocket"></div>
+
+
+          <!-- Flap -->
+          <div class="envelope-flap"></div>
+
+
+          <!-- Heart seal -->
+          <div class="envelope-seal">
+            ♥
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <button class="open-letter-button" id="openLetterButton">
+        <span>Open my letter</span>
+        <span class="open-arrow">♡</span>
+      </button>
+
+      <p class="tap-hint">
+        tap the envelope to open it ✦
+      </p>
 
     </div>
+
   </section>
 
 
-  <!-- MAIN WEBSITE -->
-  <main class="main-content">
+
+  <!-- =====================================================
+       ACTUAL BIRTHDAY LETTER
+       ===================================================== -->
+
+  <section class="revealed-letter" id="revealedLetter">
+
+    <div class="revealed-letter-card">
+
+      <div class="revealed-paper">
+
+        <div class="paper-corner"></div>
+
+        <p class="revealed-kicker">
+          A letter for you
+        </p>
+
+        <div class="revealed-heart">
+          ♡
+        </div>
+
+        <p class="revealed-dear">
+          Dear Riti,
+        </p>
+
+        <h2>
+          Eighteen looks
+          <span>beautiful</span> on you.
+        </h2>
+
+        <div class="revealed-divider">
+          ✦ ───── ♡ ───── ✦
+        </div>
+
+
+        <!-- =================================================
+             YOUR PERSONAL BIRTHDAY MESSAGE
+             Replace the paragraphs below with your message.
+             ================================================= -->
+
+        <div class="revealed-message">
+
+          <p>
+            Happy 18th birthday to someone who deserves
+            nothing but the most beautiful things in life.
+          </p>
+
+          <p>
+            I hope this new chapter brings you countless
+            reasons to smile, memories you'll want to keep
+            forever, and people who remind you just how
+            special you really are.
+          </p>
+
+          <p>
+            And more than anything, I hope you know that
+            you are loved, appreciated, and incredibly
+            important.
+          </p>
+
+        </div>
+
+
+        <div class="revealed-signature">
+          with love,
+          <span>♡</span>
+        </div>
+
+        <button class="continue-after-letter" id="continueAfterLetter">
+          There's more waiting for you ↓
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       MAIN PAGE
+       ===================================================== -->
+
+  <main class="main-content" id="mainContent">
+
 
     <!-- HERO -->
+
     <section class="hero section">
 
       <div class="hero-eyebrow">
@@ -97,16 +241,23 @@
     </section>
 
 
-    <!-- PHOTO -->
+
+    <!-- =====================================================
+         PHOTO
+         ===================================================== -->
+
     <section class="photo-section section">
 
-      <div class="section-label">01 · A little memory</div>
+      <div class="section-label">
+        01 · A little memory
+      </div>
 
       <div class="photo-frame">
 
         <div class="photo-glow"></div>
 
         <div class="photo-card">
+
           <img
             src="images/your-photo.jpg"
             alt="A special memory"
@@ -116,26 +267,35 @@
             <span>one of my favourite views</span>
             <span>♡</span>
           </div>
+
         </div>
 
       </div>
 
       <p class="photo-note">
-        Replace <strong>your-photo.jpg</strong> inside the
+        Replace <strong>your-photo.jpg</strong> in the
         <strong>images</strong> folder with your actual photo.
       </p>
 
     </section>
 
 
-    <!-- LETTER -->
+
+    <!-- =====================================================
+         LETTER / SECOND MESSAGE
+         ===================================================== -->
+
     <section class="letter-section section">
 
-      <div class="section-label">02 · For you</div>
+      <div class="section-label">
+        02 · For you
+      </div>
 
       <div class="letter-card">
 
-        <div class="letter-decoration">♡</div>
+        <div class="letter-decoration">
+          ♡
+        </div>
 
         <p class="letter-kicker">
           Dear Riti,
@@ -146,19 +306,21 @@
           beautiful on you.
         </h2>
 
-        <div class="letter-divider">✦</div>
+        <div class="letter-divider">
+          ✦
+        </div>
 
         <div class="letter-text">
 
           <p>
-            Write your birthday message here.
+            Write another little message here if you want.
           </p>
 
           <p>
-            Tell her what she means to you, your favourite
-            memories, the things you love about her, or
-            simply everything you couldn't fit into a
-            normal birthday text.
+            This section can be used for memories,
+            inside jokes, things you love about her,
+            or anything else that couldn't fit into
+            the opening letter.
           </p>
 
           <p>
@@ -177,28 +339,45 @@
     </section>
 
 
-    <!-- MUSIC -->
+
+    <!-- =====================================================
+         MUSIC
+         ===================================================== -->
+
     <section class="music-section section">
 
-      <div class="section-label">03 · Press play</div>
+      <div class="section-label">
+        03 · Press play
+      </div>
 
       <div class="music-card">
 
         <div class="music-top">
 
           <div class="vinyl">
-            <div class="vinyl-center">♡</div>
+            <div class="vinyl-center">
+              ♡
+            </div>
           </div>
 
           <div>
-            <p class="music-small">a song for you</p>
-            <h2>Listen closely...</h2>
+
+            <p class="music-small">
+              a song for you
+            </p>
+
+            <h2>
+              Listen closely...
+            </h2>
+
             <p class="music-caption">
               Maybe this one reminds you of us.
             </p>
+
           </div>
 
         </div>
+
 
         <div class="spotify-wrapper">
 
@@ -219,20 +398,30 @@
     </section>
 
 
-    <!-- MINI GAMES -->
+
+    <!-- =====================================================
+         MINI GAMES
+         ===================================================== -->
+
     <section class="games-section section">
 
-      <div class="section-label">04 · Something fun</div>
+      <div class="section-label">
+        04 · Something fun
+      </div>
 
       <div class="games-intro">
 
         <div>
-          <p class="games-kicker">A tiny playground</p>
+
+          <p class="games-kicker">
+            A tiny playground
+          </p>
 
           <h2>
             You found<br>
             the secret part.
           </h2>
+
         </div>
 
         <div class="game-symbol">
@@ -246,28 +435,50 @@
         No scores. No pressure. Just play.
       </p>
 
-      <a href="mini-games.html" class="games-button">
-        <span class="games-icon">🎮</span>
 
-        <span class="games-button-text">
-          <strong>Explore the Mini Games</strong>
-          <small>six tiny things to discover</small>
+      <a href="mini-games.html" class="games-button">
+
+        <span class="games-icon">
+          🎮
         </span>
 
-        <span class="games-arrow">→</span>
+        <span class="games-button-text">
+
+          <strong>
+            Explore the Mini Games
+          </strong>
+
+          <small>
+            six tiny things to discover
+          </small>
+
+        </span>
+
+        <span class="games-arrow">
+          →
+        </span>
+
       </a>
 
     </section>
 
 
-    <!-- INSTAGRAM -->
+
+    <!-- =====================================================
+         INSTAGRAM MEMORIES
+         ===================================================== -->
+
     <section class="social-section section">
 
-      <div class="section-label">05 · Memories</div>
+      <div class="section-label">
+        05 · Memories
+      </div>
 
       <div class="social-card">
 
-        <div class="social-icon">◎</div>
+        <div class="social-icon">
+          ◎
+        </div>
 
         <p class="social-small">
           A little archive
@@ -286,8 +497,7 @@
           href="https://www.instagram.com/stories/highlights/17926944879204043/"
           target="_blank"
           rel="noopener noreferrer"
-          class="social-button"
-        >
+          class="social-button">
           Open the memories ↗
         </a>
 
@@ -296,10 +506,16 @@
     </section>
 
 
-    <!-- FINALE -->
+
+    <!-- =====================================================
+         FINALE
+         ===================================================== -->
+
     <section class="finale section">
 
-      <div class="finale-sparkle">✦</div>
+      <div class="finale-sparkle">
+        ✦
+      </div>
 
       <p class="finale-small">
         AND FINALLY...
@@ -333,7 +549,13 @@
 
   </main>
 
+
+  <!-- Falling hearts container -->
+  <div id="celebration"></div>
+
+
   <script src="script.js"></script>
 
 </body>
 </html>
+```
