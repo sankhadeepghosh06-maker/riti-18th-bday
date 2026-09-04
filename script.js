@@ -1,405 +1,305 @@
-/* =========================================
-   ROMANTIC 18TH BIRTHDAY WEBSITE
-========================================= */
+/* =========================================================
+   OPENING SCREEN
+========================================================= */
 
-
-/* =========================================
-   OPENING ANIMATION
-========================================= */
-
-const openButton =
-    document.getElementById("openButton");
-
-const opening =
-    document.getElementById("opening");
-
-const site =
-    document.getElementById("site");
-
+const openingScreen = document.getElementById("openingScreen");
+const openButton = document.getElementById("openButton");
+const mainContent = document.getElementById("mainContent");
 
 openButton.addEventListener("click", () => {
 
-    opening.classList.add("hide");
+  createHeartBurst();
 
-    setTimeout(() => {
-        site.classList.remove("hidden");
-    }, 400);
+  openingScreen.classList.add("hide");
 
-    startParticles();
+  setTimeout(() => {
 
-    createBurst();
+    mainContent.classList.remove("hidden");
+
+    window.scrollTo({
+      top: 0,
+      behavior: "instant"
+    });
+
+  }, 700);
 
 });
 
 
-/* =========================================
-   FLOATING HEARTS + PETALS
-========================================= */
 
-const particles =
-    document.getElementById("particles");
+/* =========================================================
+   FLOATING HEARTS / PETALS
+========================================================= */
 
+const particles = document.getElementById("particles");
 
 const symbols = [
-    "♥",
-    "♡",
-    "✦",
-    "✧",
-    "❀",
-    "❁",
-    "·"
+  "♥",
+  "♡",
+  "✦",
+  "✧",
+  "•"
 ];
-
 
 function createParticle() {
 
-    const particle =
-        document.createElement("div");
+  const particle = document.createElement("div");
 
-    particle.className =
-        "particle";
+  particle.classList.add("particle");
 
-    particle.textContent =
-        symbols[
-            Math.floor(
-                Math.random() *
-                symbols.length
-            )
-        ];
+  particle.innerHTML =
+    symbols[Math.floor(Math.random() * symbols.length)];
 
-    particle.style.left =
-        Math.random() * 100 + "%";
+  particle.style.left =
+    Math.random() * 100 + "%";
 
-    particle.style.fontSize =
-        (Math.random() * 16 + 7) + "px";
+  particle.style.fontSize =
+    (8 + Math.random() * 15) + "px";
 
-    particle.style.animationDuration =
-        (Math.random() * 8 + 8) + "s";
+  particle.style.animationDuration =
+    (7 + Math.random() * 8) + "s";
 
-    particle.style.setProperty(
-        "--drift",
-        (Math.random() * 180 - 90) + "px"
+  particle.style.animationDelay =
+    Math.random() * 3 + "s";
+
+  particles.appendChild(particle);
+
+  setTimeout(() => {
+
+    particle.remove();
+
+  }, 16000);
+
+}
+
+
+/* Start floating particles */
+
+setInterval(createParticle, 700);
+
+
+
+/* =========================================================
+   HEART BURST
+========================================================= */
+
+function createHeartBurst() {
+
+  const burstCount = 35;
+
+  for (let i = 0; i < burstCount; i++) {
+
+    const heart = document.createElement("div");
+
+    heart.innerHTML = "♥";
+
+    heart.style.position = "fixed";
+
+    heart.style.left = "50%";
+
+    heart.style.top = "50%";
+
+    heart.style.zIndex = "10000";
+
+    heart.style.pointerEvents = "none";
+
+    heart.style.color =
+      Math.random() > 0.5
+        ? "#ef8eaa"
+        : "#ffffff";
+
+    heart.style.fontSize =
+      (10 + Math.random() * 20) + "px";
+
+    const angle =
+      Math.random() * Math.PI * 2;
+
+    const distance =
+      100 + Math.random() * 300;
+
+    const x =
+      Math.cos(angle) * distance;
+
+    const y =
+      Math.sin(angle) * distance;
+
+    heart.animate(
+
+      [
+        {
+          transform:
+            "translate(-50%, -50%) scale(0)",
+          opacity: 1
+        },
+
+        {
+          transform:
+            `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(1)`,
+          opacity: 0
+        }
+      ],
+
+      {
+        duration:
+          900 + Math.random() * 700,
+
+        easing:
+          "cubic-bezier(.2,.8,.2,1)"
+      }
+
     );
 
-    particles.appendChild(particle);
-
+    document.body.appendChild(heart);
 
     setTimeout(() => {
-        particle.remove();
-    }, 16000);
+
+      heart.remove();
+
+    }, 1800);
+
+  }
 
 }
 
 
-let particleTimer;
 
-
-function startParticles() {
-
-    if (particleTimer) {
-        return;
-    }
-
-    particleTimer =
-        setInterval(
-            createParticle,
-            650
-        );
-
-    for (
-        let i = 0;
-        i < 12;
-        i++
-    ) {
-
-        setTimeout(
-            createParticle,
-            i * 150
-        );
-
-    }
-
-}
-
-
-/* =========================================
-   HEART BURST
-========================================= */
-
-function createBurst() {
-
-    const symbols =
-        ["♥", "♡", "✦", "✧"];
-
-    for (
-        let i = 0;
-        i < 35;
-        i++
-    ) {
-
-        const item =
-            document.createElement("div");
-
-        item.textContent =
-            symbols[
-                Math.floor(
-                    Math.random() *
-                    symbols.length
-                )
-            ];
-
-        item.style.position =
-            "fixed";
-
-        item.style.left =
-            "50%";
-
-        item.style.top =
-            "50%";
-
-        item.style.zIndex =
-            "9999";
-
-        item.style.pointerEvents =
-            "none";
-
-        item.style.color =
-            "#ff9fbd";
-
-        item.style.fontSize =
-            (Math.random() * 18 + 8) + "px";
-
-        item.style.transition =
-            "all 1.2s cubic-bezier(.2,.8,.2,1)";
-
-        document.body.appendChild(item);
-
-
-        const angle =
-            Math.random() *
-            Math.PI *
-            2;
-
-        const distance =
-            Math.random() *
-            300 +
-            100;
-
-        requestAnimationFrame(() => {
-
-            item.style.transform =
-                `
-                translate(
-                    ${Math.cos(angle) * distance}px,
-                    ${Math.sin(angle) * distance}px
-                )
-                rotate(${Math.random() * 360}deg)
-                `;
-
-            item.style.opacity =
-                "0";
-
-        });
-
-
-        setTimeout(() => {
-            item.remove();
-        }, 1300);
-
-    }
-
-}
-
-
-/* =========================================
+/* =========================================================
    PHOTO FALLBACK
-========================================= */
+========================================================= */
 
-const photo =
-    document.getElementById("birthdayPhoto");
+const mainPhoto =
+  document.getElementById("mainPhoto");
 
-const placeholder =
-    document.getElementById("photoPlaceholder");
+mainPhoto.addEventListener("error", () => {
 
+  mainPhoto.src =
+    "https://images.unsplash.com/photo-1496337589254-7e19d01cec44?auto=format&fit=crop&w=1200&q=80";
 
-photo.addEventListener(
-    "error",
-    () => {
-
-        photo.style.display =
-            "none";
-
-        placeholder.style.display =
-            "flex";
-
-    }
-);
+});
 
 
-photo.addEventListener(
-    "load",
-    () => {
 
-        placeholder.style.display =
-            "none";
-
-        photo.style.display =
-            "block";
-
-    }
-);
-
-
-/* =========================================
+/* =========================================================
    PHOTO PARALLAX
-========================================= */
+========================================================= */
 
-window.addEventListener(
-    "scroll",
-    () => {
+window.addEventListener("scroll", () => {
 
-        if (!photo) {
-            return;
-        }
+  const photo =
+    document.querySelector(".photo-frame img");
 
-        const rect =
-            photo.getBoundingClientRect();
+  if (!photo) return;
 
-        const windowHeight =
-            window.innerHeight;
+  const rect =
+    photo.getBoundingClientRect();
 
-        if (
-            rect.top < windowHeight &&
-            rect.bottom > 0
-        ) {
+  const center =
+    window.innerHeight / 2;
 
-            const center =
-                windowHeight / 2;
+  const distance =
+    (rect.top - center) * 0.03;
 
-            const difference =
-                rect.top +
-                rect.height / 2 -
-                center;
+  photo.style.transform =
+    `translateY(${distance}px)`;
 
-            const movement =
-                difference * -0.025;
-
-            photo.style.transform =
-                `scale(1.03) translateY(${movement}px)`;
-
-        }
-
-    }
-);
+});
 
 
-/* =========================================
+
+/* =========================================================
    CLICK SPARKLES
-========================================= */
+========================================================= */
 
-document.addEventListener(
-    "click",
-    event => {
+document.addEventListener("click", (event) => {
 
-        if (
-            event.target.closest("button") ||
-            event.target.closest("a") ||
-            event.target.closest("iframe")
-        ) {
-            return;
+  if (
+    event.target.closest("button") ||
+    event.target.closest("a")
+  ) {
+    return;
+  }
+
+  for (let i = 0; i < 5; i++) {
+
+    const sparkle =
+      document.createElement("div");
+
+    sparkle.innerHTML = "✦";
+
+    sparkle.style.position = "fixed";
+
+    sparkle.style.left = event.clientX + "px";
+
+    sparkle.style.top = event.clientY + "px";
+
+    sparkle.style.pointerEvents = "none";
+
+    sparkle.style.zIndex = "9998";
+
+    sparkle.style.color = "#e9a1b5";
+
+    const x =
+      (Math.random() - 0.5) * 100;
+
+    const y =
+      (Math.random() - 0.5) * 100;
+
+    sparkle.animate(
+
+      [
+        {
+          transform:
+            "translate(-50%, -50%) scale(0)",
+          opacity: 1
+        },
+
+        {
+          transform:
+            `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(1.5)`,
+          opacity: 0
         }
+      ],
 
-        createClickSpark(
-            event.clientX,
-            event.clientY
-        );
+      {
+        duration: 700,
+        easing: "ease-out"
+      }
 
-    }
-);
+    );
 
-
-function createClickSpark(x, y) {
-
-    const spark =
-        document.createElement("div");
-
-    spark.textContent =
-        "✦";
-
-    spark.style.position =
-        "fixed";
-
-    spark.style.left =
-        x + "px";
-
-    spark.style.top =
-        y + "px";
-
-    spark.style.zIndex =
-        "9999";
-
-    spark.style.pointerEvents =
-        "none";
-
-    spark.style.color =
-        "#ffabc5";
-
-    spark.style.fontSize =
-        "18px";
-
-    spark.style.transform =
-        "translate(-50%, -50%)";
-
-    spark.style.transition =
-        "all .8s ease";
-
-    document.body.appendChild(spark);
-
-
-    requestAnimationFrame(() => {
-
-        spark.style.opacity =
-            "0";
-
-        spark.style.transform =
-            "translate(-50%, -70px) scale(1.5)";
-
-    });
-
+    document.body.appendChild(sparkle);
 
     setTimeout(() => {
-        spark.remove();
+
+      sparkle.remove();
+
     }, 800);
 
-}
+  }
+
+});
 
 
-/* =========================================
+
+/* =========================================================
    PAGE VISIBILITY
-========================================= */
+========================================================= */
 
 document.addEventListener(
-    "visibilitychange",
-    () => {
+  "visibilitychange",
+  () => {
 
-        if (
-            document.hidden
-        ) {
+    if (document.hidden) {
 
-            clearInterval(
-                particleTimer
-            );
+      document.title =
+        "Come back, Riti ❤️";
 
-            particleTimer =
-                null;
+    } else {
 
-        } else if (
-            !site.classList.contains("hidden")
-        ) {
-
-            startParticles();
-
-        }
+      document.title =
+        "For Riti — 18 ❤️";
 
     }
+
+  }
 );
