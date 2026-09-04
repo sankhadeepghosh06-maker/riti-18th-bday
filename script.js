@@ -2,36 +2,29 @@
    OPENING
 ===================================================== */
 
-const openingScreen =
-  document.getElementById("openingScreen");
+document.addEventListener("DOMContentLoaded", function () {
 
-const openButton =
-  document.getElementById("openButton");
+  const openingScreen = document.getElementById("openingScreen");
+  const openButton = document.getElementById("openButton");
 
-const mainContent =
-  document.getElementById("mainContent");
+  if (!openingScreen || !openButton) {
+    console.error("Opening screen or button not found.");
+    return;
+  }
 
+  openButton.addEventListener("click", function () {
 
-openButton.addEventListener("click", () => {
+    openingScreen.classList.add("hidden");
 
-  createHeartBurst();
+    document.body.style.overflowX = "hidden";
 
-  openingScreen.classList.add("hide");
+    setTimeout(function () {
+      openingScreen.style.display = "none";
+    }, 850);
 
-  setTimeout(() => {
-
-    mainContent.classList.remove("hidden");
-
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "instant"
-    });
-
-  }, 700);
+  });
 
 });
-
 
 /* =====================================================
    FLOATING PARTICLES
