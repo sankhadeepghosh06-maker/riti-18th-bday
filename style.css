@@ -31,6 +31,76 @@ html {
 
 
 body {
+  /* =========================================================
+   TEXT VISIBILITY FIX
+   ========================================================= */
+
+body,
+main,
+section,
+.hero,
+.photo-section,
+.letter-section,
+.music-section,
+.games-section,
+.social-section,
+.finale {
+  color: var(--white);
+}
+
+/* Make all normal dark-page text readable */
+.main-content p,
+.main-content h1,
+.main-content h2,
+.main-content h3,
+.main-content strong,
+.main-content span,
+.main-content div {
+  color: inherit;
+}
+
+/* Specific muted text */
+.hero-description,
+.photo-note,
+.letter-text,
+.letter-signature,
+.music-caption,
+.games-description,
+.social-card > p:not(.social-small),
+.finale-message,
+footer {
+  color: var(--muted);
+}
+
+/* Headings */
+.hero-title strong,
+.games-intro h2,
+.social-card h2,
+.finale h2,
+.music-top h2 {
+  color: var(--white);
+}
+
+/* Pink / purple accents */
+.hero-eyebrow,
+.section-label,
+.games-kicker,
+.music-small,
+.social-small,
+.finale h2 span,
+.finale-end {
+  color: var(--pink-light);
+}
+
+/* Links */
+a {
+  color: var(--white);
+}
+
+/* Buttons */
+button {
+  color: var(--white);
+}
   margin: 0;
   min-height: 100vh;
   min-height: 100svh;
