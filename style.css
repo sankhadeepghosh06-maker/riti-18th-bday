@@ -1,7 +1,3 @@
-/* =========================================================
-   RESET
-========================================================= */
-
 * {
   margin: 0;
   padding: 0;
@@ -29,10 +25,9 @@ button {
 }
 
 
-
-/* =========================================================
+/* =====================================================
    BACKGROUND
-========================================================= */
+===================================================== */
 
 .background-glow {
   position: fixed;
@@ -40,7 +35,7 @@ button {
   height: 500px;
   border-radius: 50%;
   filter: blur(120px);
-  opacity: 0.12;
+  opacity: .12;
   pointer-events: none;
   z-index: -1;
 }
@@ -58,39 +53,38 @@ button {
 }
 
 
-
-/* =========================================================
+/* =====================================================
    PARTICLES
-========================================================= */
+===================================================== */
 
 #particles {
   position: fixed;
   inset: 0;
-  pointer-events: none;
   overflow: hidden;
+  pointer-events: none;
   z-index: 50;
 }
 
 .particle {
   position: absolute;
   bottom: -30px;
-  animation: floatUp linear forwards;
   opacity: 0;
+  animation: floatUp linear forwards;
 }
 
 @keyframes floatUp {
 
   0% {
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(0) rotate(0);
     opacity: 0;
   }
 
   10% {
-    opacity: 0.8;
+    opacity: .8;
   }
 
   90% {
-    opacity: 0.5;
+    opacity: .5;
   }
 
   100% {
@@ -101,10 +95,9 @@ button {
 }
 
 
-
-/* =========================================================
+/* =====================================================
    OPENING SCREEN
-========================================================= */
+===================================================== */
 
 .opening-screen {
 
@@ -113,8 +106,11 @@ button {
   inset: 0;
 
   width: 100%;
-  height: 100vh;
-  height: 100dvh;
+  height: 100%;
+
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
 
   display: flex;
 
@@ -123,7 +119,11 @@ button {
 
   text-align: center;
 
-  padding: 24px;
+  padding:
+    max(24px, env(safe-area-inset-top))
+    max(24px, env(safe-area-inset-right))
+    max(24px, env(safe-area-inset-bottom))
+    max(24px, env(safe-area-inset-left));
 
   background:
     radial-gradient(
@@ -140,12 +140,18 @@ button {
   transition:
     opacity 1s ease,
     visibility 1s ease;
+
 }
 
 .opening-screen.hide {
+
   opacity: 0;
   visibility: hidden;
+
 }
+
+
+/* THIS IS THE IMPORTANT CENTERING PART */
 
 .opening-content {
 
@@ -155,6 +161,7 @@ button {
   margin: 0 auto;
 
   display: flex;
+
   flex-direction: column;
 
   align-items: center;
@@ -162,21 +169,22 @@ button {
 
   text-align: center;
 
-  position: relative;
-  z-index: 2;
-
 }
+
+
+/* =====================================================
+   OPENING TEXT
+===================================================== */
 
 .opening-heart {
 
-  font-size: 54px;
-
-  margin-bottom: 10px;
+  font-size: 52px;
 
   color: #f19bb3;
 
-  animation:
-    heartPulse 2s infinite ease-in-out;
+  margin-bottom: 10px;
+
+  animation: heartPulse 2s infinite ease-in-out;
 
 }
 
@@ -195,7 +203,7 @@ button {
 
 .opening-small {
 
-  font-size: 12px;
+  font-size: 11px;
 
   letter-spacing: 4px;
 
@@ -203,35 +211,31 @@ button {
 
   color: #d9afb9;
 
-  margin-bottom: 5px;
-
 }
 
 .opening-content h1 {
 
   font-family: "Great Vibes", cursive;
 
-  font-size: clamp(5rem, 20vw, 8rem);
+  font-size: clamp(5rem, 22vw, 8rem);
 
-  line-height: 0.9;
+  line-height: .9;
 
   font-weight: 400;
 
   color: #f7dfe5;
 
-  margin: 0;
-
 }
 
 .opening-content h2 {
 
+  margin-top: 15px;
+
   font-family: "DM Serif Display", serif;
 
-  font-size: clamp(1.8rem, 7vw, 2.8rem);
+  font-size: clamp(1.7rem, 7vw, 2.8rem);
 
   font-weight: 400;
-
-  margin-top: 14px;
 
   color: #fff;
 
@@ -241,11 +245,9 @@ button {
 
   margin-top: 18px;
 
+  font-size: 14px;
+
   line-height: 1.7;
-
-  font-size: 15px;
-
-  font-weight: 300;
 
   color: #c9afb7;
 
@@ -255,21 +257,19 @@ button {
 
   margin-top: 30px;
 
-  border: 1px solid rgba(255,255,255,0.2);
+  min-height: 52px;
 
-  background: rgba(255,255,255,0.06);
-
-  color: white;
-
-  padding: 15px 26px;
+  padding: 14px 25px;
 
   border-radius: 100px;
 
+  border: 1px solid rgba(255,255,255,.2);
+
+  background: rgba(255,255,255,.06);
+
+  color: white;
+
   cursor: pointer;
-
-  font-size: 14px;
-
-  letter-spacing: 0.5px;
 
   display: inline-flex;
 
@@ -279,9 +279,20 @@ button {
 
   gap: 10px;
 
-  transition: all 0.3s ease;
+  transition: .3s ease;
 
   backdrop-filter: blur(10px);
+
+}
+
+.open-button:hover {
+
+  transform: translateY(-3px);
+
+  background: rgba(255,255,255,.12);
+
+  box-shadow:
+    0 15px 50px rgba(210,70,110,.2);
 
 }
 
@@ -289,34 +300,18 @@ button {
   color: #ef8eaa;
 }
 
-.open-button:hover {
 
-  background: rgba(255,255,255,0.12);
-
-  transform: translateY(-3px);
-
-  box-shadow:
-    0 10px 40px rgba(210,70,110,0.2);
-
-}
-
-
-
-/* =========================================================
+/* =====================================================
    GENERAL
-========================================================= */
+===================================================== */
 
 .hidden {
   display: none;
 }
 
-section {
-  position: relative;
-}
-
 .section-container {
 
-  width: min(1100px, 90%);
+  width: min(1100px, calc(100% - 40px));
 
   margin: 0 auto;
 
@@ -326,7 +321,7 @@ section {
 
 .section-label {
 
-  font-size: 11px;
+  font-size: 10px;
 
   letter-spacing: 4px;
 
@@ -339,10 +334,9 @@ section {
 }
 
 
-
-/* =========================================================
+/* =====================================================
    HERO
-========================================================= */
+===================================================== */
 
 .hero {
 
@@ -365,7 +359,7 @@ section {
   width: 100%;
   max-width: 700px;
 
-  margin: auto;
+  margin: 0 auto;
 
 }
 
@@ -381,21 +375,21 @@ section {
 
 .big-number {
 
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
   font-family: "DM Serif Display", serif;
 
   font-size: clamp(10rem, 35vw, 22rem);
 
-  line-height: 0.75;
+  line-height: .75;
 
-  color: rgba(255,255,255,0.04);
-
-  position: absolute;
-
-  left: 50%;
-  top: 50%;
-
-  transform:
-    translate(-50%, -50%);
+  color: rgba(255,255,255,.04);
 
   pointer-events: none;
 
@@ -407,11 +401,11 @@ section {
 
   font-family: "DM Serif Display", serif;
 
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(3rem, 9vw, 6rem);
+
+  line-height: .95;
 
   font-weight: 400;
-
-  line-height: 0.95;
 
   margin-top: 20px;
 
@@ -425,9 +419,9 @@ section {
 
   margin: 25px auto 0;
 
-  color: #c3aeb4;
-
   line-height: 1.7;
+
+  color: #c3aeb4;
 
 }
 
@@ -457,27 +451,26 @@ section {
 }
 
 
-
-/* =========================================================
+/* =====================================================
    PHOTO
-========================================================= */
+===================================================== */
 
 .photo-section {
 
-  padding: 120px 0;
+  padding: 110px 0;
 
 }
 
 .photo-section h2,
 .music-section h2,
-.memories-section h2,
-.mini-world h2 {
+.mini-games-section h2,
+.memories-section h2 {
 
   font-family: "DM Serif Display", serif;
 
-  font-weight: 400;
-
   font-size: clamp(2.5rem, 7vw, 5rem);
+
+  font-weight: 400;
 
 }
 
@@ -487,37 +480,28 @@ section {
 
   margin: 45px auto 20px;
 
-  position: relative;
-
   overflow: hidden;
+
+  position: relative;
 
   border-radius: 5px;
 
   background: #170c10;
 
   box-shadow:
-    0 30px 100px rgba(0,0,0,0.5);
+    0 30px 100px rgba(0,0,0,.5);
 
 }
 
 .photo-frame img {
 
-  display: block;
-
   width: 100%;
 
   aspect-ratio: 4 / 5;
 
+  display: block;
+
   object-fit: cover;
-
-  transition:
-    transform 1s ease;
-
-}
-
-.photo-frame:hover img {
-
-  transform: scale(1.03);
 
 }
 
@@ -531,7 +515,7 @@ section {
     linear-gradient(
       110deg,
       transparent 30%,
-      rgba(255,255,255,0.08) 50%,
+      rgba(255,255,255,.08) 50%,
       transparent 70%
     );
 
@@ -563,20 +547,19 @@ section {
 }
 
 
-
-/* =========================================================
+/* =====================================================
    LETTER
-========================================================= */
+===================================================== */
 
 .letter-section {
 
-  padding: 120px 0;
+  padding: 110px 0;
 
 }
 
 .letter-card {
 
-  max-width: 700px;
+  width: min(700px, 100%);
 
   margin: 40px auto 0;
 
@@ -587,16 +570,13 @@ section {
   background:
     linear-gradient(
       145deg,
-      rgba(255,255,255,0.08),
-      rgba(255,255,255,0.025)
+      rgba(255,255,255,.08),
+      rgba(255,255,255,.025)
     );
 
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,.08);
 
   border-radius: 8px;
-
-  box-shadow:
-    0 30px 100px rgba(0,0,0,0.25);
 
 }
 
@@ -647,14 +627,13 @@ section {
 }
 
 
-
-/* =========================================================
+/* =====================================================
    MUSIC
-========================================================= */
+===================================================== */
 
 .music-section {
 
-  padding: 120px 0;
+  padding: 110px 0;
 
 }
 
@@ -668,9 +647,9 @@ section {
 
   border-radius: 15px;
 
-  background: rgba(255,255,255,0.04);
+  background: rgba(255,255,255,.04);
 
-  border: 1px solid rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,.07);
 
   display: flex;
 
@@ -700,15 +679,12 @@ section {
       #111 6px
     );
 
-  box-shadow:
-    0 15px 40px rgba(0,0,0,0.5);
-
-  animation: spin 8s linear infinite;
-
   display: flex;
 
   align-items: center;
   justify-content: center;
+
+  animation: spin 8s linear infinite;
 
 }
 
@@ -735,23 +711,23 @@ section {
 
 .music-small {
 
-  color: #9e7884;
-
   font-size: 10px;
 
   letter-spacing: 3px;
 
+  color: #9e7884;
+
 }
 
 .music-info h3 {
+
+  margin-top: 5px;
 
   font-family: "DM Serif Display", serif;
 
   font-size: 2rem;
 
   font-weight: 400;
-
-  margin-top: 5px;
 
 }
 
@@ -770,8 +746,6 @@ section {
 }
 
 .visualizer span {
-
-  display: block;
 
   width: 4px;
 
@@ -829,153 +803,146 @@ section {
 }
 
 
+/* =====================================================
+   MINI GAMES BUTTON
+===================================================== */
 
-/* =========================================================
-   MINI WORLD
-========================================================= */
+.mini-games-section {
 
-.mini-world {
-
-  padding: 140px 0;
+  padding: 130px 0;
 
 }
 
-.mini-intro {
+.mini-games-description {
 
-  margin: 20px auto 50px;
+  max-width: 450px;
 
-  max-width: 500px;
+  margin: 20px auto 40px;
 
   color: #a88e96;
 
-  line-height: 1.7;
+  line-height: 1.8;
 
 }
 
-.game-grid {
+.mini-games-button {
 
-  width: 100%;
+  width: min(650px, 100%);
 
-  display: grid;
+  margin: 0 auto;
 
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
-
-  gap: 15px;
-
-  text-align: left;
-
-}
-
-.game-card {
-
-  position: relative;
+  padding: 22px 25px;
 
   display: flex;
 
   align-items: center;
 
-  gap: 20px;
+  gap: 18px;
 
-  padding: 25px;
+  text-align: left;
 
-  min-height: 130px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,0.06),
-      rgba(255,255,255,0.025)
-    );
-
-  border: 1px solid rgba(255,255,255,0.07);
-
-  border-radius: 12px;
-
-  transition: all 0.35s ease;
-
-}
-
-.game-card:hover {
-
-  transform: translateY(-5px);
+  border-radius: 16px;
 
   background:
     linear-gradient(
-      145deg,
-      rgba(255,255,255,0.1),
-      rgba(255,255,255,0.04)
+      135deg,
+      rgba(214,101,133,.15),
+      rgba(255,255,255,.04)
     );
 
-  border-color: rgba(220,130,155,0.3);
+  border: 1px solid rgba(214,130,155,.25);
+
+  transition:
+    transform .3s ease,
+    background .3s ease,
+    box-shadow .3s ease;
 
 }
 
-.game-icon {
+.mini-games-button:hover {
 
-  width: 58px;
-  height: 58px;
+  transform: translateY(-6px);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(214,101,133,.22),
+      rgba(255,255,255,.07)
+    );
+
+  box-shadow:
+    0 20px 60px rgba(150,40,75,.2);
+
+}
+
+.mini-games-icon {
+
+  width: 55px;
+  height: 55px;
 
   flex-shrink: 0;
+
+  border-radius: 50%;
 
   display: flex;
 
   align-items: center;
   justify-content: center;
 
-  font-size: 28px;
+  font-size: 25px;
 
-  border-radius: 50%;
+  background: rgba(255,255,255,.07);
 
-  background: rgba(255,255,255,0.05);
+  color: #f0a1b5;
 
 }
 
-.game-card h3 {
+.mini-games-button-text {
+
+  flex: 1;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+
+}
+
+.mini-games-button-text strong {
 
   font-family: "DM Serif Display", serif;
 
-  font-size: 1.45rem;
+  font-size: 1.35rem;
 
   font-weight: 400;
 
 }
 
-.game-card p {
+.mini-games-button-text small {
 
-  margin-top: 5px;
+  color: #957e87;
 
-  font-size: 12px;
-
-  color: #927d85;
+  font-size: 11px;
 
 }
 
-.game-arrow {
+.mini-games-arrow {
 
-  margin-left: auto;
+  font-size: 24px;
 
-  color: #b96f86;
-
-  font-size: 20px;
+  color: #d58ba0;
 
 }
 
 
-
-/* =========================================================
-   MEMORIES
-========================================================= */
+/* =====================================================
+   INSTAGRAM
+===================================================== */
 
 .memories-section {
 
-  padding: 120px 0;
-
-}
-
-.memories-section > * {
-
-  text-align: center;
+  padding: 110px 0;
 
 }
 
@@ -999,29 +966,28 @@ section {
 
   padding: 15px 25px;
 
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,.12);
 
   border-radius: 100px;
 
-  background: rgba(255,255,255,0.04);
+  background: rgba(255,255,255,.04);
 
-  transition: 0.3s ease;
+  transition: .3s ease;
 
 }
 
 .instagram-button:hover {
 
-  background: rgba(255,255,255,0.1);
-
   transform: translateY(-3px);
+
+  background: rgba(255,255,255,.1);
 
 }
 
 
-
-/* =========================================================
+/* =====================================================
    FINALE
-========================================================= */
+===================================================== */
 
 .finale {
 
@@ -1064,9 +1030,9 @@ section {
 
   font-family: "Great Vibes", cursive;
 
-  font-weight: 400;
-
   font-size: clamp(4rem, 12vw, 8rem);
+
+  font-weight: 400;
 
   color: #efd6dd;
 
@@ -1075,6 +1041,7 @@ section {
 .finale-line {
 
   width: 80px;
+
   height: 1px;
 
   background: #714654;
@@ -1092,22 +1059,25 @@ section {
 }
 
 
-
-/* =========================================================
+/* =====================================================
    MOBILE
-========================================================= */
+===================================================== */
 
 @media (max-width: 700px) {
+
+  .section-container {
+
+    width: calc(100% - 32px);
+
+  }
 
   .opening-screen {
 
     padding:
-      20px
-      max(20px, env(safe-area-inset-left))
+      max(20px, env(safe-area-inset-top))
       max(20px, env(safe-area-inset-right))
-      20px;
-
-    min-height: 100svh;
+      max(20px, env(safe-area-inset-bottom))
+      max(20px, env(safe-area-inset-left));
 
   }
 
@@ -1115,13 +1085,13 @@ section {
 
     width: 100%;
 
-    max-width: 360px;
+    max-width: 350px;
 
   }
 
   .opening-heart {
 
-    font-size: 45px;
+    font-size: 42px;
 
   }
 
@@ -1135,29 +1105,29 @@ section {
 
   .opening-content h1 {
 
-    font-size: clamp(4.8rem, 22vw, 7rem);
+    font-size: clamp(4.8rem, 22vw, 6.5rem);
 
   }
 
   .opening-content h2 {
 
-    font-size: clamp(1.6rem, 7vw, 2.2rem);
+    font-size: clamp(1.5rem, 7vw, 2.1rem);
 
   }
 
   .opening-description {
 
-    font-size: 14px;
+    font-size: 13px;
 
   }
 
   .open-button {
 
-    min-height: 52px;
+    margin-top: 25px;
 
-    padding:
-      14px
-      22px;
+    width: auto;
+
+    max-width: 90%;
 
   }
 
@@ -1168,13 +1138,7 @@ section {
 
     padding:
       80px
-      20px;
-
-  }
-
-  .hero h1 {
-
-    font-size: clamp(2.8rem, 14vw, 4.5rem);
+      16px;
 
   }
 
@@ -1182,6 +1146,7 @@ section {
   .photo-section,
   .letter-section,
   .music-section,
+  .mini-games-section,
   .memories-section {
 
     padding:
@@ -1193,7 +1158,9 @@ section {
 
   .letter-card {
 
-    padding: 30px 24px;
+    padding:
+      30px
+      22px;
 
   }
 
@@ -1216,77 +1183,68 @@ section {
   }
 
 
-  .game-grid {
+  .mini-games-button {
 
-    grid-template-columns: 1fr;
+    padding: 18px;
 
-  }
-
-  .game-card {
-
-    padding: 20px;
-
-    min-height: 110px;
+    gap: 13px;
 
   }
 
+  .mini-games-icon {
 
-  .finale {
+    width: 48px;
+    height: 48px;
 
-    min-height: 70vh;
+    font-size: 21px;
+
+  }
+
+  .mini-games-button-text strong {
+
+    font-size: 1.15rem;
+
+  }
+
+  .mini-games-arrow {
+
+    font-size: 20px;
 
   }
 
 }
 
 
-
-/* =========================================================
-   VERY SMALL PHONES
-========================================================= */
+/* =====================================================
+   EXTRA SMALL PHONES
+===================================================== */
 
 @media (max-width: 380px) {
 
   .opening-content h1 {
 
-    font-size: 4.5rem;
+    font-size: 4.4rem;
 
   }
 
   .opening-content h2 {
 
-    font-size: 1.5rem;
+    font-size: 1.45rem;
 
   }
 
   .opening-description {
 
-    font-size: 13px;
-
-  }
-
-  .game-card {
-
-    gap: 14px;
-
-  }
-
-  .game-icon {
-
-    width: 50px;
-    height: 50px;
-
-    font-size: 23px;
+    font-size: 12px;
 
   }
 
 }
 
 
-
-/* =========================================================
+/* =====================================================
    REDUCED MOTION
-========================================================= */
+===================================================== */
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -1294,7 +1252,7 @@ section {
   *::before,
   *::after {
 
-    animation-duration: 0.01ms !important;
+    animation-duration: .01ms !important;
 
     animation-iteration-count: 1 !important;
 
