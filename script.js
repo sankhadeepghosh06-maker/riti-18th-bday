@@ -1,245 +1,68 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =====================================================
-     GET ELEMENTS
-     ===================================================== */
+     ENVELOPE
+  ===================================================== */
 
   const envelopeWrapper =
     document.getElementById("envelopeWrapper");
 
-  const openLetterButton =
-    document.getElementById("openLetterButton");
-
-  const letterOpening =
-    document.getElementById("letterOpening");
-
-  const revealedLetter =
-    document.getElementById("revealedLetter");
-
-  const continueAfterLetter =
-    document.getElementById("continueAfterLetter");
-
-  const mainContent =
-    document.getElementById("mainContent");
-
-  const celebration =
-    document.getElementById("celebration");
-
-
-  /* =====================================================
-     SAFETY CHECK
-     ===================================================== */
-
-  if (
-    !envelopeWrapper ||
-    !openLetterButton ||
-    !letterOpening ||
-    !revealedLetter ||
-    !continueAfterLetter
-  ) {
-    console.error(
-      "Birthday page: required envelope elements are missing."
-    );
-
-    return;
-  }
-
-
-  /* =====================================================
-     INITIAL STATE
-     ===================================================== */
-
-  document.body.classList.add("locked");
+  const letterSection =
+    document.getElementById("letterSection");
 
   let envelopeOpened = false;
 
 
-  /* =====================================================
-     OPEN ENVELOPE
-     ===================================================== */
-
   function openEnvelope() {
 
-    if (envelopeOpened) {
+    if (!envelopeWrapper || envelopeOpened) {
       return;
     }
 
     envelopeOpened = true;
 
-
-    /* Animate envelope */
-
     envelopeWrapper.classList.add("opened");
 
-
-    /* Disable button */
-
-    openLetterButton.disabled = true;
-
-    openLetterButton.style.opacity = "0";
-
-    openLetterButton.style.transform =
-      "translateY(8px)";
-
-
-    /* Hide hint */
-
-    const tapHint =
-      document.querySelector(".tap-hint");
-
-    if (tapHint) {
-
-      tapHint.style.opacity = "0";
-
-      tapHint.style.transition =
-        "opacity .3s ease";
-    }
-
-
-    /* Little celebration */
-
-    createCelebration(18);
-
-
-    /*
-      Give the envelope enough time to visibly open
-      before showing the actual letter.
-    */
-
-    setTimeout(() => {
-
-      revealedLetter.classList.add("show");
-
-      revealedLetter.setAttribute(
-        "aria-hidden",
-        "false"
-      );
-
-    }, 850);
+    createLetterCelebration(20);
 
   }
 
 
-  /* =====================================================
-     BUTTON
-     ===================================================== */
+  if (envelopeWrapper) {
 
-  openLetterButton.addEventListener(
-    "click",
-    (event) => {
-
-      event.stopPropagation();
-
-      openEnvelope();
-
-    }
-  );
+    envelopeWrapper.addEventListener(
+      "click",
+      openEnvelope
+    );
 
 
-  /* =====================================================
-     ENVELOPE
-     ===================================================== */
+    envelopeWrapper.addEventListener(
+      "keydown",
+      (event) => {
 
-  envelopeWrapper.addEventListener(
-    "click",
-    openEnvelope
-  );
+        if (
+          event.key === "Enter" ||
+          event.key === " "
+        ) {
 
+          event.preventDefault();
 
-  /* =====================================================
-     KEYBOARD
-     ===================================================== */
-
-  envelopeWrapper.addEventListener(
-    "keydown",
-    (event) => {
-
-      if (
-        event.key === "Enter" ||
-        event.key === " "
-      ) {
-
-        event.preventDefault();
-
-        openEnvelope();
+          openEnvelope();
+        }
 
       }
-
-    }
-  );
-
-
-  /* =====================================================
-     CONTINUE TO ORIGINAL PAGE
-     ===================================================== */
-
-  continueAfterLetter.addEventListener(
-    "click",
-    () => {
-
-      /* Close letter */
-
-      revealedLetter.classList.remove("show");
-
-      revealedLetter.setAttribute(
-        "aria-hidden",
-        "true"
-      );
-
-
-      /*
-        Wait until the letter fades away,
-        then remove the opening screen.
-      */
-
-      setTimeout(() => {
-
-        letterOpening.classList.add("closed");
-
-        document.body.classList.remove("locked");
-
-        /*
-          The original page was never removed.
-          It has been underneath the envelope screen
-          the entire time.
-        */
-
-        if (mainContent) {
-          mainContent.style.display = "block";
-        }
-
-      }, 350);
-
-
-      /*
-        Scroll to the beginning of the original page.
-      */
-
-      setTimeout(() => {
-
-        const hero =
-          document.querySelector(".hero");
-
-        if (hero) {
-
-          window.scrollTo({
-            top: hero.offsetTop,
-            behavior: "smooth"
-          });
-
-        }
-
-      }, 800);
-
-    }
-  );
+    );
+  }
 
 
   /* =====================================================
-     CELEBRATION
-     ===================================================== */
+     HEARTS AROUND THE LETTER
+  ===================================================== */
 
-  function createCelebration(amount) {
+  function createLetterCelebration(amount) {
+
+    const celebration =
+      document.getElementById("celebration");
 
     if (!celebration) {
       return;
@@ -251,8 +74,8 @@ document.addEventListener("DOMContentLoaded", () => {
       "♥",
       "✦",
       "✧",
-      "💗",
-      "🌸"
+      "❀",
+      "✿"
     ];
 
 
@@ -264,7 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
       heart.className =
         "celebration-heart";
 
-
       heart.textContent =
         symbols[
           Math.floor(
@@ -273,43 +95,31 @@ document.addEventListener("DOMContentLoaded", () => {
         ];
 
 
-      const x =
-        (Math.random() - 0.5) * 520;
+      heart.style.left =
+        `${35 + Math.random() * 30}%`;
 
-
-      const y =
-        -80 -
-        Math.random() * 430;
-
-
-      const rotation =
-        (Math.random() - 0.5) * 80;
+      heart.style.top =
+        `${42 + Math.random() * 15}%`;
 
 
       heart.style.setProperty(
-        "--x",
-        `${x}px`
-      );
-
-
-      heart.style.setProperty(
-        "--y",
-        `${y}px`
+        "--drift",
+        `${(Math.random() - 0.5) * 260}px`
       );
 
 
       heart.style.setProperty(
         "--rotation",
-        `${rotation}deg`
+        `${(Math.random() - 0.5) * 80}deg`
       );
 
 
       heart.style.animationDelay =
-        `${Math.random() * .45}s`;
+        `${Math.random() * 0.8}s`;
 
 
       heart.style.fontSize =
-        `${10 + Math.random() * 18}px`;
+        `${10 + Math.random() * 17}px`;
 
 
       celebration.appendChild(heart);
@@ -319,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         heart.remove();
 
-      }, 3300);
+      }, 3800);
 
     }
 
@@ -327,10 +137,68 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =====================================================
-     LITTLE HEARTS WHILE SCROLLING
-     ===================================================== */
+     FLOATING HEARTS WHILE SCROLLING
+  ===================================================== */
 
-  let lastScrollTime = 0;
+  const floatingHearts =
+    document.getElementById("floatingHearts");
+
+  let lastHeartTime = 0;
+
+
+  function createScrollHeart() {
+
+    if (!floatingHearts) {
+      return;
+    }
+
+
+    const heart =
+      document.createElement("div");
+
+    heart.className =
+      "floating-heart";
+
+
+    heart.textContent =
+      Math.random() > 0.5
+        ? "♡"
+        : "✦";
+
+
+    heart.style.left =
+      `${10 + Math.random() * 80}%`;
+
+    heart.style.top =
+      `${75 + Math.random() * 20}%`;
+
+
+    heart.style.setProperty(
+      "--drift",
+      `${(Math.random() - 0.5) * 150}px`
+    );
+
+
+    heart.style.setProperty(
+      "--rotation",
+      `${(Math.random() - 0.5) * 80}deg`
+    );
+
+
+    heart.style.fontSize =
+      `${10 + Math.random() * 12}px`;
+
+
+    floatingHearts.appendChild(heart);
+
+
+    setTimeout(() => {
+
+      heart.remove();
+
+    }, 5200);
+
+  }
 
 
   window.addEventListener(
@@ -342,91 +210,85 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
       if (
-        now - lastScrollTime < 1000
+        now - lastHeartTime < 1000
       ) {
-
         return;
-
       }
 
 
       if (
-        Math.random() < 0.22
+        Math.random() < 0.25
       ) {
 
         createScrollHeart();
 
+        lastHeartTime = now;
       }
 
-
-      lastScrollTime = now;
-
     },
-    {
-      passive: true
-    }
+    { passive: true }
   );
 
 
   /* =====================================================
-     SCROLL HEART
-     ===================================================== */
+     INITIAL SMALL AMBIENT HEARTS
+  ===================================================== */
 
-  function createScrollHeart() {
+  function createInitialHearts() {
 
-    if (!celebration) {
+    if (!floatingHearts) {
       return;
     }
 
 
-    const heart =
-      document.createElement("div");
+    for (let i = 0; i < 7; i++) {
+
+      setTimeout(() => {
+
+        createScrollHeart();
+
+      }, i * 650);
+
+    }
+
+  }
 
 
-    heart.className =
-      "celebration-heart";
+  createInitialHearts();
 
 
-    heart.textContent =
-      Math.random() > .5
-        ? "♡"
-        : "✦";
+  /* =====================================================
+     GENTLE LETTER HIGHLIGHT
+  ===================================================== */
+
+  if (letterSection) {
+
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach((entry) => {
+
+            if (
+              entry.isIntersecting
+            ) {
+
+              entry.target.classList.add(
+                "letter-visible"
+              );
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.25
+        }
+      );
 
 
-    heart.style.left =
-      `${20 + Math.random() * 60}%`;
-
-
-    heart.style.top =
-      `${70 + Math.random() * 20}%`;
-
-
-    heart.style.setProperty(
-      "--x",
-      `${(Math.random() - .5) * 100}px`
-    );
-
-
-    heart.style.setProperty(
-      "--y",
-      `${-80 - Math.random() * 120}px`
-    );
-
-
-    heart.style.setProperty(
-      "--rotation",
-      `${(Math.random() - .5) * 60}deg`
-    );
-
-
-    celebration.appendChild(heart);
-
-
-    setTimeout(() => {
-
-      heart.remove();
-
-    }, 3000);
+    observer.observe(letterSection);
 
   }
 
