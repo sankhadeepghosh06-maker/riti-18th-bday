@@ -3,104 +3,173 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
-  <title>For Riti — 18 ❤️</title>
+  <meta name="theme-color" content="#170b24">
+  <title>Riti — 18 ✨</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Serif+Display&family=Great+Vibes&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- =================================
-       OPENING SCREEN
-       ================================= -->
+  <!-- Ambient background -->
+  <div class="ambient ambient-1"></div>
+  <div class="ambient ambient-2"></div>
+  <div class="stars"></div>
 
+  <!-- Floating decorations -->
+  <div class="floating-heart heart-1">♡</div>
+  <div class="floating-heart heart-2">♥</div>
+  <div class="floating-heart heart-3">♡</div>
+  <div class="floating-heart heart-4">✦</div>
+
+  <!--
+    CSS-only opening screen.
+    The button does NOT depend on JavaScript.
+  -->
   <input type="checkbox" id="openSurprise" class="open-surprise">
 
   <section class="opening-screen">
 
     <div class="opening-content">
 
-      <div class="small-text">
-        A little surprise for you
+      <div class="opening-small">
+        A little something made just for you
       </div>
 
-      <div class="opening-heart">
-        ♡
-      </div>
+      <div class="opening-line"></div>
 
       <h1>
-        Happy 18th<br>
+        Happy
+        <span>18th</span>
         Birthday
       </h1>
 
-      <p class="opening-name">
-        Riti
-      </p>
+      <p class="opening-name">Riti ♡</p>
 
       <p class="opening-subtitle">
-        Someone made this little corner of the internet just for you.
+        Some birthdays deserve more than just a message.
       </p>
 
       <label for="openSurprise" class="open-button">
-        Open your surprise
-        <span>♥</span>
+        <span>Open your surprise</span>
+        <span class="button-arrow">→</span>
       </label>
 
-    </div>
+      <p class="tap-hint">tap to begin ✦</p>
 
+    </div>
   </section>
 
 
-  <!-- =================================
-       MAIN WEBSITE
-       ================================= -->
-
+  <!-- MAIN WEBSITE -->
   <main class="main-content">
 
     <!-- HERO -->
+    <section class="hero section">
 
-    <section class="hero">
+      <div class="hero-eyebrow">
+        ✦ SEPTEMBER 2026 ✦
+      </div>
 
-      <p class="eyebrow">
-        A NEW CHAPTER BEGINS
-      </p>
-
-      <div class="big-number">
+      <div class="hero-number">
         18
       </div>
 
-      <h2>
-        Happy Birthday, beautiful.
-      </h2>
+      <div class="hero-title">
+        <span>Chapter</span>
+        <strong>Eighteen</strong>
+      </div>
 
-      <p>
-        Today isn't just another birthday.
-        It's the beginning of something new.
+      <p class="hero-description">
+        Here's to the girl who makes ordinary moments
+        feel a little more magical.
       </p>
+
+      <div class="scroll-indicator">
+        <span></span>
+        scroll slowly
+      </div>
 
     </section>
 
 
     <!-- PHOTO -->
+    <section class="photo-section section">
 
-    <section class="photo-section">
+      <div class="section-label">01 · A little memory</div>
 
       <div class="photo-frame">
 
-        <img
-          src="images/love.jpg"
-          alt="A special memory"
-          onerror="this.style.display='none'; this.parentElement.classList.add('photo-placeholder')"
-        >
+        <div class="photo-glow"></div>
 
-        <div class="photo-placeholder-text">
-          Put your favorite picture here ❤️
+        <div class="photo-card">
+          <img
+            src="images/your-photo.jpg"
+            alt="A special memory"
+          >
+
+          <div class="photo-caption">
+            <span>one of my favourite views</span>
+            <span>♡</span>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="photo-note">
+        Replace <strong>your-photo.jpg</strong> inside the
+        <strong>images</strong> folder with your actual photo.
+      </p>
+
+    </section>
+
+
+    <!-- LETTER -->
+    <section class="letter-section section">
+
+      <div class="section-label">02 · For you</div>
+
+      <div class="letter-card">
+
+        <div class="letter-decoration">♡</div>
+
+        <p class="letter-kicker">
+          Dear Riti,
+        </p>
+
+        <h2>
+          Eighteen looks<br>
+          beautiful on you.
+        </h2>
+
+        <div class="letter-divider">✦</div>
+
+        <div class="letter-text">
+
+          <p>
+            Write your birthday message here.
+          </p>
+
+          <p>
+            Tell her what she means to you, your favourite
+            memories, the things you love about her, or
+            simply everything you couldn't fit into a
+            normal birthday text.
+          </p>
+
+          <p>
+            Make it personal. Make it yours.
+          </p>
+
+        </div>
+
+        <div class="letter-signature">
+          with love,<br>
+          <span>someone who adores you ♡</span>
         </div>
 
       </div>
@@ -108,69 +177,42 @@
     </section>
 
 
-    <!-- LETTER -->
-
-    <section class="letter-section">
-
-      <div class="section-label">
-        A LETTER FOR YOU
-      </div>
-
-      <div class="letter-card">
-
-        <p>
-          To the birthday girl,
-        </p>
-
-        <p>
-          This little website is just a tiny way of saying
-          how special you are.
-        </p>
-
-        <p>
-          Write your own message here.
-          Tell her everything you want her to know.
-        </p>
-
-        <p>
-          Here's to all the memories we've made,
-          all the moments still waiting for us,
-          and everything beautiful that comes next.
-        </p>
-
-        <p class="signature">
-          With love ❤️
-        </p>
-
-      </div>
-
-    </section>
-
-
     <!-- MUSIC -->
+    <section class="music-section section">
 
-    <section class="music-section">
+      <div class="section-label">03 · Press play</div>
 
-      <div class="section-label">
-        A SONG FOR YOU
-      </div>
+      <div class="music-card">
 
-      <h2>
-        This one reminded me of you.
-      </h2>
+        <div class="music-top">
 
-      <div class="spotify-wrapper">
+          <div class="vinyl">
+            <div class="vinyl-center">♡</div>
+          </div>
 
-        <iframe
-          style="border-radius:12px"
-          src="https://open.spotify.com/embed/track/1jXfVzMk8cSbvAXMML4Y4f?utm_source=generator"
-          width="100%"
-          height="152"
-          frameborder="0"
-          allowfullscreen=""
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy">
-        </iframe>
+          <div>
+            <p class="music-small">a song for you</p>
+            <h2>Listen closely...</h2>
+            <p class="music-caption">
+              Maybe this one reminds you of us.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="spotify-wrapper">
+
+          <iframe
+            src="https://open.spotify.com/embed/track/1jXfVzMk8cSbvAXMML4Y4f?utm_source=generator&theme=0"
+            width="100%"
+            height="152"
+            frameborder="0"
+            allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+          </iframe>
+
+        </div>
 
       </div>
 
@@ -178,64 +220,120 @@
 
 
     <!-- MINI GAMES -->
+    <section class="games-section section">
 
-    <section class="games-section">
+      <div class="section-label">04 · Something fun</div>
 
-      <div class="section-label">
-        SOMETHING FUN
+      <div class="games-intro">
+
+        <div>
+          <p class="games-kicker">A tiny playground</p>
+
+          <h2>
+            You found<br>
+            the secret part.
+          </h2>
+        </div>
+
+        <div class="game-symbol">
+          ♡
+        </div>
+
       </div>
 
-      <h2>
-        I made you something.
-      </h2>
-
-      <p>
-        Six tiny surprises waiting for you.
+      <p class="games-description">
+        Six little experiences made for you.
+        No scores. No pressure. Just play.
       </p>
 
-      <a href="mini-games.html" class="mini-games-button">
-        🎮 Explore the Mini Games
+      <a href="mini-games.html" class="games-button">
+        <span class="games-icon">🎮</span>
+
+        <span class="games-button-text">
+          <strong>Explore the Mini Games</strong>
+          <small>six tiny things to discover</small>
+        </span>
+
+        <span class="games-arrow">→</span>
       </a>
 
     </section>
 
 
     <!-- INSTAGRAM -->
+    <section class="social-section section">
 
-    <section class="instagram-section">
+      <div class="section-label">05 · Memories</div>
 
-      <a
-        href="https://www.instagram.com/stories/highlights/17926944879204043/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="instagram-button"
-      >
-        📸 Our Memories
-      </a>
+      <div class="social-card">
+
+        <div class="social-icon">◎</div>
+
+        <p class="social-small">
+          A little archive
+        </p>
+
+        <h2>
+          Our little<br>
+          collection of moments.
+        </h2>
+
+        <p>
+          There's a few more memories waiting here.
+        </p>
+
+        <a
+          href="https://www.instagram.com/stories/highlights/17926944879204043/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-button"
+        >
+          Open the memories ↗
+        </a>
+
+      </div>
 
     </section>
 
 
     <!-- FINALE -->
+    <section class="finale section">
 
-    <section class="finale">
+      <div class="finale-sparkle">✦</div>
 
-      <div class="finale-heart">
+      <p class="finale-small">
+        AND FINALLY...
+      </p>
+
+      <h2>
+        Happy<br>
+        <span>18th</span>
+      </h2>
+
+      <p class="finale-message">
+        May this chapter be softer,<br>
+        brighter, louder, messier,<br>
+        and somehow even more beautiful.
+      </p>
+
+      <div class="final-heart">
         ♥
       </div>
 
-      <h2>
-        Happy Birthday, Riti.
-      </h2>
-
-      <p>
-        Here's to 18, and everything beautiful
-        that's waiting ahead.
+      <p class="finale-end">
+        Here's to eighteen. ♡
       </p>
 
     </section>
 
+
+    <footer>
+      made with entirely too much love ♡
+    </footer>
+
   </main>
+
+  <script src="script.js"></script>
 
 </body>
 </html>
