@@ -1,10 +1,16 @@
-/* =========================================================
-   OPENING SCREEN
-========================================================= */
+/* =====================================================
+   OPENING
+===================================================== */
 
-const openingScreen = document.getElementById("openingScreen");
-const openButton = document.getElementById("openButton");
-const mainContent = document.getElementById("mainContent");
+const openingScreen =
+  document.getElementById("openingScreen");
+
+const openButton =
+  document.getElementById("openButton");
+
+const mainContent =
+  document.getElementById("mainContent");
+
 
 openButton.addEventListener("click", () => {
 
@@ -18,6 +24,7 @@ openButton.addEventListener("click", () => {
 
     window.scrollTo({
       top: 0,
+      left: 0,
       behavior: "instant"
     });
 
@@ -26,12 +33,12 @@ openButton.addEventListener("click", () => {
 });
 
 
+/* =====================================================
+   FLOATING PARTICLES
+===================================================== */
 
-/* =========================================================
-   FLOATING HEARTS / PETALS
-========================================================= */
-
-const particles = document.getElementById("particles");
+const particles =
+  document.getElementById("particles");
 
 const symbols = [
   "♥",
@@ -41,26 +48,29 @@ const symbols = [
   "•"
 ];
 
+
 function createParticle() {
 
-  const particle = document.createElement("div");
+  const particle =
+    document.createElement("div");
 
-  particle.classList.add("particle");
+  particle.className = "particle";
 
-  particle.innerHTML =
-    symbols[Math.floor(Math.random() * symbols.length)];
+  particle.textContent =
+    symbols[
+      Math.floor(
+        Math.random() * symbols.length
+      )
+    ];
 
   particle.style.left =
     Math.random() * 100 + "%";
 
   particle.style.fontSize =
-    (8 + Math.random() * 15) + "px";
+    8 + Math.random() * 15 + "px";
 
   particle.style.animationDuration =
-    (7 + Math.random() * 8) + "s";
-
-  particle.style.animationDelay =
-    Math.random() * 3 + "s";
+    7 + Math.random() * 8 + "s";
 
   particles.appendChild(particle);
 
@@ -73,30 +83,24 @@ function createParticle() {
 }
 
 
-/* Start floating particles */
-
 setInterval(createParticle, 700);
 
 
-
-/* =========================================================
+/* =====================================================
    HEART BURST
-========================================================= */
+===================================================== */
 
 function createHeartBurst() {
 
-  const burstCount = 35;
+  for (let i = 0; i < 35; i++) {
 
-  for (let i = 0; i < burstCount; i++) {
+    const heart =
+      document.createElement("div");
 
-    const heart = document.createElement("div");
-
-    heart.innerHTML = "♥";
+    heart.textContent = "♥";
 
     heart.style.position = "fixed";
-
     heart.style.left = "50%";
-
     heart.style.top = "50%";
 
     heart.style.zIndex = "10000";
@@ -104,12 +108,13 @@ function createHeartBurst() {
     heart.style.pointerEvents = "none";
 
     heart.style.color =
-      Math.random() > 0.5
+      Math.random() > .5
         ? "#ef8eaa"
         : "#ffffff";
 
     heart.style.fontSize =
-      (10 + Math.random() * 20) + "px";
+      10 + Math.random() * 20 + "px";
+
 
     const angle =
       Math.random() * Math.PI * 2;
@@ -123,20 +128,28 @@ function createHeartBurst() {
     const y =
       Math.sin(angle) * distance;
 
+
     heart.animate(
 
       [
         {
           transform:
             "translate(-50%, -50%) scale(0)",
+
           opacity: 1
         },
 
         {
           transform:
-            `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(1)`,
+            `translate(
+              calc(-50% + ${x}px),
+              calc(-50% + ${y}px)
+            )
+            scale(1)`,
+
           opacity: 0
         }
+
       ],
 
       {
@@ -149,7 +162,9 @@ function createHeartBurst() {
 
     );
 
+
     document.body.appendChild(heart);
+
 
     setTimeout(() => {
 
@@ -162,13 +177,13 @@ function createHeartBurst() {
 }
 
 
-
-/* =========================================================
+/* =====================================================
    PHOTO FALLBACK
-========================================================= */
+===================================================== */
 
 const mainPhoto =
   document.getElementById("mainPhoto");
+
 
 mainPhoto.addEventListener("error", () => {
 
@@ -178,112 +193,100 @@ mainPhoto.addEventListener("error", () => {
 });
 
 
-
-/* =========================================================
-   PHOTO PARALLAX
-========================================================= */
-
-window.addEventListener("scroll", () => {
-
-  const photo =
-    document.querySelector(".photo-frame img");
-
-  if (!photo) return;
-
-  const rect =
-    photo.getBoundingClientRect();
-
-  const center =
-    window.innerHeight / 2;
-
-  const distance =
-    (rect.top - center) * 0.03;
-
-  photo.style.transform =
-    `translateY(${distance}px)`;
-
-});
-
-
-
-/* =========================================================
+/* =====================================================
    CLICK SPARKLES
-========================================================= */
+===================================================== */
 
-document.addEventListener("click", (event) => {
+document.addEventListener(
+  "click",
+  (event) => {
 
-  if (
-    event.target.closest("button") ||
-    event.target.closest("a")
-  ) {
-    return;
-  }
+    if (
+      event.target.closest("button") ||
+      event.target.closest("a")
+    ) {
+      return;
+    }
 
-  for (let i = 0; i < 5; i++) {
 
-    const sparkle =
-      document.createElement("div");
+    for (let i = 0; i < 5; i++) {
 
-    sparkle.innerHTML = "✦";
+      const sparkle =
+        document.createElement("div");
 
-    sparkle.style.position = "fixed";
+      sparkle.textContent = "✦";
 
-    sparkle.style.left = event.clientX + "px";
+      sparkle.style.position = "fixed";
 
-    sparkle.style.top = event.clientY + "px";
+      sparkle.style.left =
+        event.clientX + "px";
 
-    sparkle.style.pointerEvents = "none";
+      sparkle.style.top =
+        event.clientY + "px";
 
-    sparkle.style.zIndex = "9998";
+      sparkle.style.pointerEvents = "none";
 
-    sparkle.style.color = "#e9a1b5";
+      sparkle.style.zIndex = "9998";
 
-    const x =
-      (Math.random() - 0.5) * 100;
+      sparkle.style.color = "#e9a1b5";
 
-    const y =
-      (Math.random() - 0.5) * 100;
 
-    sparkle.animate(
+      const x =
+        (Math.random() - .5) * 100;
 
-      [
+      const y =
+        (Math.random() - .5) * 100;
+
+
+      sparkle.animate(
+
+        [
+          {
+            transform:
+              "translate(-50%, -50%) scale(0)",
+
+            opacity: 1
+          },
+
+          {
+            transform:
+              `translate(
+                calc(-50% + ${x}px),
+                calc(-50% + ${y}px)
+              )
+              scale(1.5)`,
+
+            opacity: 0
+          }
+
+        ],
+
         {
-          transform:
-            "translate(-50%, -50%) scale(0)",
-          opacity: 1
-        },
-
-        {
-          transform:
-            `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(1.5)`,
-          opacity: 0
+          duration: 700,
+          easing: "ease-out"
         }
-      ],
 
-      {
-        duration: 700,
-        easing: "ease-out"
-      }
+      );
 
-    );
 
-    document.body.appendChild(sparkle);
+      document.body.appendChild(sparkle);
 
-    setTimeout(() => {
 
-      sparkle.remove();
+      setTimeout(() => {
 
-    }, 800);
+        sparkle.remove();
+
+      }, 800);
+
+    }
 
   }
-
-});
-
+);
 
 
-/* =========================================================
-   PAGE VISIBILITY
-========================================================= */
+/* =====================================================
+   TAB TITLE
+===================================================== */
 
 document.addEventListener(
   "visibilitychange",
