@@ -4,152 +4,114 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
-
-<title>Tiny Phone 📱</title>
+<title>Fake Phone 📱</title>
 
 <style>
 
 * {
-  box-sizing: border-box;
+box-sizing:border-box;
 }
 
 body {
-  margin: 0;
-
-  min-height: 100vh;
-
-  padding: 25px 15px;
-
-  background: #080509;
-
-  color: white;
-
-  font-family: Arial, sans-serif;
-
-  text-align: center;
-}
-
-h1 {
-  font-family: Georgia, serif;
-}
-
-.phone {
-  width: 310px;
-  max-width: 90vw;
-
-  height: 600px;
-
-  margin: 25px auto;
-
-  padding: 12px;
-
-  border-radius: 40px;
-
-  background: #161016;
-
-  border: 3px solid #555;
-
-  box-shadow:
-    0 20px 60px rgba(0,0,0,.6);
-}
-
-.screen {
-  height: 100%;
-
-  border-radius: 30px;
-
-  overflow: hidden;
-
-  background:
-    linear-gradient(
-      150deg,
-      #431525,
-      #130910
-    );
-
-  padding: 20px;
-}
-
-.time {
-  font-size: 46px;
-
-  margin-top: 20px;
-}
-
-.date {
-  color: #ddb5c2;
-
-  margin-bottom: 40px;
-}
-
-.apps {
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  gap: 15px;
-}
-
-.app {
-  padding: 10px;
-
-  border-radius: 15px;
-
-  background: rgba(255,255,255,.08);
-
-  cursor: pointer;
-
-  font-size: 28px;
-}
-
-.app small {
-  display: block;
-
-  font-size: 10px;
-
-  margin-top: 5px;
-}
-
-#popup {
-  display: none;
-
-  margin-top: 30px;
-
-  padding: 18px;
-
-  border-radius: 18px;
-
-  background: rgba(255,255,255,.1);
-
-  color: #ffb2c5;
-
-  line-height: 1.5;
-}
-
-.close {
-  margin-top: 12px;
-
-  border: none;
-
-  border-radius: 999px;
-
-  padding: 8px 15px;
-
-  background: #d94f79;
-
-  color: white;
+margin:0;
+min-height:100vh;
+background:#100818;
+color:white;
+font-family:Arial,sans-serif;
+display:flex;
+flex-direction:column;
+align-items:center;
+padding:30px 20px;
 }
 
 .back {
-  color: white;
+align-self:flex-start;
+color:#c7b1cb;
+text-decoration:none;
+font-size:11px;
+margin-bottom:30px;
+}
 
-  text-decoration: none;
+.phone {
+width:min(100%,330px);
+height:620px;
+
+border:7px solid #29202e;
+border-radius:42px;
+
+background:#0e0a12;
+
+box-shadow:
+0 30px 80px rgba(0,0,0,.5),
+0 0 50px rgba(170,80,255,.08);
+
+overflow:hidden;
+}
+
+.top {
+height:40px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:9px;
+color:#999;
+}
+
+.screen {
+padding:25px 18px;
+}
+
+.contact {
+text-align:center;
+margin-bottom:30px;
+}
+
+.avatar {
+width:60px;
+height:60px;
+margin:auto;
+display:grid;
+place-items:center;
+border-radius:50%;
+background:linear-gradient(135deg,#ff79b9,#986cff);
+font-size:25px;
+}
+
+.contact h2 {
+font-family:Georgia,serif;
+font-weight:400;
+margin:10px 0 3px;
+}
+
+.contact p {
+font-size:9px;
+color:#777;
+}
+
+.message {
+max-width:230px;
+padding:12px 15px;
+border-radius:17px 17px 17px 5px;
+background:#25202a;
+font-size:11px;
+line-height:1.6;
+margin-bottom:12px;
+}
+
+.message.right {
+margin-left:auto;
+border-radius:17px 17px 5px 17px;
+background:linear-gradient(135deg,#713d67,#593c78);
+}
+
+.tap {
+margin-top:35px;
+text-align:center;
+color:#ffafd9;
+font-size:10px;
+cursor:pointer;
 }
 
 </style>
@@ -158,131 +120,84 @@ h1 {
 
 <body>
 
-<h1>
-📱 Tiny Phone
-</h1>
-
-<p>
-Definitely not a real phone. Just a tiny fictional one. ❤️
-</p>
-
+<a href="mini-games.html" class="back">
+← back to the games
+</a>
 
 <div class="phone">
 
+<div class="top">
+9:18
+</div>
+
 <div class="screen">
 
-<div class="time" id="time">
-18:00
-</div>
+<div class="contact">
 
-<div class="date">
-September 5
-</div>
+<div class="avatar">♡</div>
 
+<h2>Riti</h2>
 
-<div class="apps">
-
-<div class="app" onclick="openApp('messages')">
-💬
-<small>Messages</small>
-</div>
-
-<div class="app" onclick="openApp('photos')">
-📸
-<small>Photos</small>
-</div>
-
-<div class="app" onclick="openApp('notes')">
-📝
-<small>Notes</small>
-</div>
-
-<div class="app" onclick="openApp('music')">
-🎵
-<small>Music</small>
-</div>
-
-<div class="app" onclick="openApp('heart')">
-❤️
-<small>Secret</small>
-</div>
-
-<div class="app" onclick="openApp('camera')">
-📷
-<small>Camera</small>
-</div>
+<p>online just now</p>
 
 </div>
 
+<div class="message">
+hey
+</div>
 
-<div id="popup">
+<div class="message">
+it's your birthday!!
+</div>
 
-<div id="popupText"></div>
+<div class="message right">
+i know 😭
+</div>
 
-<button
-  class="close"
-  onclick="closeApp()"
->
-Close
-</button>
+<div class="message">
+so...
+</div>
+
+<div class="message">
+how does it feel being 18?
+</div>
+
+<div class="message right">
+honestly?
+</div>
+
+<div class="message right">
+kinda iconic.
+</div>
+
+<div class="message">
+correct answer.
+</div>
+
+<div class="tap" onclick="reveal()">
+tap for one more message ✦
+</div>
+
+<div id="extra"></div>
 
 </div>
 
 </div>
-
-</div>
-
-
-<a href="mini-games.html" class="back">
-← Back to Mini Games
-</a>
-
 
 <script>
 
-const content = {
+function reveal() {
 
-messages:
-"💬 Mom: Happy birthday! ❤️<br><br>💌 Someone: I hope you know how loved you are.",
-
-photos:
-"📸 There are 847 imaginary photos here.<br><br>Unfortunately the tiny phone has run out of storage. 😂",
-
-notes:
-"📝 Note to self:<br><br>Buy cake.<br>Take pictures.<br>Make Riti smile.<br>Repeat.",
-
-music:
-"🎵 Currently playing:<br><br>The song that reminds someone of you. ❤️",
-
-heart:
-"❤️ SECRET MESSAGE<br><br>You are someone's favorite person.",
-
-camera:
-"📷 Camera opened.<br><br>Smile!<br><br>✨ *click*"
-
-};
-
-
-function openApp(app) {
-
-document.getElementById("popupText")
-.innerHTML = content[app];
-
-document.getElementById("popup")
-.style.display = "block";
-
-}
-
-
-function closeApp() {
-
-document.getElementById("popup")
-.style.display = "none";
+document.getElementById("extra").innerHTML =
+`
+<div class="message" style="margin-top:20px;">
+also... you're very loved. just thought you should know. ♡
+</div>
+`;
 
 }
 
 </script>
 
 </body>
-
 </html>
