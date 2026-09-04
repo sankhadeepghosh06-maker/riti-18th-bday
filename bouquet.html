@@ -1,349 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
-
-<title>Bouquet Builder 🌹</title>
-
-<style>
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-
-  background:
-    radial-gradient(
-      circle at top,
-      rgba(255, 90, 145, .2),
-      transparent 45%
-    ),
-    #09050a;
-
-  color: white;
-
-  font-family: Arial, sans-serif;
-
-  padding: 25px 15px 50px;
-}
-
-.container {
-  width: 100%;
-  max-width: 700px;
-
-  margin: auto;
-
-  text-align: center;
-}
-
-h1 {
-  font-family: Georgia, serif;
-
-  font-size: clamp(40px, 10vw, 65px);
-
-  margin-bottom: 8px;
-}
-
-.subtitle {
-  color: #dcb6c2;
-
-  margin-bottom: 30px;
-}
-
-.panel {
-  padding: 25px;
-
-  border-radius: 25px;
-
-  background: rgba(255,255,255,.05);
-
-  border: 1px solid rgba(255,180,200,.15);
-}
-
-h2 {
-  font-family: Georgia, serif;
-}
-
-.options {
-  display: flex;
-
-  flex-wrap: wrap;
-
-  justify-content: center;
-
-  gap: 10px;
-}
-
-.option {
-  border: 1px solid rgba(255,180,200,.3);
-
-  background: rgba(255,255,255,.05);
-
-  color: white;
-
-  padding: 12px 16px;
-
-  border-radius: 999px;
-
-  cursor: pointer;
-
-  font-size: 15px;
-}
-
-.option.selected {
-  background: #d94f79;
-
-  border-color: #ff8eae;
-}
-
-.bouquet {
-  min-height: 300px;
-
-  margin: 30px 0;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  flex-direction: column;
-
-  font-size: 45px;
-}
-
-.flowers {
-  min-height: 90px;
-
-  font-size: 48px;
-
-  letter-spacing: -8px;
-}
-
-.stems {
-  width: 12px;
-
-  height: 110px;
-
-  background: #4c8a55;
-
-  border-radius: 10px;
-}
-
-.ribbon {
-  margin-top: -10px;
-
-  font-size: 35px;
-}
-
-button.main {
-  border: none;
-
-  background: linear-gradient(
-    135deg,
-    #ff719b,
-    #d94f79
-  );
-
-  color: white;
-
-  padding: 15px 25px;
-
-  border-radius: 999px;
-
-  font-weight: bold;
-
-  cursor: pointer;
-}
-
-.message {
-  margin-top: 20px;
-
-  font-family: Georgia, serif;
-
-  font-size: 22px;
-
-  color: #ffabc0;
-}
-
-.back {
-  display: inline-block;
-
-  margin-top: 30px;
-
-  color: white;
-
-  text-decoration: none;
-}
-
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Bouquet Builder 🌹</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <style>
+
+    :root {
+      --bg:#100818;
+      --pink:#ff72b6;
+      --pink2:#ffb6dc;
+      --purple:#a579ff;
+      --white:#fff8fd;
+      --muted:#c4aec8;
+    }
+
+    * {
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body {
+      min-height:100vh;
+      background:
+        radial-gradient(circle at 50% 20%,rgba(170,80,255,.15),transparent 35%),
+        #100818;
+      color:var(--white);
+      font-family:"DM Sans",sans-serif;
+      text-align:center;
+      padding:35px 18px;
+    }
+
+    .back {
+      display:block;
+      width:max-content;
+      margin:0 auto 45px;
+      color:var(--muted);
+      text-decoration:none;
+      font-size:11px;
+    }
+
+    h1 {
+      font-family:"Cormorant Garamond",serif;
+      font-size:60px;
+      font-weight:500;
+    }
+
+    .script {
+      display:block;
+      font-family:"Great Vibes",cursive;
+      color:var(--pink2);
+      font-size:34px;
+    }
+
+    .intro {
+      max-width:350px;
+      margin:18px auto 30px;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.7;
+    }
+
+    .bouquet {
+      position:relative;
+      width:280px;
+      height:350px;
+      margin:20px auto;
+    }
+
+    .flower {
+      position:absolute;
+      font-size:48px;
+      cursor:pointer;
+      transition:.3s;
+      user-select:none;
+      filter:drop-shadow(0 5px 15px rgba(255,80,180,.15));
+    }
+
+    .flower:hover {
+      transform:scale(1.18) rotate(5deg);
+    }
+
+    .f1 { left:30px; top:65px; }
+    .f2 { left:110px; top:20px; }
+    .f3 { right:25px; top:70px; }
+    .f4 { left:65px; top:120px; }
+    .f5 { right:65px; top:125px; }
+
+    .stems {
+      position:absolute;
+      left:50%;
+      top:135px;
+      width:4px;
+      height:180px;
+      transform:translateX(-50%);
+      background:#6c965f;
+      border-radius:10px;
+      box-shadow:
+        -35px 20px #6c965f,
+        35px 20px #6c965f,
+        -55px 50px #6c965f,
+        55px 50px #6c965f;
+      opacity:.7;
+    }
+
+    .ribbon {
+      position:absolute;
+      bottom:25px;
+      left:50%;
+      transform:translateX(-50%);
+      padding:8px 25px;
+      border-radius:20px;
+      background:linear-gradient(90deg,#ff69ad,#9b6aff);
+      font-size:10px;
+      letter-spacing:1px;
+    }
+
+    .result {
+      min-height:35px;
+      color:var(--pink2);
+      font-family:"Great Vibes",cursive;
+      font-size:27px;
+      margin:15px;
+    }
+
+    button {
+      border:1px solid rgba(255,170,220,.3);
+      background:rgba(255,255,255,.05);
+      color:white;
+      border-radius:999px;
+      padding:13px 24px;
+      cursor:pointer;
+    }
+
+  </style>
 </head>
 
 <body>
 
-<div class="container">
+  <a href="mini-games.html" class="back">← back to the games</a>
 
-<h1>🌹 Bouquet Builder</h1>
+  <h1>
+    Bouquet
+    <span class="script">for you ♡</span>
+  </h1>
 
-<p class="subtitle">
-Build the bouquet you deserve.
-</p>
+  <p class="intro">
+    Tap the flowers to arrange your own little bouquet.
+    Because apparently buying a real one wasn't enough.
+  </p>
 
-<div class="panel">
+  <div class="bouquet">
 
-<h2>Choose your flowers</h2>
+    <div class="stems"></div>
 
-<div class="options">
+    <div class="flower f1" onclick="flower('🌹')">🌹</div>
+    <div class="flower f2" onclick="flower('🌷')">🌷</div>
+    <div class="flower f3" onclick="flower('🌸')">🌸</div>
+    <div class="flower f4" onclick="flower('🌺')">🌺</div>
+    <div class="flower f5" onclick="flower('🌻')">🌻</div>
 
-<button class="option flower" data-flower="🌹">
-🌹 Roses
-</button>
+    <div class="ribbon">FOR RITI</div>
 
-<button class="option flower" data-flower="🌷">
-🌷 Tulips
-</button>
+  </div>
 
-<button class="option flower" data-flower="🌸">
-🌸 Blossoms
-</button>
+  <div class="result" id="result">
+    choose a flower ♡
+  </div>
 
-<button class="option flower" data-flower="🌻">
-🌻 Sunflowers
-</button>
+  <button onclick="finish()">
+    finish my bouquet
+  </button>
 
-</div>
+  <script>
 
+    let flowers = [];
 
-<h2>Choose your ribbon</h2>
+    function flower(type) {
 
-<div class="options">
+      flowers.push(type);
 
-<button class="option ribbon-choice" data-ribbon="🎀">
-🎀 Pink
-</button>
+      document.getElementById("result").textContent =
+        flowers.join(" ") + " ♡";
 
-<button class="option ribbon-choice" data-ribbon="🤍">
-🤍 White
-</button>
+    }
 
-<button class="option ribbon-choice" data-ribbon="💗">
-💗 Heart
-</button>
+    function finish() {
 
-</div>
+      document.getElementById("result").textContent =
+        "A bouquet made with love. 🌷💗";
 
+    }
 
-<div class="bouquet">
-
-<div id="flowers" class="flowers">
-🌹🌹🌹
-</div>
-
-<div class="stems"></div>
-
-<div id="ribbon" class="ribbon">
-🎀
-</div>
-
-</div>
-
-
-<button class="main" onclick="finishBouquet()">
-✨ Finish My Bouquet
-</button>
-
-<div id="message" class="message"></div>
-
-</div>
-
-<a href="mini-games.html" class="back">
-← Back to Mini Games
-</a>
-
-</div>
-
-
-<script>
-
-let flower = "🌹";
-let ribbon = "🎀";
-
-const flowerButtons =
-document.querySelectorAll(".flower");
-
-const ribbonButtons =
-document.querySelectorAll(".ribbon-choice");
-
-flowerButtons.forEach(button => {
-
-  button.addEventListener("click", () => {
-
-    flower =
-      button.dataset.flower;
-
-    flowerButtons.forEach(b =>
-      b.classList.remove("selected")
-    );
-
-    button.classList.add("selected");
-
-    updateBouquet();
-
-  });
-
-});
-
-
-ribbonButtons.forEach(button => {
-
-  button.addEventListener("click", () => {
-
-    ribbon =
-      button.dataset.ribbon;
-
-    ribbonButtons.forEach(b =>
-      b.classList.remove("selected")
-    );
-
-    button.classList.add("selected");
-
-    updateBouquet();
-
-  });
-
-});
-
-
-function updateBouquet() {
-
-  document.getElementById("flowers").textContent =
-    flower + flower + flower + flower + flower;
-
-  document.getElementById("ribbon").textContent =
-    ribbon;
-
-}
-
-
-function finishBouquet() {
-
-  document.getElementById("message").textContent =
-    "This bouquet is officially yours. 🌷❤️";
-
-}
-
-</script>
+  </script>
 
 </body>
-
 </html>
