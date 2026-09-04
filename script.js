@@ -1,123 +1,120 @@
 /* =========================================
-   ROMANTIC QR WEBSITE
+   ROMANTIC 18TH BIRTHDAY WEBSITE
 ========================================= */
 
 
 /* =========================================
-   OPENING SCREEN
+   OPENING ANIMATION
 ========================================= */
 
-const enterButton = document.getElementById("enter-button");
-const openingScreen = document.getElementById("opening-screen");
-const mainContent = document.getElementById("main-content");
+const openButton =
+    document.getElementById("openButton");
 
-enterButton.addEventListener("click", function () {
+const opening =
+    document.getElementById("opening");
 
-    // Fade out opening screen
-    openingScreen.classList.add("hide");
+const site =
+    document.getElementById("site");
 
-    // Reveal main page
-    setTimeout(function () {
-        mainContent.classList.remove("hidden");
+
+openButton.addEventListener("click", () => {
+
+    opening.classList.add("hide");
+
+    setTimeout(() => {
+        site.classList.remove("hidden");
     }, 400);
 
-    // Start creating hearts
-    startHearts();
+    startParticles();
+
+    createBurst();
 
 });
 
 
 /* =========================================
-   FLOATING HEARTS
+   FLOATING HEARTS + PETALS
 ========================================= */
 
-const heartsContainer =
-    document.getElementById("hearts-container");
+const particles =
+    document.getElementById("particles");
 
-const heartCharacters = [
+
+const symbols = [
     "♥",
     "♡",
-    "❤",
     "✦",
-    "✧"
+    "✧",
+    "❀",
+    "❁",
+    "·"
 ];
 
 
-function createHeart() {
+function createParticle() {
 
-    const heart = document.createElement("div");
+    const particle =
+        document.createElement("div");
 
-    heart.classList.add("floating-heart");
+    particle.className =
+        "particle";
 
-    heart.innerHTML =
-        heartCharacters[
+    particle.textContent =
+        symbols[
             Math.floor(
-                Math.random() * heartCharacters.length
+                Math.random() *
+                symbols.length
             )
         ];
 
-    // Random horizontal position
-    heart.style.left =
+    particle.style.left =
         Math.random() * 100 + "%";
 
-    // Random size
-    const size =
-        Math.random() * 18 + 8;
+    particle.style.fontSize =
+        (Math.random() * 16 + 7) + "px";
 
-    heart.style.fontSize =
-        size + "px";
+    particle.style.animationDuration =
+        (Math.random() * 8 + 8) + "s";
 
-    // Random animation duration
-    const duration =
-        Math.random() * 7 + 7;
-
-    heart.style.animationDuration =
-        duration + "s";
-
-    // Random horizontal drift
-    const drift =
-        (Math.random() * 160 - 80) + "px";
-
-    heart.style.setProperty(
+    particle.style.setProperty(
         "--drift",
-        drift
+        (Math.random() * 180 - 90) + "px"
     );
 
-    heartsContainer.appendChild(heart);
+    particles.appendChild(particle);
 
 
-    // Remove after animation
-    setTimeout(function () {
-
-        heart.remove();
-
-    }, duration * 1000);
+    setTimeout(() => {
+        particle.remove();
+    }, 16000);
 
 }
 
 
-let heartInterval;
+let particleTimer;
 
 
-function startHearts() {
+function startParticles() {
 
-    // Don't start twice
-    if (heartInterval) {
+    if (particleTimer) {
         return;
     }
 
-    // Create hearts regularly
-    heartInterval = setInterval(
-        createHeart,
-        800
-    );
+    particleTimer =
+        setInterval(
+            createParticle,
+            650
+        );
 
-    // Initial hearts
-    for (let i = 0; i < 8; i++) {
+    for (
+        let i = 0;
+        i < 12;
+        i++
+    ) {
 
         setTimeout(
-            createHeart,
-            i * 250
+            createParticle,
+            i * 150
         );
 
     }
@@ -126,23 +123,193 @@ function startHearts() {
 
 
 /* =========================================
-   CLICK HEART EFFECT
+   HEART BURST
+========================================= */
+
+function createBurst() {
+
+    const symbols =
+        ["♥", "♡", "✦", "✧"];
+
+    for (
+        let i = 0;
+        i < 35;
+        i++
+    ) {
+
+        const item =
+            document.createElement("div");
+
+        item.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+        item.style.position =
+            "fixed";
+
+        item.style.left =
+            "50%";
+
+        item.style.top =
+            "50%";
+
+        item.style.zIndex =
+            "9999";
+
+        item.style.pointerEvents =
+            "none";
+
+        item.style.color =
+            "#ff9fbd";
+
+        item.style.fontSize =
+            (Math.random() * 18 + 8) + "px";
+
+        item.style.transition =
+            "all 1.2s cubic-bezier(.2,.8,.2,1)";
+
+        document.body.appendChild(item);
+
+
+        const angle =
+            Math.random() *
+            Math.PI *
+            2;
+
+        const distance =
+            Math.random() *
+            300 +
+            100;
+
+        requestAnimationFrame(() => {
+
+            item.style.transform =
+                `
+                translate(
+                    ${Math.cos(angle) * distance}px,
+                    ${Math.sin(angle) * distance}px
+                )
+                rotate(${Math.random() * 360}deg)
+                `;
+
+            item.style.opacity =
+                "0";
+
+        });
+
+
+        setTimeout(() => {
+            item.remove();
+        }, 1300);
+
+    }
+
+}
+
+
+/* =========================================
+   PHOTO FALLBACK
+========================================= */
+
+const photo =
+    document.getElementById("birthdayPhoto");
+
+const placeholder =
+    document.getElementById("photoPlaceholder");
+
+
+photo.addEventListener(
+    "error",
+    () => {
+
+        photo.style.display =
+            "none";
+
+        placeholder.style.display =
+            "flex";
+
+    }
+);
+
+
+photo.addEventListener(
+    "load",
+    () => {
+
+        placeholder.style.display =
+            "none";
+
+        photo.style.display =
+            "block";
+
+    }
+);
+
+
+/* =========================================
+   PHOTO PARALLAX
+========================================= */
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        if (!photo) {
+            return;
+        }
+
+        const rect =
+            photo.getBoundingClientRect();
+
+        const windowHeight =
+            window.innerHeight;
+
+        if (
+            rect.top < windowHeight &&
+            rect.bottom > 0
+        ) {
+
+            const center =
+                windowHeight / 2;
+
+            const difference =
+                rect.top +
+                rect.height / 2 -
+                center;
+
+            const movement =
+                difference * -0.025;
+
+            photo.style.transform =
+                `scale(1.03) translateY(${movement}px)`;
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   CLICK SPARKLES
 ========================================= */
 
 document.addEventListener(
     "click",
-    function (event) {
+    event => {
 
-        // Don't create click hearts when
-        // clicking links/buttons
         if (
+            event.target.closest("button") ||
             event.target.closest("a") ||
-            event.target.closest("button")
+            event.target.closest("iframe")
         ) {
             return;
         }
 
-        createClickHeart(
+        createClickSpark(
             event.clientX,
             event.clientY
         );
@@ -151,82 +318,58 @@ document.addEventListener(
 );
 
 
-function createClickHeart(x, y) {
+function createClickSpark(x, y) {
 
-    const heart =
+    const spark =
         document.createElement("div");
 
-    heart.innerHTML = "♥";
+    spark.textContent =
+        "✦";
 
-    heart.style.position = "fixed";
+    spark.style.position =
+        "fixed";
 
-    heart.style.left = x + "px";
+    spark.style.left =
+        x + "px";
 
-    heart.style.top = y + "px";
+    spark.style.top =
+        y + "px";
 
-    heart.style.pointerEvents = "none";
+    spark.style.zIndex =
+        "9999";
 
-    heart.style.zIndex = "9999";
+    spark.style.pointerEvents =
+        "none";
 
-    heart.style.color = "#ff9dbb";
+    spark.style.color =
+        "#ffabc5";
 
-    heart.style.fontSize =
-        Math.random() * 15 + 15 + "px";
+    spark.style.fontSize =
+        "18px";
 
-    heart.style.transform =
+    spark.style.transform =
         "translate(-50%, -50%)";
 
-    heart.style.transition =
-        "all 1s ease";
+    spark.style.transition =
+        "all .8s ease";
 
-    document.body.appendChild(heart);
+    document.body.appendChild(spark);
 
 
-    // Trigger animation
-    requestAnimationFrame(function () {
+    requestAnimationFrame(() => {
 
-        heart.style.opacity = "0";
+        spark.style.opacity =
+            "0";
 
-        heart.style.transform =
-            "translate(-50%, -130px) scale(1.5)";
+        spark.style.transform =
+            "translate(-50%, -70px) scale(1.5)";
 
     });
 
 
-    setTimeout(function () {
-
-        heart.remove();
-
-    }, 1000);
-
-}
-
-
-/* =========================================
-   IMAGE FALLBACK
-========================================= */
-
-const photo =
-    document.querySelector(".main-photo");
-
-const placeholder =
-    document.getElementById("photo-placeholder");
-
-
-if (photo) {
-
-    photo.addEventListener(
-        "load",
-        function () {
-
-            placeholder.style.display =
-                "none";
-
-            photo.style.display =
-                "block";
-
-        }
-    );
+    setTimeout(() => {
+        spark.remove();
+    }, 800);
 
 }
 
@@ -237,57 +380,26 @@ if (photo) {
 
 document.addEventListener(
     "visibilitychange",
-    function () {
+    () => {
 
         if (
             document.hidden
         ) {
 
-            // Pause heart creation
             clearInterval(
-                heartInterval
+                particleTimer
             );
 
-            heartInterval = null;
+            particleTimer =
+                null;
 
-        } else {
+        } else if (
+            !site.classList.contains("hidden")
+        ) {
 
-            // Resume hearts
-            if (
-                mainContent.classList.contains(
-                    "hidden"
-                ) === false
-            ) {
-
-                startHearts();
-
-            }
+            startParticles();
 
         }
 
     }
 );
-
-
-/* =========================================
-   PREVENT RIGHT CLICK
-   Optional — remove this section if
-   you don't want it.
-========================================= */
-
-// Uncomment if desired:
-//
-// document.addEventListener(
-//     "contextmenu",
-//     function(event) {
-//         event.preventDefault();
-//     }
-// );
-
-
-/* =========================================
-   STARTUP
-========================================= */
-
-// Keep main content hidden initially
-mainContent.classList.add("hidden");
