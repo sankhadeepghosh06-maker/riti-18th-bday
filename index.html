@@ -1,451 +1,550 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>For Riti — 18 ❤️</title>
+  <title>For Riti — 18 ❤️</title>
 
-    <meta
-        name="description"
-        content="A little birthday surprise made with love ❤️"
-    >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet"
-    >
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =====================================
-         BACKGROUND
-    ====================================== -->
+  <!-- =====================================================
+       FLOATING BACKGROUND
+  ====================================================== -->
 
-    <div class="background">
-        <div class="orb orb-one"></div>
-        <div class="orb orb-two"></div>
-        <div class="orb orb-three"></div>
+  <div class="background-glow glow-one"></div>
+  <div class="background-glow glow-two"></div>
+
+  <div id="particles"></div>
+
+
+  <!-- =====================================================
+       OPENING SCREEN
+  ====================================================== -->
+
+  <section class="opening-screen" id="openingScreen">
+
+    <div class="opening-content">
+
+      <div class="opening-heart">♡</div>
+
+      <p class="opening-small">
+        A little surprise for
+      </p>
+
+      <h1>Riti</h1>
+
+      <h2>
+        Happy 18th Birthday
+      </h2>
+
+      <p class="opening-description">
+        I made a little corner of the internet<br>
+        just for you.
+      </p>
+
+      <button class="open-button" id="openButton">
+        Open your surprise
+        <span>♥</span>
+      </button>
+
     </div>
 
-    <div id="particles"></div>
+  </section>
 
 
-    <!-- =====================================
-         OPENING
-    ====================================== -->
 
-    <section id="opening" class="opening">
+  <!-- =====================================================
+       MAIN WEBSITE
+  ====================================================== -->
 
-        <div class="opening-stars">
-            <span>✦</span>
-            <span>✧</span>
-            <span>✦</span>
-            <span>·</span>
-            <span>✧</span>
+  <main id="mainContent" class="hidden">
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div class="hero-inner">
+
+        <p class="eyebrow">
+          SEPTEMBER • 2026
+        </p>
+
+        <div class="big-number">
+          18
         </div>
 
-        <div class="opening-inner">
+        <h1>
+          A new chapter<br>
+          begins.
+        </h1>
 
-            <div class="mini-heart">♥</div>
+        <p class="hero-subtitle">
+          And somehow, you make every chapter
+          more beautiful. ❤️
+        </p>
 
-            <p class="opening-top">
-                A LITTLE SURPRISE
-            </p>
-
-            <h1>
-                Happy
-                <span>18th</span>
-                Birthday
-            </h1>
-
-            <div class="ornament">
-                <span></span>
-                ♡
-                <span></span>
-            </div>
-
-            <p class="opening-description">
-                There's something waiting for you...
-            </p>
-
-            <button id="openButton" class="open-button">
-                <span>Open your surprise</span>
-                <b>♥</b>
-            </button>
-
-            <p class="tap-hint">
-                tap to open
-            </p>
-
+        <div class="scroll-indicator">
+          <span>scroll</span>
+          <div></div>
         </div>
+
+      </div>
 
     </section>
 
 
-    <!-- =====================================
-         MAIN
-    ====================================== -->
 
-    <main id="site" class="site hidden">
+    <!-- =====================================================
+         PHOTO
+    ====================================================== -->
 
+    <section class="photo-section">
 
-        <!-- =================================
-             HERO
-        ================================== -->
+      <div class="section-container">
 
-        <section class="hero">
+        <p class="section-label">
+          ONE OF MY FAVORITE PEOPLE
+        </p>
 
-            <div class="hero-content">
+        <h2>
+          You.
+        </h2>
 
-                <p class="overline">
-                    SEPTEMBER • A SPECIAL DAY
-                </p>
+        <div class="photo-frame">
 
-                <div class="number-wrap">
+          <!--
+            PUT YOUR PHOTO HERE
 
-                    <div class="number-glow"></div>
+            Example:
+            images/riti.jpg
 
-                    <span class="number-18">
-                        18
-                    </span>
+            Change the filename below.
+          -->
 
-                </div>
+          <img
+            src="images/your-photo.jpg"
+            alt="Riti"
+            id="mainPhoto"
+          >
 
-                <h2>
-                    A new chapter
-                    <br>
-                    <em>begins.</em>
-                </h2>
+          <div class="photo-shine"></div>
 
-                <p class="hero-copy">
-                    And somehow, the world became
-                    a little more beautiful today.
-                </p>
+        </div>
 
-                <div class="scroll-indicator">
-                    <span></span>
-                    scroll
-                </div>
+        <p class="photo-caption">
+          Some moments deserve to be kept forever.
+        </p>
 
-            </div>
+      </div>
 
-        </section>
+    </section>
 
 
-        <!-- =================================
-             PHOTO REVEAL
-        ================================== -->
 
-        <section class="photo-section">
+    <!-- =====================================================
+         LETTER
+    ====================================================== -->
 
-            <div class="section-heading">
+    <section class="letter-section">
 
-                <p class="overline">
-                    A MEMORY
-                </p>
+      <div class="section-container">
 
-                <h2>
-                    One of my
-                    <em>favorites.</em>
-                </h2>
+        <p class="section-label">
+          A LITTLE SOMETHING
+        </p>
 
-            </div>
+        <div class="letter-card">
 
+          <div class="letter-top">
+            <span>For Riti</span>
+            <span>♡</span>
+          </div>
 
-            <div class="photo-stage">
+          <div class="letter-message">
 
-                <div class="photo-glow"></div>
-
-                <div class="photo-frame">
-
-                    <div class="photo-shine"></div>
-
-                    <img
-                        src="images/love.jpg"
-                        alt="A special memory"
-                        class="birthday-photo"
-                        id="birthdayPhoto"
-                    >
-
-                    <div
-                        class="photo-placeholder"
-                        id="photoPlaceholder"
-                    >
-                        <div>♡</div>
-                        <span>Your photo</span>
-                    </div>
-
-                </div>
-
-                <div class="photo-flower flower-left">
-                    ✿
-                </div>
-
-                <div class="photo-flower flower-right">
-                    ✿
-                </div>
-
-                <div class="floating-star star-one">✦</div>
-                <div class="floating-star star-two">✧</div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================
-             MESSAGE
-        ================================== -->
-
-        <section class="letter-section">
-
-            <div class="letter-card">
-
-                <div class="letter-top">
-                    <span>18</span>
-                    <span>♡</span>
-                    <span>18</span>
-                </div>
-
-                <p class="letter-label">
-                    A LITTLE LETTER
-                </p>
-
-                <div class="giant-quote">
-                    “
-                </div>
-
-                <!--
-                    =============================
-                    CHANGE YOUR MESSAGE HERE
-                    =============================
-                -->
-
-                <div class="letter-message">
-
-                    <p>
-                        Write your birthday message here.
-                    </p>
-
-                    <p>
-                        You can make this as long,
-                        personal and romantic as
-                        you want. ❤️
-                    </p>
-
-                </div>
-
-                <div class="letter-bottom">
-                    With love, always ♥
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================
-             MUSIC
-        ================================== -->
-
-        <section class="music-section">
-
-            <div class="section-heading">
-
-                <p class="overline">
-                    PRESS PLAY
-                </p>
-
-                <h2>
-                    This one is
-                    <em>for you.</em>
-                </h2>
-
-                <p class="section-subtitle">
-                    Because some feelings sound better as music.
-                </p>
-
-            </div>
-
-
-            <div class="music-card">
-
-                <div class="music-top">
-
-                    <div class="record">
-
-                        <div class="record-label">
-                            ♥
-                        </div>
-
-                    </div>
-
-                    <div class="music-details">
-
-                        <span>
-                            OUR SONG
-                        </span>
-
-                        <strong>
-                            A little soundtrack
-                        </strong>
-
-                        <small>
-                            Spotify
-                        </small>
-
-                    </div>
-
-                </div>
-
-
-                <!-- Spotify Embed -->
-
-                <div class="spotify-wrapper">
-
-                    <iframe
-                        style="border-radius:12px"
-                        src="https://open.spotify.com/embed/track/1jXfVzMk8cSbvAXMML4Y4f?utm_source=generator"
-                        width="100%"
-                        height="152"
-                        frameBorder="0"
-                        allowfullscreen=""
-                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                        loading="lazy"
-                    >
-                    </iframe>
-
-                </div>
-
-
-                <!-- Music visualizer -->
-
-                <div class="visualizer">
-
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================
-             INSTAGRAM
-        ================================== -->
-
-        <section class="memories-section">
-
-            <div class="memories-card">
-
-                <div class="instagram-symbol">
-                    ◎
-                </div>
-
-                <p class="overline">
-                    A FEW MORE MEMORIES
-                </p>
-
-                <h2>
-                    Some moments
-                    <br>
-                    deserve to be
-                    <em>remembered.</em>
-                </h2>
-
-                <p class="memories-copy">
-                    There's a little collection waiting
-                    for you over here.
-                </p>
-
-                <a
-                    href="https://www.instagram.com/stories/highlights/17926944879204043/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="memory-button"
-                >
-                    <span>Open the memories</span>
-                    <b>↗</b>
-                </a>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================
-             BIRTHDAY FINALE
-        ================================== -->
-
-        <section class="finale">
-
-            <div class="finale-particles">
-                ✦
-                <span>♡</span>
-                ✧
-                <span>♥</span>
-                ✦
-            </div>
-
-            <p class="overline">
-                AND FINALLY...
+            <p>
+              Happy 18th birthday, beautiful.
             </p>
 
-            <div class="final-number">
-                18
-            </div>
-
-            <h2>
-                Happy Birthday,
-                <br>
-                <em>beautiful.</em>
-            </h2>
-
-            <p class="final-message">
-                Here's to every dream,
-                every adventure,
-                every laugh,
-                and every beautiful thing
-                waiting for you.
+            <p>
+              Today isn't just another birthday.
+              It's the beginning of a completely new
+              chapter of your life.
             </p>
 
-            <div class="final-hearts">
-                ♥ ♥ ♥
+            <p>
+              I hope this year brings you the kind
+              of happiness that stays, the kind of
+              memories you never want to forget,
+              and countless reasons to smile.
+            </p>
+
+            <p>
+              And most importantly...
+              I hope you always remember just how
+              special you are.
+            </p>
+
+            <p class="signature">
+              — Someone who cares about you
+              <span>♥</span>
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         MUSIC
+    ====================================================== -->
+
+    <section class="music-section">
+
+      <div class="section-container">
+
+        <p class="section-label">
+          PRESS PLAY
+        </p>
+
+        <h2>
+          Our little soundtrack.
+        </h2>
+
+        <div class="music-card">
+
+          <div class="vinyl">
+
+            <div class="vinyl-center"></div>
+
+          </div>
+
+          <div class="music-info">
+
+            <p class="music-small">
+              THIS ONE'S FOR YOU
+            </p>
+
+            <h3>
+              Our Song
+            </h3>
+
+            <div class="visualizer">
+
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+
             </div>
 
-        </section>
+          </div>
+
+        </div>
 
 
-        <footer>
-            Made with love ♥
-        </footer>
+        <!-- Spotify -->
 
-    </main>
+        <div class="spotify-wrapper">
+
+          <iframe
+            style="border-radius:12px"
+            src="https://open.spotify.com/embed/track/1jXfVzMk8cSbvAXMML4Y4f?utm_source=generator"
+            width="100%"
+            height="152"
+            frameBorder="0"
+            allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+          </iframe>
+
+        </div>
+
+      </div>
+
+    </section>
 
 
-    <script src="script.js"></script>
+
+    <!-- =====================================================
+         LITTLE WORLD / MINI GAMES
+    ====================================================== -->
+
+    <section class="mini-world">
+
+      <div class="section-container">
+
+        <p class="section-label">
+          A LITTLE MORE
+        </p>
+
+        <h2>
+          There's more waiting for you.
+        </h2>
+
+        <p class="mini-intro">
+          I made a few little things for you.
+          Go explore them. ❤️
+        </p>
+
+
+        <div class="game-grid">
+
+
+          <!-- BOUQUET -->
+
+          <a href="bouquet.html" class="game-card">
+
+            <div class="game-icon">
+              🌹
+            </div>
+
+            <div>
+              <h3>
+                Bouquet Builder
+              </h3>
+
+              <p>
+                Build yourself a bouquet.
+              </p>
+            </div>
+
+            <span class="game-arrow">
+              →
+            </span>
+
+          </a>
+
+
+
+          <!-- LOVE ROOM -->
+
+          <a href="love-room.html" class="game-card">
+
+            <div class="game-icon">
+              🏠
+            </div>
+
+            <div>
+              <h3>
+                Little Love Room
+              </h3>
+
+              <p>
+                There's something hidden inside.
+              </p>
+            </div>
+
+            <span class="game-arrow">
+              →
+            </span>
+
+          </a>
+
+
+
+          <!-- MEMORY -->
+
+          <a href="memory.html" class="game-card">
+
+            <div class="game-icon">
+              🧠
+            </div>
+
+            <div>
+              <h3>
+                Memory Match
+              </h3>
+
+              <p>
+                Let's see what you remember.
+              </p>
+            </div>
+
+            <span class="game-arrow">
+              →
+            </span>
+
+          </a>
+
+
+
+          <!-- PHONE -->
+
+          <a href="phone.html" class="game-card">
+
+            <div class="game-icon">
+              📱
+            </div>
+
+            <div>
+              <h3>
+                Riti's Phone
+              </h3>
+
+              <p>
+                Maybe there's something inside.
+              </p>
+            </div>
+
+            <span class="game-arrow">
+              →
+            </span>
+
+          </a>
+
+
+
+          <!-- COURT -->
+
+          <a href="court.html" class="game-card">
+
+            <div class="game-icon">
+              ⚖️
+            </div>
+
+            <div>
+              <h3>
+                Court of Love
+              </h3>
+
+              <p>
+                You have been accused...
+              </p>
+            </div>
+
+            <span class="game-arrow">
+              →
+            </span>
+
+          </a>
+
+
+
+          <!-- DRAW -->
+
+          <a href="heart.html" class="game-card">
+
+            <div class="game-icon">
+              🎨
+            </div>
+
+            <div>
+              <h3>
+                Draw Your Heart
+              </h3>
+
+              <p>
+                Leave something behind for me.
+              </p>
+            </div>
+
+            <span class="game-arrow">
+              →
+            </span>
+
+          </a>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         INSTAGRAM
+    ====================================================== -->
+
+    <section class="memories-section">
+
+      <div class="section-container">
+
+        <p class="section-label">
+          MEMORIES
+        </p>
+
+        <h2>
+          A few more moments.
+        </h2>
+
+        <p>
+          Maybe you'll recognize some of these. 👀
+        </p>
+
+        <a
+          href="https://www.instagram.com/stories/highlights/17926944879204043/"
+          target="_blank"
+          class="instagram-button"
+        >
+          Open our memories
+          <span>↗</span>
+        </a>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FINALE
+    ====================================================== -->
+
+    <section class="finale">
+
+      <div class="finale-content">
+
+        <div class="finale-heart">
+          ♥
+        </div>
+
+        <p>
+          Happy Birthday,
+        </p>
+
+        <h2>
+          beautiful.
+        </h2>
+
+        <div class="finale-line"></div>
+
+        <p class="finale-small">
+          Here's to 18.
+          <br>
+          And everything that comes next.
+        </p>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <script src="script.js"></script>
 
 </body>
 </html>
