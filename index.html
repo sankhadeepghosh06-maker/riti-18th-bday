@@ -1,383 +1,347 @@
-```javascript
-document.addEventListener("DOMContentLoaded", () => {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
 
-  /* =========================================================
-     ELEMENTS
-     ========================================================= */
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  const envelopeWrapper =
-    document.getElementById("envelopeWrapper");
+  <title>Riti — 18 ✨</title>
 
-  const openLetterButton =
-    document.getElementById("openLetterButton");
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  const letterOpening =
-    document.getElementById("letterOpening");
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&display=swap"
+    rel="stylesheet"
+  >
 
-  const revealedLetter =
-    document.getElementById("revealedLetter");
+  <link rel="stylesheet" href="style.css">
+</head>
 
-  const continueAfterLetter =
-    document.getElementById("continueAfterLetter");
+<body>
 
-  const mainContent =
-    document.getElementById("mainContent");
+  <!-- =========================
+       BACKGROUND
+  ========================== -->
 
-  const celebration =
-    document.getElementById("celebration");
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <div class="stars"></div>
 
+  <div id="floatingHearts"></div>
 
-  /* =========================================================
-     OPEN THE ENVELOPE
-     ========================================================= */
 
-  let envelopeOpened = false;
+  <!-- =========================
+       MAIN PAGE
+  ========================== -->
 
+  <main class="main-content">
 
-  function openEnvelope() {
+    <!-- HERO -->
 
-    if (envelopeOpened) {
-      return;
-    }
+    <section class="hero">
 
-    envelopeOpened = true;
+      <p class="eyebrow">
+        A little something made just for you
+      </p>
 
+      <h1>
+        Happy 18th
+        <span>Birthday</span>
+      </h1>
 
-    /*
-      Start envelope animation.
-    */
+      <div class="name">
+        Riti <span>♡</span>
+      </div>
 
-    envelopeWrapper.classList.add("opened");
+      <p class="hero-subtitle">
+        Chapter eighteen looks beautiful on you.
+      </p>
 
+      <div class="scroll-indicator">
+        <span></span>
+        scroll slowly
+      </div>
 
-    /*
-      Disable the button while the animation happens.
-    */
+    </section>
 
-    openLetterButton.disabled = true;
 
-    openLetterButton.style.opacity = "0";
+    <!-- =========================
+         PHOTO
+    ========================== -->
 
-    openLetterButton.style.transform =
-      "translateY(8px)";
+    <section class="photo-section">
 
+      <div class="section-heading">
+        <span>01</span>
+        <h2>A little piece of you</h2>
+      </div>
 
-    /*
-      Create a small burst of hearts.
-    */
+      <div class="photo-card">
 
-    createCelebration(18);
+        <div class="photo-glow"></div>
 
+        <img
+          src="images/your-photo.jpg"
+          alt="Riti"
+        >
 
-    /*
-      Wait for the envelope to open,
-      then reveal the actual letter.
-    */
+        <div class="photo-caption">
+          <span>eighteen</span>
+          <span>♡</span>
+        </div>
 
-    setTimeout(() => {
+      </div>
 
-      revealedLetter.classList.add("show");
+    </section>
 
-    }, 850);
 
-  }
+    <!-- =========================
+         LETTER / PARAGRAPH
+    ========================== -->
 
+    <section class="letter-section" id="letterSection">
 
-  /* =========================================================
-     CLICK BUTTON
-     ========================================================= */
+      <div class="section-heading">
+        <span>02</span>
+        <h2>Something I wanted to tell you</h2>
+      </div>
 
-  openLetterButton.addEventListener(
-    "click",
-    openEnvelope
-  );
+      <p class="section-intro">
+        I couldn't fit everything I wanted to say into a normal birthday wish...
+      </p>
 
 
-  /* =========================================================
-     CLICK ENVELOPE
-     ========================================================= */
+      <!-- ENVELOPE -->
 
-  envelopeWrapper.addEventListener(
-    "click",
-    openEnvelope
-  );
+      <div class="letter-area">
 
+        <div
+          class="envelope-wrapper"
+          id="envelopeWrapper"
+          role="button"
+          tabindex="0"
+          aria-label="Open birthday letter"
+        >
 
-  /* =========================================================
-     KEYBOARD SUPPORT
-     ========================================================= */
+          <div class="envelope-shadow"></div>
 
-  envelopeWrapper.setAttribute(
-    "role",
-    "button"
-  );
+          <div class="envelope" id="envelope">
 
-  envelopeWrapper.setAttribute(
-    "tabindex",
-    "0"
-  );
+            <!-- LETTER -->
+            <div class="envelope-letter" id="envelopeLetter">
 
-  envelopeWrapper.addEventListener(
-    "keydown",
-    event => {
+              <div class="letter-paper">
 
-      if (
-        event.key === "Enter" ||
-        event.key === " "
-      ) {
+                <div class="letter-top">
+                  <span>♡</span>
+                  <span>For Riti</span>
+                  <span>♡</span>
+                </div>
 
-        event.preventDefault();
+                <div class="letter-message" id="letterMessage">
 
-        openEnvelope();
+                  <p>
+                    Happy 18th birthday, Riti.
+                  </p>
 
-      }
+                  <p>
+                    I hope this year brings you more happiness,
+                    more beautiful memories, and more reasons to smile
+                    than you could ever count.
+                  </p>
 
-    }
-  );
+                  <p>
+                    You deserve all the little moments that make life
+                    feel special, all the people who make you feel loved,
+                    and all the dreams you're brave enough to chase.
+                  </p>
 
+                  <p>
+                    Here's to eighteen — and to everything waiting for you
+                    on the other side of it.
+                  </p>
 
-  /* =========================================================
-     CONTINUE FROM LETTER
-     ========================================================= */
+                  <div class="letter-signature">
+                    With lots of love,<br>
+                    <span>♡</span>
+                  </div>
 
-  continueAfterLetter.addEventListener(
-    "click",
-    () => {
+                </div>
 
-      /*
-        Close the letter overlay.
-      */
+              </div>
 
-      revealedLetter.classList.remove("show");
+            </div>
 
 
-      /*
-        Fade out the opening section completely.
-      */
+            <!-- BACK -->
+            <div class="envelope-back"></div>
 
-      setTimeout(() => {
+            <!-- FRONT POCKET -->
+            <div class="envelope-pocket"></div>
 
-        letterOpening.classList.add("closed");
+            <!-- FLAP -->
+            <div class="envelope-flap"></div>
 
-      }, 250);
+            <!-- SEAL -->
+            <div class="envelope-seal">
+              ♡
+            </div>
 
+          </div>
 
-      /*
-        Make sure the main page is visible.
-      */
+          <p class="envelope-hint" id="envelopeHint">
+            tap the envelope to open
+          </p>
 
-      mainContent.style.display = "block";
+        </div>
 
+      </div>
 
-      /*
-        Give the page a moment to settle,
-        then move to Chapter Eighteen.
-      */
+    </section>
 
-      setTimeout(() => {
 
-        const hero =
-          document.querySelector(".hero");
+    <!-- =========================
+         MUSIC
+    ========================== -->
 
-        if (hero) {
+    <section class="music-section">
 
-          hero.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
+      <div class="section-heading">
+        <span>03</span>
+        <h2>A song for you</h2>
+      </div>
 
-        }
+      <p class="section-intro">
+        Maybe this one sounds a little different today.
+      </p>
 
-      }, 750);
+      <div class="spotify-card">
 
-    }
-  );
+        <iframe
+          src="https://open.spotify.com/embed/track/1jXfVzMk8cSbvAXMML4Y4f?utm_source=generator&theme=0"
+          width="100%"
+          height="152"
+          frameborder="0"
+          allowfullscreen=""
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
 
+      </div>
 
-  /* =========================================================
-     CELEBRATION HEARTS
-     ========================================================= */
+    </section>
 
-  function createCelebration(amount) {
 
-    const symbols = [
-      "♡",
-      "♥",
-      "✦",
-      "✧",
-      "💗",
-      "🌸"
-    ];
+    <!-- =========================
+         MINI GAMES
+    ========================== -->
 
+    <section class="games-section">
 
-    for (let i = 0; i < amount; i++) {
+      <div class="section-heading">
+        <span>04</span>
+        <h2>A few things to play</h2>
+      </div>
 
-      const heart =
-        document.createElement("div");
+      <p class="section-intro">
+        Because a birthday shouldn't be just reading.
+      </p>
 
-      heart.className =
-        "celebration-heart";
+      <a
+        href="mini-games.html"
+        class="games-button"
+      >
+        <span>🎮</span>
+        <span>
+          <strong>Mini Games</strong>
+          <small>Six little challenges made for you</small>
+        </span>
+        <span class="arrow">→</span>
+      </a>
 
+    </section>
 
-      heart.textContent =
-        symbols[
-          Math.floor(
-            Math.random() * symbols.length
-          )
-        ];
 
+    <!-- =========================
+         INSTAGRAM
+    ========================== -->
 
-      /*
-        Random direction.
-      */
+    <section class="social-section">
 
-      const x =
-        (Math.random() - 0.5) * 520;
+      <div class="section-heading">
+        <span>05</span>
+        <h2>Some memories</h2>
+      </div>
 
-      const y =
-        -80 -
-        Math.random() * 430;
+      <p class="section-intro">
+        A few more little moments worth keeping.
+      </p>
 
+      <a
+        href="https://www.instagram.com/stories/highlights/17926944879204043/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="instagram-button"
+      >
+        <span>♡</span>
+        Open the memories
+        <span>↗</span>
+      </a>
 
-      const rotation =
-        (Math.random() - 0.5) * 80;
+    </section>
 
 
-      heart.style.setProperty(
-        "--x",
-        `${x}px`
-      );
+    <!-- =========================
+         FINALE
+    ========================== -->
 
-      heart.style.setProperty(
-        "--y",
-        `${y}px`
-      );
+    <section class="finale">
 
-      heart.style.setProperty(
-        "--rotation",
-        `${rotation}deg`
-      );
+      <div class="finale-hearts">
+        ♡　♡　♡
+      </div>
 
+      <p class="finale-small">
+        and finally...
+      </p>
 
-      heart.style.animationDelay =
-        `${Math.random() * .45}s`;
+      <h2>
+        Here's to<br>
+        <span>18.</span>
+      </h2>
 
+      <p>
+        May this chapter be your favourite one yet.
+      </p>
 
-      heart.style.fontSize =
-        `${10 + Math.random() * 18}px`;
+      <div class="finale-symbol">
+        ✦
+      </div>
 
+    </section>
 
-      celebration.appendChild(heart);
 
+    <footer>
+      made with ♡ for Riti's 18th
+    </footer>
 
-      setTimeout(() => {
+  </main>
 
-        heart.remove();
 
-      }, 3300);
+  <!-- Celebration particles -->
+  <div id="celebration"></div>
 
-    }
 
-  }
+  <!-- IMPORTANT:
+       JS is loaded as a separate file.
+       DO NOT paste JavaScript here.
+  -->
 
+  <script src="script.js"></script>
 
-  /* =========================================================
-     OPTIONAL: LITTLE HEARTS WHILE SCROLLING
-     ========================================================= */
-
-  let lastScrollTime = 0;
-
-
-  window.addEventListener(
-    "scroll",
-    () => {
-
-      const now =
-        Date.now();
-
-
-      /*
-        Don't create too many particles.
-      */
-
-      if (
-        now - lastScrollTime < 1000
-      ) {
-        return;
-      }
-
-
-      /*
-        Only occasionally create
-        a tiny floating heart.
-      */
-
-      if (
-        Math.random() < 0.22
-      ) {
-
-        createScrollHeart();
-
-      }
-
-
-      lastScrollTime = now;
-
-    },
-    { passive: true }
-  );
-
-
-  function createScrollHeart() {
-
-    const heart =
-      document.createElement("div");
-
-    heart.className =
-      "celebration-heart";
-
-
-    heart.textContent =
-      Math.random() > .5
-        ? "♡"
-        : "✦";
-
-
-    heart.style.left =
-      `${20 + Math.random() * 60}%`;
-
-    heart.style.top =
-      `${70 + Math.random() * 20}%`;
-
-
-    heart.style.setProperty(
-      "--x",
-      `${(Math.random() - .5) * 100}px`
-    );
-
-
-    heart.style.setProperty(
-      "--y",
-      `${-80 - Math.random() * 120}px`
-    );
-
-
-    heart.style.setProperty(
-      "--rotation",
-      `${(Math.random() - .5) * 60}deg`
-    );
-
-
-    celebration.appendChild(heart);
-
-
-    setTimeout(() => {
-
-      heart.remove();
-
-    }, 3000);
-
-  }
-
-});
-```
+</body>
+</html>
