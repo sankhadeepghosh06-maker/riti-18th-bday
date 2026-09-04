@@ -4,233 +4,390 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>For You ❤️</title>
+    <title>For Riti — 18 ❤️</title>
 
-    <meta name="description" content="A little something made just for you ❤️">
+    <meta
+        name="description"
+        content="A little birthday surprise made with love ❤️"
+    >
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- Romantic font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&family=Great+Vibes&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
 </head>
 
 <body>
 
-    <!-- Animated background -->
+    <!-- =====================================
+         BACKGROUND
+    ====================================== -->
+
     <div class="background">
-        <div class="glow glow-1"></div>
-        <div class="glow glow-2"></div>
-        <div class="glow glow-3"></div>
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="orb orb-three"></div>
     </div>
 
-    <!-- Floating hearts -->
-    <div id="hearts-container"></div>
+    <div id="particles"></div>
 
-    <!-- Opening screen -->
-    <section id="opening-screen" class="opening-screen">
 
-        <div class="opening-content">
+    <!-- =====================================
+         OPENING
+    ====================================== -->
 
-            <div class="tiny-heart">♥</div>
+    <section id="opening" class="opening">
 
-            <p class="small-title">A little something</p>
+        <div class="opening-stars">
+            <span>✦</span>
+            <span>✧</span>
+            <span>✦</span>
+            <span>·</span>
+            <span>✧</span>
+        </div>
 
-            <h1>
-                Made<br>
-                <span>For You</span>
-            </h1>
+        <div class="opening-inner">
 
-            <p class="opening-subtitle">
-                I made this little corner of the internet<br>
-                just for you.
+            <div class="mini-heart">♥</div>
+
+            <p class="opening-top">
+                A LITTLE SURPRISE
             </p>
 
-            <button id="enter-button" class="enter-button">
-                <span>Open it</span>
-                <span class="button-heart">♥</span>
+            <h1>
+                Happy
+                <span>18th</span>
+                Birthday
+            </h1>
+
+            <div class="ornament">
+                <span></span>
+                ♡
+                <span></span>
+            </div>
+
+            <p class="opening-description">
+                There's something waiting for you...
+            </p>
+
+            <button id="openButton" class="open-button">
+                <span>Open your surprise</span>
+                <b>♥</b>
             </button>
+
+            <p class="tap-hint">
+                tap to open
+            </p>
 
         </div>
 
     </section>
 
 
-    <!-- Main page -->
-    <main id="main-content" class="main-content hidden">
+    <!-- =====================================
+         MAIN
+    ====================================== -->
 
-        <!-- Hero -->
+    <main id="site" class="site hidden">
+
+
+        <!-- =================================
+             HERO
+        ================================== -->
+
         <section class="hero">
 
-            <p class="eyebrow">JUST FOR YOU</p>
+            <div class="hero-content">
 
-            <h2>
-                Some things<br>
-                are better <em>felt.</em>
-            </h2>
+                <p class="overline">
+                    SEPTEMBER • A SPECIAL DAY
+                </p>
 
-            <div class="heart-divider">
-                <span></span>
-                ♥
-                <span></span>
-            </div>
+                <div class="number-wrap">
 
-        </section>
+                    <div class="number-glow"></div>
 
-
-        <!-- Photo -->
-        <section class="photo-section">
-
-            <div class="photo-frame">
-
-                <!--
-                    CHANGE THIS IMAGE LATER.
-
-                    Put your photo inside the "images" folder
-                    and change "your-photo.jpg" below to its filename.
-
-                    Example:
-                    src="images/love.jpg"
-                -->
-
-                <img
-                    src="images/love.jpg"
-                    alt="A special memory"
-                    class="main-photo"
-                    onerror="this.style.display='none'; document.getElementById('photo-placeholder').style.display='flex';"
-                >
-
-                <div id="photo-placeholder" class="photo-placeholder">
-
-                    <div class="placeholder-heart">♡</div>
-
-                    <p>Your photo goes here</p>
-
-                    <small>
-                        Replace<br>
-                        images/your-photo.jpg
-                    </small>
+                    <span class="number-18">
+                        18
+                    </span>
 
                 </div>
 
-                <div class="photo-decoration decoration-1">✦</div>
-                <div class="photo-decoration decoration-2">♡</div>
+                <h2>
+                    A new chapter
+                    <br>
+                    <em>begins.</em>
+                </h2>
 
-            </div>
-
-        </section>
-
-
-        <!-- Message -->
-        <section class="message-section">
-
-            <p class="section-label">A FEW WORDS</p>
-
-            <!--
-                CHANGE THIS MESSAGE.
-
-                Replace the text inside .message-text
-                with whatever you want.
-            -->
-
-            <div class="message-card">
-
-                <div class="quote-mark">“</div>
-
-                <p class="message-text">
-                    Write your message here...
-                    <br><br>
-                    You can make it as long or as short as you want.
-                    This little space is yours. ❤️
+                <p class="hero-copy">
+                    And somehow, the world became
+                    a little more beautiful today.
                 </p>
 
-                <div class="quote-mark quote-end">”</div>
+                <div class="scroll-indicator">
+                    <span></span>
+                    scroll
+                </div>
 
             </div>
 
         </section>
 
 
-        <!-- Spotify -->
+        <!-- =================================
+             PHOTO REVEAL
+        ================================== -->
+
+        <section class="photo-section">
+
+            <div class="section-heading">
+
+                <p class="overline">
+                    A MEMORY
+                </p>
+
+                <h2>
+                    One of my
+                    <em>favorites.</em>
+                </h2>
+
+            </div>
+
+
+            <div class="photo-stage">
+
+                <div class="photo-glow"></div>
+
+                <div class="photo-frame">
+
+                    <div class="photo-shine"></div>
+
+                    <img
+                        src="images/your-photo.jpg"
+                        alt="A special memory"
+                        class="birthday-photo"
+                        id="birthdayPhoto"
+                    >
+
+                    <div
+                        class="photo-placeholder"
+                        id="photoPlaceholder"
+                    >
+                        <div>♡</div>
+                        <span>Your photo</span>
+                    </div>
+
+                </div>
+
+                <div class="photo-flower flower-left">
+                    ✿
+                </div>
+
+                <div class="photo-flower flower-right">
+                    ✿
+                </div>
+
+                <div class="floating-star star-one">✦</div>
+                <div class="floating-star star-two">✧</div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             MESSAGE
+        ================================== -->
+
+        <section class="letter-section">
+
+            <div class="letter-card">
+
+                <div class="letter-top">
+                    <span>18</span>
+                    <span>♡</span>
+                    <span>18</span>
+                </div>
+
+                <p class="letter-label">
+                    A LITTLE LETTER
+                </p>
+
+                <div class="giant-quote">
+                    “
+                </div>
+
+                <!--
+                    =============================
+                    CHANGE YOUR MESSAGE HERE
+                    =============================
+                -->
+
+                <div class="letter-message">
+
+                    <p>
+                        Write your birthday message here.
+                    </p>
+
+                    <p>
+                        You can make this as long,
+                        personal and romantic as
+                        you want. ❤️
+                    </p>
+
+                </div>
+
+                <div class="letter-bottom">
+                    With love, always ♥
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================
+             MUSIC
+        ================================== -->
+
         <section class="music-section">
 
-            <p class="section-label">PRESS PLAY</p>
+            <div class="section-heading">
 
-            <h3>A song for you</h3>
+                <p class="overline">
+                    PRESS PLAY
+                </p>
 
-            <p class="section-description">
-                Because sometimes a song says what words can't.
-            </p>
+                <h2>
+                    This one is
+                    <em>for you.</em>
+                </h2>
+
+                <p class="section-subtitle">
+                    Because some feelings sound better as music.
+                </p>
+
+            </div>
+
 
             <div class="music-card">
 
-                <div class="vinyl">
-                    <div class="vinyl-center">♥</div>
+                <div class="music-top">
+
+                    <div class="record">
+
+                        <div class="record-label">
+                            ♥
+                        </div>
+
+                    </div>
+
+                    <div class="music-details">
+
+                        <span>
+                            OUR SONG
+                        </span>
+
+                        <strong>
+                            A little soundtrack
+                        </strong>
+
+                        <small>
+                            Spotify
+                        </small>
+
+                    </div>
+
                 </div>
 
-                <div class="music-info">
 
-                    <span class="music-small">
-                        OUR LITTLE SOUNDTRACK
-                    </span>
+                <!-- Spotify Embed -->
 
-                    <strong>
-                        Listen to this
-                    </strong>
+                <div class="spotify-wrapper">
 
-                    <span>
-                        Tap below to open Spotify
-                    </span>
+                    <iframe
+                        style="border-radius:12px"
+                        src="https://open.spotify.com/embed/track/1jXfVzMk8cSbvAXMML4Y4f?utm_source=generator"
+                        width="100%"
+                        height="152"
+                        frameBorder="0"
+                        allowfullscreen=""
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy"
+                    >
+                    </iframe>
 
                 </div>
 
-                <a
-                    href="https://open.spotify.com/track/1jXfVzMk8cSbvAXMML4Y4f?autoplay_ok=1"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="spotify-button"
-                >
-                    <span>♫</span>
-                    <span>Open Spotify</span>
-                </a>
+
+                <!-- Music visualizer -->
+
+                <div class="visualizer">
+
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+
+                </div>
 
             </div>
 
         </section>
 
 
-        <!-- Instagram -->
-        <section class="instagram-section">
+        <!-- =================================
+             INSTAGRAM
+        ================================== -->
 
-            <div class="instagram-card">
+        <section class="memories-section">
 
-                <div class="instagram-icon">
+            <div class="memories-card">
+
+                <div class="instagram-symbol">
                     ◎
                 </div>
 
-                <p class="section-label">
-                    ONE MORE THING
+                <p class="overline">
+                    A FEW MORE MEMORIES
                 </p>
 
-                <h3>
-                    Some memories<br>
-                    are worth keeping.
-                </h3>
+                <h2>
+                    Some moments
+                    <br>
+                    deserve to be
+                    <em>remembered.</em>
+                </h2>
 
-                <p>
-                    I saved a little collection of memories
-                    for you.
+                <p class="memories-copy">
+                    There's a little collection waiting
+                    for you over here.
                 </p>
 
                 <a
                     href="https://www.instagram.com/stories/highlights/17926944879204043/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="instagram-button"
+                    class="memory-button"
                 >
-                    <span>View the memories</span>
-                    <span>↗</span>
+                    <span>Open the memories</span>
+                    <b>↗</b>
                 </a>
 
             </div>
@@ -238,32 +395,51 @@
         </section>
 
 
-        <!-- Final message -->
-        <section class="final-section">
+        <!-- =================================
+             BIRTHDAY FINALE
+        ================================== -->
 
-            <div class="final-heart">♥</div>
+        <section class="finale">
 
-            <h2>
-                That's all...
-                <br>
-                <em>for now.</em>
-            </h2>
+            <div class="finale-particles">
+                ✦
+                <span>♡</span>
+                ✧
+                <span>♥</span>
+                ✦
+            </div>
 
-            <p>
-                Made with a little bit of love
-                <br>
-                and a lot of thought.
+            <p class="overline">
+                AND FINALLY...
             </p>
 
-            <div class="final-divider">
-                ✦ ♥ ✦
+            <div class="final-number">
+                18
+            </div>
+
+            <h2>
+                Happy Birthday,
+                <br>
+                <em>beautiful.</em>
+            </h2>
+
+            <p class="final-message">
+                Here's to every dream,
+                every adventure,
+                every laugh,
+                and every beautiful thing
+                waiting for you.
+            </p>
+
+            <div class="final-hearts">
+                ♥ ♥ ♥
             </div>
 
         </section>
 
 
         <footer>
-            Made especially for you ♥
+            Made with love ♥
         </footer>
 
     </main>
