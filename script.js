@@ -1,9 +1,8 @@
-```javascript
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* =========================================================
-     ELEMENTS
-     ========================================================= */
+  /* =====================================================
+     GET ELEMENTS
+     ===================================================== */
 
   const envelopeWrapper =
     document.getElementById("envelopeWrapper");
@@ -27,12 +26,37 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("celebration");
 
 
-  /* =========================================================
-     OPEN THE ENVELOPE
-     ========================================================= */
+  /* =====================================================
+     SAFETY CHECK
+     ===================================================== */
+
+  if (
+    !envelopeWrapper ||
+    !openLetterButton ||
+    !letterOpening ||
+    !revealedLetter ||
+    !continueAfterLetter
+  ) {
+    console.error(
+      "Birthday page: required envelope elements are missing."
+    );
+
+    return;
+  }
+
+
+  /* =====================================================
+     INITIAL STATE
+     ===================================================== */
+
+  document.body.classList.add("locked");
 
   let envelopeOpened = false;
 
+
+  /* =====================================================
+     OPEN ENVELOPE
+     ===================================================== */
 
   function openEnvelope() {
 
@@ -43,16 +67,12 @@ document.addEventListener("DOMContentLoaded", () => {
     envelopeOpened = true;
 
 
-    /*
-      Start envelope animation.
-    */
+    /* Animate envelope */
 
     envelopeWrapper.classList.add("opened");
 
 
-    /*
-      Disable the button while the animation happens.
-    */
+    /* Disable button */
 
     openLetterButton.disabled = true;
 
@@ -62,40 +82,63 @@ document.addEventListener("DOMContentLoaded", () => {
       "translateY(8px)";
 
 
-    /*
-      Create a small burst of hearts.
-    */
+    /* Hide hint */
+
+    const tapHint =
+      document.querySelector(".tap-hint");
+
+    if (tapHint) {
+
+      tapHint.style.opacity = "0";
+
+      tapHint.style.transition =
+        "opacity .3s ease";
+    }
+
+
+    /* Little celebration */
 
     createCelebration(18);
 
 
     /*
-      Wait for the envelope to open,
-      then reveal the actual letter.
+      Give the envelope enough time to visibly open
+      before showing the actual letter.
     */
 
     setTimeout(() => {
 
       revealedLetter.classList.add("show");
 
+      revealedLetter.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
     }, 850);
 
   }
 
 
-  /* =========================================================
-     CLICK BUTTON
-     ========================================================= */
+  /* =====================================================
+     BUTTON
+     ===================================================== */
 
   openLetterButton.addEventListener(
     "click",
-    openEnvelope
+    (event) => {
+
+      event.stopPropagation();
+
+      openEnvelope();
+
+    }
   );
 
 
-  /* =========================================================
-     CLICK ENVELOPE
-     ========================================================= */
+  /* =====================================================
+     ENVELOPE
+     ===================================================== */
 
   envelopeWrapper.addEventListener(
     "click",
@@ -103,23 +146,13 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
 
-  /* =========================================================
-     KEYBOARD SUPPORT
-     ========================================================= */
-
-  envelopeWrapper.setAttribute(
-    "role",
-    "button"
-  );
-
-  envelopeWrapper.setAttribute(
-    "tabindex",
-    "0"
-  );
+  /* =====================================================
+     KEYBOARD
+     ===================================================== */
 
   envelopeWrapper.addEventListener(
     "keydown",
-    event => {
+    (event) => {
 
       if (
         event.key === "Enter" ||
@@ -136,42 +169,50 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
 
-  /* =========================================================
-     CONTINUE FROM LETTER
-     ========================================================= */
+  /* =====================================================
+     CONTINUE TO ORIGINAL PAGE
+     ===================================================== */
 
   continueAfterLetter.addEventListener(
     "click",
     () => {
 
-      /*
-        Close the letter overlay.
-      */
+      /* Close letter */
 
       revealedLetter.classList.remove("show");
 
+      revealedLetter.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
 
       /*
-        Fade out the opening section completely.
+        Wait until the letter fades away,
+        then remove the opening screen.
       */
 
       setTimeout(() => {
 
         letterOpening.classList.add("closed");
 
-      }, 250);
+        document.body.classList.remove("locked");
+
+        /*
+          The original page was never removed.
+          It has been underneath the envelope screen
+          the entire time.
+        */
+
+        if (mainContent) {
+          mainContent.style.display = "block";
+        }
+
+      }, 350);
 
 
       /*
-        Make sure the main page is visible.
-      */
-
-      mainContent.style.display = "block";
-
-
-      /*
-        Give the page a moment to settle,
-        then move to Chapter Eighteen.
+        Scroll to the beginning of the original page.
       */
 
       setTimeout(() => {
@@ -181,24 +222,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (hero) {
 
-          hero.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
+          window.scrollTo({
+            top: hero.offsetTop,
+            behavior: "smooth"
           });
 
         }
 
-      }, 750);
+      }, 800);
 
     }
   );
 
 
-  /* =========================================================
-     CELEBRATION HEARTS
-     ========================================================= */
+  /* =====================================================
+     CELEBRATION
+     ===================================================== */
 
   function createCelebration(amount) {
+
+    if (!celebration) {
+      return;
+    }
+
 
     const symbols = [
       "♡",
@@ -227,12 +273,9 @@ document.addEventListener("DOMContentLoaded", () => {
         ];
 
 
-      /*
-        Random direction.
-      */
-
       const x =
         (Math.random() - 0.5) * 520;
+
 
       const y =
         -80 -
@@ -248,10 +291,12 @@ document.addEventListener("DOMContentLoaded", () => {
         `${x}px`
       );
 
+
       heart.style.setProperty(
         "--y",
         `${y}px`
       );
+
 
       heart.style.setProperty(
         "--rotation",
@@ -281,9 +326,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* =========================================================
-     OPTIONAL: LITTLE HEARTS WHILE SCROLLING
-     ========================================================= */
+  /* =====================================================
+     LITTLE HEARTS WHILE SCROLLING
+     ===================================================== */
 
   let lastScrollTime = 0;
 
@@ -296,21 +341,14 @@ document.addEventListener("DOMContentLoaded", () => {
         Date.now();
 
 
-      /*
-        Don't create too many particles.
-      */
-
       if (
         now - lastScrollTime < 1000
       ) {
+
         return;
+
       }
 
-
-      /*
-        Only occasionally create
-        a tiny floating heart.
-      */
 
       if (
         Math.random() < 0.22
@@ -324,14 +362,26 @@ document.addEventListener("DOMContentLoaded", () => {
       lastScrollTime = now;
 
     },
-    { passive: true }
+    {
+      passive: true
+    }
   );
 
 
+  /* =====================================================
+     SCROLL HEART
+     ===================================================== */
+
   function createScrollHeart() {
+
+    if (!celebration) {
+      return;
+    }
+
 
     const heart =
       document.createElement("div");
+
 
     heart.className =
       "celebration-heart";
@@ -345,6 +395,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     heart.style.left =
       `${20 + Math.random() * 60}%`;
+
 
     heart.style.top =
       `${70 + Math.random() * 20}%`;
@@ -380,4 +431,3 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
-```
