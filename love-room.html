@@ -1,214 +1,2760 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
 
-<title>Little Love Room 🏠</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Little Love Room ♡</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&display=swap"
+    rel="stylesheet"
+  >
+
 
 <style>
 
+/* =====================================================
+   RESET
+===================================================== */
+
 * {
-box-sizing:border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-margin:0;
-min-height:100vh;
-background:
-radial-gradient(circle at 50% 30%,rgba(185,100,255,.16),transparent 40%),
-#100818;
-color:#fff;
-font-family:Arial,sans-serif;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:25px;
+
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at 20% 10%,
+      rgba(154,108,255,.20),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 85% 70%,
+      rgba(255,115,183,.16),
+      transparent 32%
+    ),
+    linear-gradient(
+      145deg,
+      #100818,
+      #09050e
+    );
+
+  color: #fff8fd;
+
+  font-family: "DM Sans", sans-serif;
+
+  overflow-x: hidden;
 }
 
-.room {
-width:min(100%,500px);
-text-align:center;
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+.background-glow {
+
+  position: fixed;
+
+  width: 400px;
+  height: 400px;
+
+  border-radius: 50%;
+
+  filter: blur(120px);
+
+  pointer-events: none;
+
+  opacity: .16;
+
+  z-index: 0;
+}
+
+.glow-one {
+
+  top: -180px;
+  left: -150px;
+
+  background: #9a6cff;
+}
+
+.glow-two {
+
+  right: -180px;
+  bottom: -100px;
+
+  background: #ff73b7;
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.page {
+
+  position: relative;
+
+  z-index: 2;
+
+  width: min(1000px, 100%);
+
+  margin: auto;
+
+  padding:
+    35px
+    20px
+    70px;
+
+}
+
+
+/* =====================================================
+   TOP
+===================================================== */
+
+.top {
+
+  text-align: center;
+
+  margin-bottom: 25px;
 }
 
 .back {
-display:block;
-margin-bottom:25px;
-color:#c9b4ce;
-font-size:11px;
-text-decoration:none;
+
+  display: inline-block;
+
+  margin-bottom: 22px;
+
+  color: #cbb8d0;
+
+  text-decoration: none;
+
+  font-size: .75rem;
+
+  letter-spacing: .08em;
+
+  transition: .2s ease;
+}
+
+.back:hover {
+
+  color: #ffb9df;
+
+  transform: translateX(-3px);
+}
+
+.game-number {
+
+  color: #ff73b7;
+
+  text-transform: uppercase;
+
+  letter-spacing: .2em;
+
+  font-size: .65rem;
+
+  margin-bottom: 10px;
 }
 
 h1 {
-font-family:Georgia,serif;
-font-size:42px;
-font-weight:400;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size:
+    clamp(
+      3rem,
+      11vw,
+      5rem
+    );
+
+  font-weight: 500;
+
+  line-height: .9;
 }
 
-.sub {
-color:#c9b4ce;
-font-size:12px;
-line-height:1.7;
+h1 span {
+
+  color: #cdb8ff;
+
+  font-style: italic;
 }
 
-.house {
-position:relative;
-height:320px;
-margin:35px auto;
-border:1px solid rgba(255,255,255,.12);
-border-radius:25px;
-overflow:hidden;
-background:
-linear-gradient(#21132f 0 60%,#171021 60%);
-box-shadow:0 25px 70px rgba(0,0,0,.3);
+.subtitle {
+
+  max-width: 550px;
+
+  margin:
+    18px
+    auto
+    0;
+
+  color: #cbb8d0;
+
+  font-size: .85rem;
+
+  line-height: 1.7;
 }
 
-.moon {
-position:absolute;
-right:40px;
-top:30px;
-font-size:45px;
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status {
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+
+  margin:
+    25px
+    auto
+    20px;
 }
+
+.status-box {
+
+  padding:
+    9px
+    14px;
+
+  border-radius: 100px;
+
+  background:
+    rgba(255,255,255,.055);
+
+  border:
+    1px solid
+    rgba(255,255,255,.11);
+
+  color: #cbb8d0;
+
+  font-size: .7rem;
+}
+
+.status-box strong {
+
+  color: #ffb9df;
+
+  margin-left: 4px;
+}
+
+
+/* =====================================================
+   ROOM
+===================================================== */
+
+.room-wrap {
+
+  position: relative;
+
+  width: 100%;
+
+  max-width: 850px;
+
+  margin:
+    20px
+    auto
+    25px;
+
+  border-radius: 28px;
+
+  padding: 10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.12),
+      rgba(255,255,255,.035)
+    );
+
+  border:
+    1px solid
+    rgba(255,255,255,.12);
+
+  box-shadow:
+    0 35px 90px rgba(0,0,0,.45);
+}
+
+.room {
+
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 16 / 10;
+
+  min-height: 420px;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #3b2451 0%,
+      #57365e 58%,
+      #2a1733 58%,
+      #211226 100%
+    );
+}
+
+
+/* =====================================================
+   ROOM WALL
+===================================================== */
+
+.wall {
+
+  position: absolute;
+
+  inset: 0 0 42% 0;
+
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(255,180,220,.10),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #47285a,
+      #2c183c
+    );
+}
+
+
+/* =====================================================
+   FLOOR
+===================================================== */
+
+.floor {
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 42%;
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.025) 0,
+      rgba(255,255,255,.025) 2px,
+      transparent 2px,
+      transparent 65px
+    ),
+    linear-gradient(
+      to bottom,
+      #321a3a,
+      #1c1024
+    );
+}
+
+
+/* =====================================================
+   WINDOW
+===================================================== */
 
 .window {
-position:absolute;
-left:35px;
-top:65px;
-width:100px;
-height:110px;
-border-radius:10px;
-background:
-linear-gradient(135deg,#ff9fd7,#9168ff);
-box-shadow:0 0 40px rgba(255,120,200,.25);
+
+  position: absolute;
+
+  left: 7%;
+
+  top: 9%;
+
+  width: 23%;
+
+  height: 30%;
+
+  border:
+    7px
+    solid
+    #d29ccf;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8b7ce0,
+      #e39bc6
+    );
+
+  box-shadow:
+    0 0 35px rgba(204,151,255,.20);
 }
 
-.couch {
-position:absolute;
-bottom:45px;
-left:50%;
-transform:translateX(-50%);
-width:220px;
-height:75px;
-border-radius:25px 25px 10px 10px;
-background:#58365f;
+.window::before {
+
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  left: 50%;
+
+  width: 5px;
+
+  transform: translateX(-50%);
+
+  background: #d29ccf;
 }
 
-.bear {
-position:absolute;
-bottom:95px;
-left:50%;
-transform:translateX(-50%);
-font-size:75px;
-cursor:pointer;
-transition:.3s;
+.window::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  top: 50%;
+
+  height: 5px;
+
+  transform: translateY(-50%);
+
+  background: #d29ccf;
 }
 
-.bear:hover {
-transform:translateX(-50%) scale(1.08);
+
+/* =====================================================
+   MOON
+===================================================== */
+
+.moon {
+
+  position: absolute;
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 50%;
+
+  right: 10%;
+  top: 15%;
+
+  background: #fff3fc;
+
+  box-shadow:
+    0 0 25px rgba(255,220,246,.55);
+
+  opacity: .9;
 }
+
+
+/* =====================================================
+   STARS
+===================================================== */
+
+.room-star {
+
+  position: absolute;
+
+  color: #ffe7f5;
+
+  font-size: 11px;
+
+  opacity: .7;
+
+  animation:
+    twinkle 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+
+  from {
+    opacity: .3;
+    transform: scale(.8);
+  }
+
+  to {
+    opacity: .95;
+    transform: scale(1.15);
+  }
+}
+
+
+/* =====================================================
+   BED
+===================================================== */
+
+.bed {
+
+  position: absolute;
+
+  left: 39%;
+
+  bottom: 11%;
+
+  width: 38%;
+
+  height: 31%;
+
+  cursor: pointer;
+
+  transition: transform .25s ease;
+}
+
+.bed:hover {
+
+  transform:
+    translateY(-4px);
+}
+
+.bed-frame {
+
+  position: absolute;
+
+  bottom: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 58%;
+
+  border-radius:
+    12px
+    12px
+    8px
+    8px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #9d598d,
+      #55315f
+    );
+
+  box-shadow:
+    0 15px 25px rgba(0,0,0,.25);
+}
+
+.mattress {
+
+  position: absolute;
+
+  left: 4%;
+
+  right: 4%;
+
+  top: 22%;
+
+  height: 35%;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffe0f1,
+      #d8b8f0
+    );
+}
+
+.pillow {
+
+  position: absolute;
+
+  top: 13%;
+
+  left: 8%;
+
+  width: 27%;
+
+  height: 24%;
+
+  border-radius: 10px;
+
+  background:
+    #fff4fa;
+
+  box-shadow:
+    0 4px 10px rgba(0,0,0,.12);
+}
+
+
+/* =====================================================
+   RUG
+===================================================== */
+
+.rug {
+
+  position: absolute;
+
+  left: 30%;
+
+  bottom: 3%;
+
+  width: 42%;
+
+  height: 17%;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      #8d4f8e,
+      #542b61
+    );
+
+  opacity: .8;
+}
+
+
+/* =====================================================
+   PLANT
+===================================================== */
+
+.plant {
+
+  position: absolute;
+
+  right: 7%;
+
+  bottom: 18%;
+
+  width: 12%;
+
+  height: 30%;
+
+  cursor: pointer;
+}
+
+.pot {
+
+  position: absolute;
+
+  bottom: 0;
+
+  left: 22%;
+
+  width: 56%;
+
+  height: 42%;
+
+  border-radius:
+    5px
+    5px
+    15px
+    15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d37aa7,
+      #874b78
+    );
+}
+
+.leaf {
+
+  position: absolute;
+
+  width: 45%;
+
+  height: 30%;
+
+  border-radius:
+    100%
+    0
+    100%
+    0;
+
+  background:
+    linear-gradient(
+      135deg,
+      #9ed39b,
+      #547e65
+    );
+
+  transform-origin: bottom center;
+}
+
+.leaf.one {
+  left: 5%;
+  top: 15%;
+  transform: rotate(-35deg);
+}
+
+.leaf.two {
+  right: 3%;
+  top: 8%;
+  transform: rotate(45deg);
+}
+
+.leaf.three {
+  left: 29%;
+  top: 0;
+  transform: rotate(3deg);
+}
+
+
+/* =====================================================
+   LAMP
+===================================================== */
 
 .lamp {
-position:absolute;
-right:45px;
-bottom:45px;
-font-size:55px;
+
+  position: absolute;
+
+  left: 7%;
+
+  bottom: 13%;
+
+  width: 11%;
+
+  height: 28%;
+
+  cursor: pointer;
 }
 
-.message {
-min-height:45px;
-font-family:Georgia,serif;
-font-size:20px;
-color:#ffb7dc;
+.lamp-shade {
+
+  position: absolute;
+
+  top: 0;
+
+  left: 5%;
+
+  width: 90%;
+
+  height: 45%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f4b6d7,
+      #b06bc1
+    );
+
+  clip-path:
+    polygon(
+      15% 0,
+      85% 0,
+      100% 100%,
+      0 100%
+    );
 }
 
-button {
-padding:12px 20px;
-border-radius:999px;
-border:1px solid rgba(255,170,220,.3);
-background:rgba(255,255,255,.05);
-color:white;
-cursor:pointer;
+.lamp-stick {
+
+  position: absolute;
+
+  left: 48%;
+
+  top: 40%;
+
+  width: 5%;
+
+  height: 42%;
+
+  background: #d4a5d5;
+}
+
+.lamp-base {
+
+  position: absolute;
+
+  bottom: 0;
+
+  left: 20%;
+
+  width: 60%;
+
+  height: 10%;
+
+  border-radius: 50%;
+
+  background: #d4a5d5;
+}
+
+
+/* =====================================================
+   PICTURE
+===================================================== */
+
+.picture {
+
+  position: absolute;
+
+  right: 31%;
+
+  top: 8%;
+
+  width: 14%;
+
+  height: 19%;
+
+  padding: 6px;
+
+  background: #f8d9ed;
+
+  border-radius: 5px;
+
+  box-shadow:
+    0 8px 15px rgba(0,0,0,.2);
+
+  cursor: pointer;
+
+  transition: .2s ease;
+}
+
+.picture:hover {
+
+  transform:
+    rotate(-3deg)
+    scale(1.04);
+}
+
+.picture-inner {
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  color: #74436f;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 1.5rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffd6eb,
+      #d8c5ff
+    );
+}
+
+
+/* =====================================================
+   HEART OBJECT
+===================================================== */
+
+.room-heart {
+
+  position: absolute;
+
+  z-index: 12;
+
+  color: #ff91c5;
+
+  font-size: 25px;
+
+  cursor: pointer;
+
+  filter:
+    drop-shadow(
+      0 0 8px
+      rgba(255,115,183,.45)
+    );
+
+  transition:
+    transform .2s ease,
+    opacity .3s ease;
+}
+
+.room-heart:hover {
+
+  transform:
+    scale(1.3);
+}
+
+.room-heart.found {
+
+  animation:
+    heartFound .6s ease forwards;
+}
+
+@keyframes heartFound {
+
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.7);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(.2);
+    opacity: 0;
+  }
+}
+
+
+/* =====================================================
+   TINY YOU
+===================================================== */
+
+.tiny-you {
+
+  position: absolute;
+
+  z-index: 15;
+
+  left: 49%;
+
+  bottom: 19%;
+
+  width: 70px;
+
+  height: 90px;
+
+  cursor: pointer;
+
+  transition:
+    transform .3s ease;
+}
+
+.tiny-you:hover {
+
+  transform:
+    translateY(-6px);
+}
+
+.tiny-body {
+
+  position: absolute;
+
+  bottom: 0;
+
+  left: 8px;
+
+  width: 54px;
+
+  height: 62px;
+
+  border-radius:
+    28px
+    28px
+    20px
+    20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff9dcc,
+      #b878e1
+    );
+
+  box-shadow:
+    0 8px 15px rgba(0,0,0,.25);
+}
+
+.tiny-head {
+
+  position: absolute;
+
+  z-index: 2;
+
+  top: 0;
+
+  left: 10px;
+
+  width: 50px;
+
+  height: 50px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffe0c9,
+      #ffc5c8
+    );
+
+  box-shadow:
+    0 5px 12px rgba(0,0,0,.18);
+}
+
+.tiny-hair {
+
+  position: absolute;
+
+  z-index: 3;
+
+  top: -5px;
+
+  left: 5px;
+
+  width: 53px;
+
+  height: 31px;
+
+  border-radius:
+    50%
+    50%
+    40%
+    35%;
+
+  background:
+    #49304f;
+}
+
+.eye {
+
+  position: absolute;
+
+  top: 23px;
+
+  width: 5px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #3a2139;
+}
+
+.eye.left {
+  left: 16px;
+}
+
+.eye.right {
+  right: 16px;
+}
+
+.tiny-mouth {
+
+  position: absolute;
+
+  left: 21px;
+
+  top: 32px;
+
+  width: 10px;
+  height: 5px;
+
+  border-bottom:
+    2px solid #9d5277;
+
+  border-radius: 50%;
+}
+
+.tiny-blush {
+
+  position: absolute;
+
+  top: 30px;
+
+  width: 8px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #ff9cbd;
+
+  opacity: .7;
+}
+
+.tiny-blush.left {
+  left: 6px;
+}
+
+.tiny-blush.right {
+  right: 6px;
+}
+
+.tiny-you.happy {
+
+  animation:
+    happyBounce .65s ease;
+}
+
+@keyframes happyBounce {
+
+  0% {
+    transform: translateY(0);
+  }
+
+  35% {
+    transform: translateY(-20px) rotate(-5deg);
+  }
+
+  70% {
+    transform: translateY(-8px) rotate(5deg);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+/* =====================================================
+   SPEECH BUBBLE
+===================================================== */
+
+.speech {
+
+  position: absolute;
+
+  z-index: 20;
+
+  left: 52%;
+
+  bottom: 43%;
+
+  max-width: 220px;
+
+  padding:
+    10px
+    14px;
+
+  border-radius: 14px 14px 14px 3px;
+
+  background:
+    #fff6fb;
+
+  color: #4a2141;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 1rem;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.25);
+
+  opacity: 0;
+
+  transform:
+    translateY(10px)
+    scale(.9);
+
+  pointer-events: none;
+
+  transition:
+    .3s ease;
+}
+
+.speech.show {
+
+  opacity: 1;
+
+  transform:
+    translateY(0)
+    scale(1);
+}
+
+
+/* =====================================================
+   INTERACTION HINT
+===================================================== */
+
+.room-hint {
+
+  position: absolute;
+
+  left: 50%;
+
+  bottom: 3%;
+
+  transform:
+    translateX(-50%);
+
+  padding:
+    7px
+    12px;
+
+  border-radius: 100px;
+
+  background:
+    rgba(0,0,0,.2);
+
+  color:
+    rgba(255,255,255,.65);
+
+  font-size: .62rem;
+
+  white-space: nowrap;
+}
+
+
+/* =====================================================
+   DECORATIONS TO DRAG
+===================================================== */
+
+.decor {
+
+  position: absolute;
+
+  z-index: 18;
+
+  cursor: grab;
+
+  touch-action: none;
+
+  user-select: none;
+
+  transition:
+    transform .2s ease;
+}
+
+.decor:active {
+
+  cursor: grabbing;
+
+  transform:
+    scale(1.1);
+}
+
+.decor-flower {
+
+  font-size: 26px;
+}
+
+.decor-teddy {
+
+  font-size: 35px;
+}
+
+.decor-star {
+
+  font-size: 24px;
+
+  color: #ffd3e9;
+}
+
+
+/* =====================================================
+   INSTRUCTION
+===================================================== */
+
+.instructions {
+
+  max-width: 650px;
+
+  margin:
+    20px
+    auto
+    0;
+
+  padding:
+    18px
+    20px;
+
+  text-align: center;
+
+  border:
+    1px solid
+    rgba(255,255,255,.09);
+
+  border-radius: 18px;
+
+  background:
+    rgba(255,255,255,.035);
+
+  color: #cbb8d0;
+
+  font-size: .76rem;
+
+  line-height: 1.7;
+}
+
+.instructions strong {
+
+  color: #ffb9df;
+}
+
+
+/* =====================================================
+   COMPLETION OVERLAY
+===================================================== */
+
+.reward-overlay {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 100;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 22px;
+
+  background:
+    rgba(10,4,16,.78);
+
+  backdrop-filter:
+    blur(15px);
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transition:
+    opacity .5s ease,
+    visibility .5s ease;
+}
+
+.reward-overlay.show {
+
+  opacity: 1;
+
+  visibility: visible;
+
+  pointer-events: auto;
+}
+
+.reward-card {
+
+  width:
+    min(
+      600px,
+      100%
+    );
+
+  padding:
+    38px
+    28px;
+
+  text-align: center;
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #24142d,
+      #160b20
+    );
+
+  border:
+    1px solid
+    rgba(255,255,255,.14);
+
+  box-shadow:
+    0 35px 100px rgba(0,0,0,.55);
+
+  transform:
+    translateY(30px)
+    scale(.94);
+
+  transition:
+    transform .6s cubic-bezier(.2,.8,.2,1);
+}
+
+.reward-overlay.show .reward-card {
+
+  transform:
+    translateY(0)
+    scale(1);
+}
+
+.reward-icon {
+
+  font-size: 3rem;
+
+  margin-bottom: 12px;
+
+  animation:
+    rewardPulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes rewardPulse {
+
+  from {
+    transform: scale(.95);
+  }
+
+  to {
+    transform: scale(1.1);
+  }
+}
+
+.reward-card .completed {
+
+  color: #ff73b7;
+
+  text-transform: uppercase;
+
+  letter-spacing: .22em;
+
+  font-size: .65rem;
+
+  margin-bottom: 10px;
+}
+
+.reward-card h2 {
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size:
+    clamp(
+      2.4rem,
+      9vw,
+      4rem
+    );
+
+  font-weight: 500;
+
+  color: #fff8fd;
+
+  margin-bottom: 20px;
+}
+
+.reward-card h2 span {
+
+  color: #cdb8ff;
+
+  font-style: italic;
+}
+
+.reward-paragraph {
+
+  color: #d9c8dd;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 1.12rem;
+
+  line-height: 1.7;
+
+  margin:
+    0 auto
+    26px;
+
+  max-width: 500px;
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.continue-button {
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  padding:
+    14px
+    22px;
+
+  border: none;
+
+  border-radius: 100px;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  color: white;
+
+  font-family:
+    "DM Sans",
+    sans-serif;
+
+  font-weight: 600;
+
+  font-size: .78rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      #9a6cff,
+      #ff73b7
+    );
+
+  box-shadow:
+    0 10px 30px
+    rgba(255,115,183,.20);
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.continue-button:hover {
+
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 15px 35px
+    rgba(255,115,183,.3);
+}
+
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+.particle {
+
+  position: fixed;
+
+  z-index: 150;
+
+  pointer-events: none;
+
+  font-size: 18px;
+
+  animation:
+    particleFly 2.5s ease-out forwards;
+}
+
+@keyframes particleFly {
+
+  0% {
+
+    transform:
+      translate(0,0)
+      scale(.5)
+      rotate(0);
+
+    opacity: 0;
+  }
+
+  15% {
+
+    opacity: 1;
+  }
+
+  100% {
+
+    transform:
+      translate(
+        var(--x),
+        var(--y)
+      )
+      scale(1.2)
+      rotate(var(--rotation));
+
+    opacity: 0;
+  }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 650px) {
+
+  .page {
+
+    padding:
+      25px
+      13px
+      55px;
+  }
+
+  .room-wrap {
+
+    padding: 6px;
+
+    border-radius: 22px;
+  }
+
+  .room {
+
+    min-height: 0;
+
+    aspect-ratio: 10 / 12;
+
+    border-radius: 17px;
+  }
+
+  .window {
+
+    left: 7%;
+
+    top: 8%;
+
+    width: 29%;
+
+    height: 22%;
+  }
+
+  .moon {
+
+    width: 27px;
+    height: 27px;
+  }
+
+  .bed {
+
+    left: 25%;
+
+    bottom: 13%;
+
+    width: 55%;
+
+    height: 29%;
+  }
+
+  .plant {
+
+    right: 4%;
+
+    bottom: 18%;
+
+    width: 16%;
+
+    height: 27%;
+  }
+
+  .lamp {
+
+    left: 4%;
+
+    bottom: 17%;
+
+    width: 15%;
+
+    height: 26%;
+  }
+
+  .picture {
+
+    right: 28%;
+
+    top: 8%;
+
+    width: 19%;
+
+    height: 15%;
+  }
+
+  .tiny-you {
+
+    left: 44%;
+
+    bottom: 21%;
+
+    transform: scale(.82);
+  }
+
+  .tiny-you:hover {
+
+    transform:
+      scale(.82)
+      translateY(-5px);
+  }
+
+  .speech {
+
+    left: 47%;
+
+    bottom: 44%;
+
+    max-width: 150px;
+
+    font-size: .85rem;
+  }
+
+  .room-hint {
+
+    font-size: .52rem;
+  }
+
+  .instructions {
+
+    font-size: .68rem;
+  }
+
+  .reward-card {
+
+    padding:
+      30px
+      20px;
+  }
+
+  .reward-paragraph {
+
+    font-size: 1rem;
+  }
+
+}
+
+
+/* =====================================================
+   ACCESSIBILITY
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+
+    animation-duration:
+      .01ms !important;
+
+    transition-duration:
+      .01ms !important;
+  }
+
 }
 
 </style>
 
 </head>
 
+
 <body>
 
-<div class="room">
+<div class="background-glow glow-one"></div>
+<div class="background-glow glow-two"></div>
 
-<a href="mini-games.html" class="back">← back to the games</a>
 
-<h1>Little Love Room 🏠</h1>
+<div class="page">
 
-<p class="sub">
-Someone tiny lives here.<br>
-Tap them.
-</p>
 
-<div class="house">
+  <!-- =================================================
+       HEADER
+  ================================================== -->
 
-<div class="moon">☾</div>
+  <header class="top">
 
-<div class="window"></div>
+    <a
+      href="mini-games.html"
+      class="back"
+    >
+      ← back to mini games
+    </a>
 
-<div class="couch"></div>
+    <div class="game-number">
+      Game 02 · Little Love Room
+    </div>
 
-<div class="bear" onclick="talk()">
-🐻
+    <h1>
+      Welcome to your
+      <span>little room.</span>
+    </h1>
+
+    <p class="subtitle">
+      Tiny You has been waiting for you.
+      Find all the little hearts hidden around the room
+      and make Tiny You happy. ♡
+    </p>
+
+  </header>
+
+
+  <!-- =================================================
+       STATUS
+  ================================================== -->
+
+  <div class="status">
+
+    <div class="status-box">
+      Hearts found:
+      <strong>
+        <span id="heartCount">0</span>/5
+      </strong>
+    </div>
+
+    <div class="status-box">
+      Tiny You:
+      <strong id="moodText">
+        waiting ♡
+      </strong>
+    </div>
+
+  </div>
+
+
+  <!-- =================================================
+       ROOM
+  ================================================== -->
+
+  <div class="room-wrap">
+
+    <div
+      class="room"
+      id="room"
+    >
+
+
+      <!-- WALL -->
+
+      <div class="wall"></div>
+
+
+      <!-- FLOOR -->
+
+      <div class="floor"></div>
+
+
+      <!-- WINDOW -->
+
+      <div
+        class="window"
+        id="window"
+        title="Look outside..."
+      ></div>
+
+
+      <!-- MOON -->
+
+      <div class="moon"></div>
+
+
+      <!-- STARS -->
+
+      <div
+        class="room-star"
+        style="left:38%;top:10%;"
+      >
+        ✦
+      </div>
+
+      <div
+        class="room-star"
+        style="left:52%;top:17%;animation-delay:.8s;"
+      >
+        ✧
+      </div>
+
+      <div
+        class="room-star"
+        style="right:18%;top:29%;animation-delay:1.2s;"
+      >
+        ✦
+      </div>
+
+      <div
+        class="room-star"
+        style="left:31%;top:28%;animation-delay:.4s;"
+      >
+        ·
+      </div>
+
+
+      <!-- RUG -->
+
+      <div class="rug"></div>
+
+
+      <!-- BED -->
+
+      <div
+        class="bed"
+        id="bed"
+        title="A very comfy bed..."
+      >
+
+        <div class="bed-frame"></div>
+
+        <div class="mattress"></div>
+
+        <div class="pillow"></div>
+
+      </div>
+
+
+      <!-- PLANT -->
+
+      <div
+        class="plant"
+        id="plant"
+        title="Water the plant ♡"
+      >
+
+        <div class="leaf one"></div>
+        <div class="leaf two"></div>
+        <div class="leaf three"></div>
+
+        <div class="pot"></div>
+
+      </div>
+
+
+      <!-- LAMP -->
+
+      <div
+        class="lamp"
+        id="lamp"
+        title="Turn on the lamp"
+      >
+
+        <div class="lamp-shade"></div>
+        <div class="lamp-stick"></div>
+        <div class="lamp-base"></div>
+
+      </div>
+
+
+      <!-- PICTURE -->
+
+      <div
+        class="picture"
+        id="picture"
+        title="A little memory..."
+      >
+
+        <div class="picture-inner">
+          ♡
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           DRAGGABLE DECORATIONS
+      ================================================== -->
+
+      <div
+        class="decor decor-flower"
+        style="left:15%;top:45%;"
+        draggable="false"
+      >
+        🌷
+      </div>
+
+      <div
+        class="decor decor-teddy"
+        style="left:82%;top:57%;"
+        draggable="false"
+      >
+        🧸
+      </div>
+
+      <div
+        class="decor decor-star"
+        style="left:34%;top:55%;"
+        draggable="false"
+      >
+        ✦
+      </div>
+
+
+      <!-- =================================================
+           HIDDEN HEARTS
+      ================================================== -->
+
+      <div
+        class="room-heart"
+        style="left:13%;top:23%;"
+        data-heart="1"
+      >
+        ♥
+      </div>
+
+      <div
+        class="room-heart"
+        style="left:34%;top:37%;"
+        data-heart="2"
+      >
+        ♥
+      </div>
+
+      <div
+        class="room-heart"
+        style="right:23%;top:17%;"
+        data-heart="3"
+      >
+        ♥
+      </div>
+
+      <div
+        class="room-heart"
+        style="right:8%;bottom:31%;"
+        data-heart="4"
+      >
+        ♥
+      </div>
+
+      <div
+        class="room-heart"
+        style="left:44%;bottom:8%;"
+        data-heart="5"
+      >
+        ♥
+      </div>
+
+
+      <!-- =================================================
+           TINY YOU
+      ================================================== -->
+
+      <div
+        class="tiny-you"
+        id="tinyYou"
+        title="Talk to Tiny You"
+      >
+
+        <div class="tiny-head">
+
+          <div class="tiny-hair"></div>
+
+          <div class="eye left"></div>
+          <div class="eye right"></div>
+
+          <div class="tiny-blush left"></div>
+          <div class="tiny-blush right"></div>
+
+          <div class="tiny-mouth"></div>
+
+        </div>
+
+        <div class="tiny-body"></div>
+
+      </div>
+
+
+      <!-- SPEECH -->
+
+      <div
+        class="speech"
+        id="speech"
+      >
+        hi ♡
+      </div>
+
+
+      <div class="room-hint">
+        tap things · find hearts · drag the decorations
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <!-- =================================================
+       INSTRUCTIONS
+  ================================================== -->
+
+  <div class="instructions">
+
+    <strong>How to play:</strong>
+
+    Find all <strong>5 hidden hearts</strong>,
+    talk to Tiny You,
+    and play with the things around the room.
+
+    You can also
+    <strong>drag the little decorations</strong>
+    wherever you want.
+
+  </div>
+
+
 </div>
 
-<div class="lamp">
-💡
-</div>
+
+<!-- =====================================================
+     REWARD
+===================================================== -->
+
+<div
+  class="reward-overlay"
+  id="rewardOverlay"
+>
+
+  <div class="reward-card">
+
+    <div class="reward-icon">
+      💗
+    </div>
+
+    <div class="completed">
+      game complete
+    </div>
+
+    <h2>
+      You found
+      <span>everything.</span>
+    </h2>
+
+
+    <!-- =================================================
+         CHANGE THIS PARAGRAPH LATER
+    ================================================== -->
+
+    <p class="reward-paragraph">
+
+      <!--
+        REPLACE THIS TEXT WITH YOUR PERSONAL
+        REWARD PARAGRAPH WHEN YOU'RE READY.
+
+        You can write as much as you want.
+      -->
+
+      You found every little heart in the room...
+      which probably means you deserve a little something
+      for being you. ♡
+
+    </p>
+
+
+    <a
+      href="mini-games.html"
+      class="continue-button"
+    >
+      Continue exploring
+      →
+    </a>
+
+  </div>
 
 </div>
 
-<div class="message" id="message">
-...
-</div>
-
-<br>
-
-<button onclick="talk()">
-talk to the bear
-</button>
-
-</div>
 
 <script>
 
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+const room =
+  document.getElementById("room");
+
+const tinyYou =
+  document.getElementById("tinyYou");
+
+const speech =
+  document.getElementById("speech");
+
+const heartCount =
+  document.getElementById("heartCount");
+
+const moodText =
+  document.getElementById("moodText");
+
+const rewardOverlay =
+  document.getElementById("rewardOverlay");
+
+const hearts =
+  document.querySelectorAll(".room-heart");
+
+const decorations =
+  document.querySelectorAll(".decor");
+
+let foundHearts = 0;
+
+let tinyInteractions = 0;
+
+let gameComplete = false;
+
+
+/* =====================================================
+   SPEECH SYSTEM
+===================================================== */
+
 const messages = [
 
-"hi riti ♡",
+  "hi ♡",
 
-"you look very birthday-ish today.",
+  "you found me!",
 
-"i have something to tell you...",
+  "I was waiting for you.",
 
-"you're very very loved.",
+  "hehe... you're cute.",
 
-"okay that's all. i'm shy now. 🐻"
+  "don't leave yet ♡",
+
+  "look around...",
+
+  "there are secrets here.",
+
+  "okay fine, one more heart!",
+
+  "you're doing pretty well.",
+
+  "I like having you here ♡"
 
 ];
 
-let index = 0;
 
-function talk() {
+function showSpeech(message) {
 
-document.getElementById("message").textContent =
-messages[index];
+  if (!speech) return;
 
-index++;
+  speech.textContent =
+    message;
 
-if(index >= messages.length) {
-index = 0;
+  speech.classList.add("show");
+
+
+  clearTimeout(
+    showSpeech.timeout
+  );
+
+
+  showSpeech.timeout =
+    setTimeout(() => {
+
+      speech.classList.remove(
+        "show"
+      );
+
+    }, 2200);
+
 }
 
+
+/* =====================================================
+   TINY YOU
+===================================================== */
+
+if (tinyYou) {
+
+  tinyYou.addEventListener(
+    "click",
+    () => {
+
+      if (gameComplete) return;
+
+      tinyInteractions++;
+
+      tinyYou.classList.remove(
+        "happy"
+      );
+
+      void tinyYou.offsetWidth;
+
+      tinyYou.classList.add(
+        "happy"
+      );
+
+
+      const message =
+        messages[
+          tinyInteractions %
+          messages.length
+        ];
+
+
+      showSpeech(message);
+
+
+      moodText.textContent =
+        "happy ♡";
+
+    }
+  );
+
 }
+
+
+/* =====================================================
+   ROOM OBJECTS
+===================================================== */
+
+const objectMessages = {
+
+  bed:
+    "This bed looks dangerously comfortable...",
+
+  plant:
+    "The little plant says thank you ♡",
+
+  lamp:
+    "warm lights make everything prettier.",
+
+  picture:
+    "A tiny memory hanging on the wall ♡",
+
+  window:
+    "It's a quiet night outside..."
+
+};
+
+
+Object.keys(objectMessages)
+.forEach((id) => {
+
+  const object =
+    document.getElementById(id);
+
+  if (!object) return;
+
+
+  object.addEventListener(
+    "click",
+    () => {
+
+      if (gameComplete) return;
+
+      showSpeech(
+        objectMessages[id]
+      );
+
+      if (id === "lamp") {
+
+        object.classList.toggle(
+          "lamp-on"
+        );
+
+      }
+
+    }
+  );
+
+});
+
+
+/* =====================================================
+   HEART COLLECTION
+===================================================== */
+
+hearts.forEach((heart) => {
+
+  heart.addEventListener(
+    "click",
+    (event) => {
+
+      event.stopPropagation();
+
+
+      if (
+        heart.classList.contains(
+          "found"
+        )
+      ) {
+        return;
+      }
+
+
+      heart.classList.add(
+        "found"
+      );
+
+
+      foundHearts++;
+
+
+      heartCount.textContent =
+        foundHearts;
+
+
+      tinyYou.classList.remove(
+        "happy"
+      );
+
+      void tinyYou.offsetWidth;
+
+      tinyYou.classList.add(
+        "happy"
+      );
+
+
+      moodText.textContent =
+        foundHearts === 5
+          ? "very happy ♡"
+          : "happy ♡";
+
+
+      showSpeech(
+        foundHearts === 5
+          ? "You found them all! ♡"
+          : "Yay! Another one!"
+      );
+
+
+      createParticles(
+        event.clientX,
+        event.clientY,
+        8
+      );
+
+
+      if (foundHearts >= 5) {
+
+        setTimeout(
+          completeGame,
+          900
+        );
+
+      }
+
+    }
+  );
+
+});
+
+
+/* =====================================================
+   DRAGGABLE DECORATIONS
+===================================================== */
+
+decorations.forEach(
+  (decor) => {
+
+    let dragging = false;
+
+    let offsetX = 0;
+
+    let offsetY = 0;
+
+
+    decor.addEventListener(
+      "pointerdown",
+      (event) => {
+
+        if (gameComplete) return;
+
+        dragging = true;
+
+        decor.setPointerCapture(
+          event.pointerId
+        );
+
+
+        const rect =
+          decor.getBoundingClientRect();
+
+
+        offsetX =
+          event.clientX -
+          rect.left -
+          rect.width / 2;
+
+        offsetY =
+          event.clientY -
+          rect.top -
+          rect.height / 2;
+
+
+        decor.style.zIndex = 30;
+
+      }
+    );
+
+
+    decor.addEventListener(
+      "pointermove",
+      (event) => {
+
+        if (!dragging) return;
+
+
+        const roomRect =
+          room.getBoundingClientRect();
+
+
+        let x =
+          event.clientX -
+          roomRect.left -
+          offsetX;
+
+        let y =
+          event.clientY -
+          roomRect.top -
+          offsetY;
+
+
+        const maxX =
+          roomRect.width -
+          decor.offsetWidth;
+
+
+        const maxY =
+          roomRect.height -
+          decor.offsetHeight;
+
+
+        x =
+          Math.max(
+            0,
+            Math.min(
+              x,
+              maxX
+            )
+          );
+
+        y =
+          Math.max(
+            0,
+            Math.min(
+              y,
+              maxY
+            )
+          );
+
+
+        decor.style.left =
+          `${x}px`;
+
+        decor.style.top =
+          `${y}px`;
+
+      }
+    );
+
+
+    function stopDragging() {
+
+      dragging = false;
+
+      decor.style.zIndex = 18;
+
+    }
+
+
+    decor.addEventListener(
+      "pointerup",
+      stopDragging
+    );
+
+    decor.addEventListener(
+      "pointercancel",
+      stopDragging
+    );
+
+  }
+);
+
+
+/* =====================================================
+   COMPLETION
+===================================================== */
+
+function completeGame() {
+
+  if (gameComplete) return;
+
+  gameComplete = true;
+
+
+  moodText.textContent =
+    "overjoyed ♡";
+
+
+  showSpeech(
+    "You found all my hearts! ♡"
+  );
+
+
+  createParticles(
+    window.innerWidth / 2,
+    window.innerHeight / 2,
+    35
+  );
+
+
+  setTimeout(() => {
+
+    rewardOverlay.classList.add(
+      "show"
+    );
+
+  }, 1100);
+
+}
+
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+function createParticles(
+  x,
+  y,
+  amount
+) {
+
+  const symbols = [
+    "♡",
+    "♥",
+    "✦",
+    "✧",
+    "❀",
+    "✿"
+  ];
+
+
+  for (
+    let i = 0;
+    i < amount;
+    i++
+  ) {
+
+    const particle =
+      document.createElement(
+        "div"
+      );
+
+
+    particle.className =
+      "particle";
+
+
+    particle.textContent =
+      symbols[
+        Math.floor(
+          Math.random() *
+          symbols.length
+        )
+      ];
+
+
+    particle.style.left =
+      `${x}px`;
+
+    particle.style.top =
+      `${y}px`;
+
+
+    particle.style.setProperty(
+      "--x",
+      `${(Math.random() - .5) * 500}px`
+    );
+
+
+    particle.style.setProperty(
+      "--y",
+      `${-100 - Math.random() * 350}px`
+    );
+
+
+    particle.style.setProperty(
+      "--rotation",
+      `${(Math.random() - .5) * 160}deg`
+    );
+
+
+    particle.style.animationDelay =
+      `${Math.random() * .35}s`;
+
+
+    document.body.appendChild(
+      particle
+    );
+
+
+    setTimeout(
+      () => particle.remove(),
+      3000
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   LITTLE RANDOM AMBIENT HEARTS
+===================================================== */
+
+setInterval(() => {
+
+  if (gameComplete) return;
+
+  if (
+    Math.random() > .45
+  ) {
+    return;
+  }
+
+
+  const particle =
+    document.createElement(
+      "div"
+    );
+
+
+  particle.className =
+    "particle";
+
+
+  particle.textContent =
+    Math.random() > .5
+      ? "♡"
+      : "✦";
+
+
+  particle.style.left =
+    `${Math.random() * 100}vw`;
+
+  particle.style.top =
+    `${90 + Math.random() * 10}vh`;
+
+
+  particle.style.setProperty(
+    "--x",
+    `${(Math.random() - .5) * 100}px`
+  );
+
+
+  particle.style.setProperty(
+    "--y",
+    `${-100 - Math.random() * 150}px`
+  );
+
+
+  particle.style.setProperty(
+    "--rotation",
+    `${(Math.random() - .5) * 100}deg`
+  );
+
+
+  document.body.appendChild(
+    particle
+  );
+
+
+  setTimeout(
+    () => particle.remove(),
+    3000
+  );
+
+}, 2200);
 
 </script>
 
