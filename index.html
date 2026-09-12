@@ -23,9 +23,9 @@
 
 <body>
 
-  <!-- =========================
+  <!-- =====================================================
        BACKGROUND
-  ========================== -->
+  ====================================================== -->
 
   <div class="ambient ambient-one"></div>
   <div class="ambient ambient-two"></div>
@@ -34,11 +34,75 @@
   <div id="floatingHearts"></div>
 
 
-  <!-- =========================
-       MAIN PAGE
-  ========================== -->
+  <!-- =====================================================
+       PASSWORD LOCK SCREEN
+  ====================================================== -->
 
-  <main class="main-content">
+  <section class="lock-screen" id="lockScreen">
+
+    <div class="lock-glow"></div>
+
+    <div class="lock-card">
+
+      <div class="lock-heart">
+        ♡
+      </div>
+
+      <p class="lock-eyebrow">
+        A little secret awaits
+      </p>
+
+      <h1>
+        For <span>Riti</span>
+      </h1>
+
+      <p class="lock-text">
+        This little world is just for you.
+        <br>
+        Enter the password to open it.
+      </p>
+
+      <div class="password-box">
+
+        <input
+          type="password"
+          id="passwordInput"
+          placeholder="Enter the secret password"
+          autocomplete="off"
+          spellcheck="false"
+        >
+
+        <button
+          type="button"
+          id="unlockButton"
+        >
+          Unlock ♡
+        </button>
+
+      </div>
+
+      <p
+        class="password-error"
+        id="passwordError"
+        aria-live="polite"
+      >
+        That's not quite it... try again ♡
+      </p>
+
+      <div class="lock-footer">
+        made with a little too much love
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       MAIN PAGE
+  ====================================================== -->
+
+  <main class="main-content" id="mainContent">
 
     <!-- HERO -->
 
@@ -69,9 +133,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          PHOTO
-    ========================== -->
+    ====================================================== -->
 
     <section class="photo-section">
 
@@ -99,11 +163,14 @@
     </section>
 
 
-    <!-- =========================
-         LETTER / PARAGRAPH
-    ========================== -->
+    <!-- =====================================================
+         LETTER
+    ====================================================== -->
 
-    <section class="letter-section" id="letterSection">
+    <section
+      class="letter-section"
+      id="letterSection"
+    >
 
       <div class="section-heading">
         <span>02</span>
@@ -114,8 +181,6 @@
         I couldn't fit everything I wanted to say into a normal birthday wish...
       </p>
 
-
-      <!-- ENVELOPE -->
 
       <div class="letter-area">
 
@@ -132,7 +197,11 @@
           <div class="envelope" id="envelope">
 
             <!-- LETTER -->
-            <div class="envelope-letter" id="envelopeLetter">
+
+            <div
+              class="envelope-letter"
+              id="envelopeLetter"
+            >
 
               <div class="letter-paper">
 
@@ -142,7 +211,10 @@
                   <span>♡</span>
                 </div>
 
-                <div class="letter-message" id="letterMessage">
+                <div
+                  class="letter-message"
+                  id="letterMessage"
+                >
 
                   <p>
                     Happy 18th birthday, Riti.
@@ -177,23 +249,34 @@
             </div>
 
 
-            <!-- BACK -->
+            <!-- ENVELOPE BACK -->
+
             <div class="envelope-back"></div>
 
-            <!-- FRONT POCKET -->
+
+            <!-- ENVELOPE POCKET -->
+
             <div class="envelope-pocket"></div>
 
-            <!-- FLAP -->
+
+            <!-- ENVELOPE FLAP -->
+
             <div class="envelope-flap"></div>
 
+
             <!-- SEAL -->
+
             <div class="envelope-seal">
               ♡
             </div>
 
           </div>
 
-          <p class="envelope-hint" id="envelopeHint">
+
+          <p
+            class="envelope-hint"
+            id="envelopeHint"
+          >
             tap the envelope to open
           </p>
 
@@ -204,9 +287,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          MUSIC
-    ========================== -->
+    ====================================================== -->
 
     <section class="music-section">
 
@@ -236,9 +319,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          MINI GAMES
-    ========================== -->
+    ====================================================== -->
 
     <section class="games-section">
 
@@ -255,20 +338,28 @@
         href="mini-games.html"
         class="games-button"
       >
+
         <span>🎮</span>
+
         <span>
           <strong>Mini Games</strong>
-          <small>Six little challenges made for you</small>
+          <small>
+            Six little challenges made for you
+          </small>
         </span>
-        <span class="arrow">→</span>
+
+        <span class="arrow">
+          →
+        </span>
+
       </a>
 
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          INSTAGRAM
-    ========================== -->
+    ====================================================== -->
 
     <section class="social-section">
 
@@ -287,17 +378,21 @@
         rel="noopener noreferrer"
         class="instagram-button"
       >
+
         <span>♡</span>
+
         Open the memories
+
         <span>↗</span>
+
       </a>
 
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          FINALE
-    ========================== -->
+    ====================================================== -->
 
     <section class="finale">
 
@@ -332,14 +427,14 @@
   </main>
 
 
-  <!-- Celebration particles -->
+  <!-- =====================================================
+       CELEBRATION PARTICLES
+  ====================================================== -->
+
   <div id="celebration"></div>
 
 
-  <!-- IMPORTANT:
-       JS is loaded as a separate file.
-       DO NOT paste JavaScript here.
-  -->
+  <!-- JAVASCRIPT -->
 
   <script src="script.js"></script>
 
