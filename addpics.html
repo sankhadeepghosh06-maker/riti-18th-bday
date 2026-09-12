@@ -839,38 +839,30 @@ const SUPABASE_ANON_KEY =
               : "jpg";
 
 
-          const uniqueName =
-            crypto.randomUUID() +
-            "-" +
-            Date.now() +
-            "." +
-            extension;
+ const uniqueName =
+  crypto.randomUUID() +
+  "-" +
+  Date.now() +
+  "." +
+  extension;
 
+const path = uniqueName;
 
-          const path =
-            "gallery/" +
-            uniqueName;
-
-
-          /* -----------------------------------------
-             UPLOAD TO STORAGE
-          ----------------------------------------- */
-
-          const {
-            error: uploadError
-          } =
-            await supabaseClient
-              .storage
-              .from(SUPABASE_BUCKET)
-              .upload(
-                path,
-                file,
-                {
-                  cacheControl: "3600",
-                  contentType: file.type,
-                  upsert: false
-                }
-              );
+const {
+  error: uploadError
+} =
+  await supabaseClient
+    .storage
+    .from(SUPABASE_BUCKET)
+    .upload(
+      path,
+      file,
+      {
+        cacheControl: "3600",
+        contentType: file.type,
+        upsert: false
+      }
+    );
 
 
           if (uploadError) {
