@@ -21,8 +21,8 @@ const SUPABASE_URL =
 const SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdlZG16bXZ1emlmcXJ6bWFya25oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkyMDAzOTEsImV4cCI6MjEwNDc3NjM5MX0.UjaOzxfsYL70HMh1px8wnsz30K8llSdzrt6PFE5M4k8";
 
-const SUPABASE_BUCKET =
-  "birthday-photos";
+const SUPABASE_BUCKET = "birthday-photos";
+const path = uniqueName;
 
 
 /* =====================================================
