@@ -2,11 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Riti — 18 ✨</title>
 
@@ -23,9 +19,62 @@
 
 <body>
 
-  <!-- =====================================================
+  <!-- =========================================
+       LOCK SCREEN
+  ========================================== -->
+
+  <div class="lock-screen" id="lockScreen">
+
+    <div class="lock-card">
+
+      <div class="lock-heart">♡</div>
+
+      <p class="lock-eyebrow">
+        A little secret
+      </p>
+
+      <h1>
+        For <span>Riti</span>
+      </h1>
+
+      <p class="lock-subtitle">
+        Enter the password to open your little birthday world.
+      </p>
+
+      <div class="password-box">
+
+        <input
+          type="password"
+          id="passwordInput"
+          placeholder="password"
+          autocomplete="off"
+          spellcheck="false"
+        >
+
+        <button id="unlockButton" type="button">
+          Open ♡
+        </button>
+
+      </div>
+
+      <p class="lock-error" id="lockError">
+        That's not the right password ♡
+      </p>
+
+      <div class="lock-dots">
+        <span>✦</span>
+        <span>♡</span>
+        <span>✦</span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================
        BACKGROUND
-  ====================================================== -->
+  ========================================== -->
 
   <div class="ambient ambient-one"></div>
   <div class="ambient ambient-two"></div>
@@ -34,77 +83,16 @@
   <div id="floatingHearts"></div>
 
 
-  <!-- =====================================================
-       PASSWORD LOCK SCREEN
-  ====================================================== -->
-
-  <section class="lock-screen" id="lockScreen">
-
-    <div class="lock-glow"></div>
-
-    <div class="lock-card">
-
-      <div class="lock-heart">
-        ♡
-      </div>
-
-      <p class="lock-eyebrow">
-        A little secret awaits
-      </p>
-
-      <h1>
-        For <span>Riti</span>
-      </h1>
-
-      <p class="lock-text">
-        This little world is just for you.
-        <br>
-        Enter the password to open it.
-      </p>
-
-      <div class="password-box">
-
-        <input
-          type="password"
-          id="passwordInput"
-          placeholder="Enter the secret password"
-          autocomplete="off"
-          spellcheck="false"
-        >
-
-        <button
-          type="button"
-          id="unlockButton"
-        >
-          Unlock ♡
-        </button>
-
-      </div>
-
-      <p
-        class="password-error"
-        id="passwordError"
-        aria-live="polite"
-      >
-        That's not quite it... try again ♡
-      </p>
-
-      <div class="lock-footer">
-        made with a little too much love
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
-       MAIN PAGE
-  ====================================================== -->
+  <!-- =========================================
+       MAIN CONTENT
+  ========================================== -->
 
   <main class="main-content" id="mainContent">
 
-    <!-- HERO -->
+
+    <!-- =======================================
+         HERO
+    ======================================== -->
 
     <section class="hero">
 
@@ -133,9 +121,9 @@
     </section>
 
 
-    <!-- =====================================================
+    <!-- =======================================
          PHOTO
-    ====================================================== -->
+    ======================================== -->
 
     <section class="photo-section">
 
@@ -163,14 +151,11 @@
     </section>
 
 
-    <!-- =====================================================
+    <!-- =======================================
          LETTER
-    ====================================================== -->
+    ======================================== -->
 
-    <section
-      class="letter-section"
-      id="letterSection"
-    >
+    <section class="letter-section" id="letterSection">
 
       <div class="section-heading">
         <span>02</span>
@@ -180,7 +165,6 @@
       <p class="section-intro">
         I couldn't fit everything I wanted to say into a normal birthday wish...
       </p>
-
 
       <div class="letter-area">
 
@@ -196,12 +180,7 @@
 
           <div class="envelope" id="envelope">
 
-            <!-- LETTER -->
-
-            <div
-              class="envelope-letter"
-              id="envelopeLetter"
-            >
+            <div class="envelope-letter">
 
               <div class="letter-paper">
 
@@ -211,10 +190,7 @@
                   <span>♡</span>
                 </div>
 
-                <div
-                  class="letter-message"
-                  id="letterMessage"
-                >
+                <div class="letter-message">
 
                   <p>
                     Happy 18th birthday, Riti.
@@ -222,19 +198,20 @@
 
                   <p>
                     I hope this year brings you more happiness,
-                    more beautiful memories, and more reasons to smile
-                    than you could ever count.
+                    more beautiful memories, and more reasons to
+                    smile than you could ever count.
                   </p>
 
                   <p>
-                    You deserve all the little moments that make life
-                    feel special, all the people who make you feel loved,
-                    and all the dreams you're brave enough to chase.
+                    You deserve all the little moments that make
+                    life feel special, all the people who make you
+                    feel loved, and all the dreams you're brave
+                    enough to chase.
                   </p>
 
                   <p>
-                    Here's to eighteen — and to everything waiting for you
-                    on the other side of it.
+                    Here's to eighteen — and to everything waiting
+                    for you on the other side of it.
                   </p>
 
                   <div class="letter-signature">
@@ -248,35 +225,14 @@
 
             </div>
 
-
-            <!-- ENVELOPE BACK -->
-
             <div class="envelope-back"></div>
-
-
-            <!-- ENVELOPE POCKET -->
-
             <div class="envelope-pocket"></div>
-
-
-            <!-- ENVELOPE FLAP -->
-
             <div class="envelope-flap"></div>
-
-
-            <!-- SEAL -->
-
-            <div class="envelope-seal">
-              ♡
-            </div>
+            <div class="envelope-seal">♡</div>
 
           </div>
 
-
-          <p
-            class="envelope-hint"
-            id="envelopeHint"
-          >
+          <p class="envelope-hint" id="envelopeHint">
             tap the envelope to open
           </p>
 
@@ -287,9 +243,9 @@
     </section>
 
 
-    <!-- =====================================================
+    <!-- =======================================
          MUSIC
-    ====================================================== -->
+    ======================================== -->
 
     <section class="music-section">
 
@@ -309,19 +265,19 @@
           width="100%"
           height="152"
           frameborder="0"
-          allowfullscreen=""
+          allowfullscreen
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy">
-        </iframe>
+          loading="lazy"
+        ></iframe>
 
       </div>
 
     </section>
 
 
-    <!-- =====================================================
+    <!-- =======================================
          MINI GAMES
-    ====================================================== -->
+    ======================================== -->
 
     <section class="games-section">
 
@@ -343,28 +299,63 @@
 
         <span>
           <strong>Mini Games</strong>
-          <small>
-            Six little challenges made for you
-          </small>
+          <small>Six little challenges made for you</small>
         </span>
 
-        <span class="arrow">
-          →
-        </span>
+        <span class="arrow">→</span>
 
       </a>
 
     </section>
 
 
-    <!-- =====================================================
+    <!-- =======================================
+         GALLERY
+    ======================================== -->
+
+    <section class="gallery-section">
+
+      <div class="section-heading">
+        <span>05</span>
+        <h2>Our little gallery</h2>
+      </div>
+
+      <p class="section-intro">
+        Little moments, memories and pictures worth keeping.
+      </p>
+
+      <div
+        class="gallery-grid"
+        id="galleryGrid"
+      >
+
+        <div class="gallery-loading" id="galleryLoading">
+          <div class="gallery-spinner"></div>
+          <p>collecting the memories...</p>
+        </div>
+
+      </div>
+
+      <div
+        class="gallery-empty"
+        id="galleryEmpty"
+      >
+        <span>♡</span>
+        <p>No memories have been added yet.</p>
+        <small>Come back later — this little gallery can grow.</small>
+      </div>
+
+    </section>
+
+
+    <!-- =======================================
          INSTAGRAM
-    ====================================================== -->
+    ======================================== -->
 
     <section class="social-section">
 
       <div class="section-heading">
-        <span>05</span>
+        <span>06</span>
         <h2>Some memories</h2>
       </div>
 
@@ -380,9 +371,7 @@
       >
 
         <span>♡</span>
-
         Open the memories
-
         <span>↗</span>
 
       </a>
@@ -390,9 +379,9 @@
     </section>
 
 
-    <!-- =====================================================
+    <!-- =======================================
          FINALE
-    ====================================================== -->
+    ======================================== -->
 
     <section class="finale">
 
@@ -427,14 +416,8 @@
   </main>
 
 
-  <!-- =====================================================
-       CELEBRATION PARTICLES
-  ====================================================== -->
-
   <div id="celebration"></div>
 
-
-  <!-- JAVASCRIPT -->
 
   <script src="script.js"></script>
 
