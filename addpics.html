@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
 
   <meta
@@ -37,28 +36,21 @@
       --border: rgba(255,255,255,0.12);
     }
 
-
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-
     body {
-
       min-height: 100vh;
-
       padding: 30px 18px;
 
       display: flex;
-
       justify-content: center;
-
       align-items: center;
 
       background:
-
         radial-gradient(
           circle at 15% 15%,
           rgba(154,108,255,0.22),
@@ -78,29 +70,17 @@
         );
 
       color: var(--white);
-
-      font-family:
-        "DM Sans",
-        sans-serif;
+      font-family: "DM Sans", sans-serif;
 
       overflow-x: hidden;
     }
 
-
     .page {
+      width: min(700px, 100%);
+      padding: 38px 26px;
 
-      width:
-        min(700px, 100%);
-
-      padding:
-        38px 26px;
-
-      border:
-        1px solid
-        var(--border);
-
-      border-radius:
-        30px;
+      border: 1px solid var(--border);
+      border-radius: 30px;
 
       background:
         linear-gradient(
@@ -110,36 +90,27 @@
         );
 
       box-shadow:
-        0 35px 100px
-        rgba(0,0,0,0.45);
+        0 35px 100px rgba(0,0,0,0.45);
 
-      backdrop-filter:
-        blur(20px);
-
-      -webkit-backdrop-filter:
-        blur(20px);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
 
       text-align: center;
     }
 
-
     .heart {
-
       width: 64px;
       height: 64px;
 
-      margin:
-        0 auto 22px;
+      margin: 0 auto 22px;
 
       display: flex;
-
       justify-content: center;
       align-items: center;
 
       border-radius: 50%;
 
       color: white;
-
       font-size: 1.8rem;
 
       background:
@@ -150,102 +121,62 @@
         );
 
       box-shadow:
-        0 12px 35px
-        rgba(255,115,183,0.25);
+        0 12px 35px rgba(255,115,183,0.25);
     }
-
 
     .eyebrow {
-
       margin-bottom: 10px;
 
-      color:
-        var(--pink-light);
+      color: var(--pink-light);
 
-      text-transform:
-        uppercase;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
 
-      letter-spacing:
-        0.22em;
-
-      font-size:
-        0.65rem;
+      font-size: 0.65rem;
     }
-
 
     h1 {
+      font-family: "Cormorant Garamond", serif;
 
-      font-family:
-        "Cormorant Garamond",
-        serif;
+      font-size: clamp(3rem, 12vw, 5rem);
 
-      font-size:
-        clamp(3rem, 12vw, 5rem);
-
-      font-weight:
-        500;
-
-      line-height:
-        0.9;
+      font-weight: 500;
+      line-height: 0.9;
     }
-
 
     h1 span {
-
-      color:
-        var(--purple-light);
-
-      font-style:
-        italic;
+      color: var(--purple-light);
+      font-style: italic;
     }
-
 
     .intro {
+      max-width: 500px;
 
-      max-width:
-        500px;
+      margin: 22px auto 30px;
 
-      margin:
-        22px auto 30px;
+      color: var(--muted);
 
-      color:
-        var(--muted);
-
-      font-size:
-        0.88rem;
-
-      line-height:
-        1.7;
+      font-size: 0.88rem;
+      line-height: 1.7;
     }
 
-
-    /* =============================================
-       UPLOAD AREA
-    ============================================= */
-
     .upload-area {
+      display: block;
 
-      display:
-        block;
+      width: 100%;
 
-      width:
-        100%;
-
-      padding:
-        45px 20px;
+      padding: 45px 20px;
 
       border:
         1px dashed
         rgba(255,115,183,0.45);
 
-      border-radius:
-        22px;
+      border-radius: 22px;
 
       background:
         rgba(255,115,183,0.045);
 
-      cursor:
-        pointer;
+      cursor: pointer;
 
       transition:
         transform 0.25s ease,
@@ -253,11 +184,8 @@
         border-color 0.25s ease;
     }
 
-
     .upload-area:hover {
-
-      transform:
-        translateY(-3px);
+      transform: translateY(-3px);
 
       background:
         rgba(255,115,183,0.08);
@@ -266,90 +194,54 @@
         rgba(255,115,183,0.75);
     }
 
-
     .upload-icon {
-
-      font-size:
-        2.5rem;
-
-      margin-bottom:
-        13px;
+      font-size: 2.5rem;
+      margin-bottom: 13px;
     }
 
-
     .upload-area strong {
-
-      display:
-        block;
+      display: block;
 
       font-family:
         "Cormorant Garamond",
         serif;
 
-      font-size:
-        1.5rem;
+      font-size: 1.5rem;
     }
-
 
     .upload-area small {
+      display: block;
 
-      display:
-        block;
+      margin-top: 7px;
 
-      margin-top:
-        7px;
+      color: var(--muted);
 
-      color:
-        var(--muted);
-
-      font-size:
-        0.7rem;
+      font-size: 0.7rem;
     }
-
 
     #fileInput {
-
-      display:
-        none;
+      display: none;
     }
-
-
-    /* =============================================
-       PREVIEWS
-    ============================================= */
 
     .preview-grid {
-
-      display:
-        grid;
+      display: grid;
 
       grid-template-columns:
-        repeat(
-          3,
-          minmax(0, 1fr)
-        );
+        repeat(3, minmax(0, 1fr));
 
-      gap:
-        10px;
+      gap: 10px;
 
-      margin-top:
-        20px;
+      margin-top: 20px;
     }
 
-
     .preview {
+      position: relative;
 
-      position:
-        relative;
+      aspect-ratio: 1;
 
-      aspect-ratio:
-        1;
+      overflow: hidden;
 
-      overflow:
-        hidden;
-
-      border-radius:
-        15px;
+      border-radius: 15px;
 
       border:
         1px solid
@@ -359,93 +251,55 @@
         rgba(255,255,255,0.05);
     }
 
-
     .preview img {
+      display: block;
 
-      display:
-        block;
+      width: 100%;
+      height: 100%;
 
-      width:
-        100%;
-
-      height:
-        100%;
-
-      object-fit:
-        cover;
+      object-fit: cover;
     }
 
-
     .preview-remove {
+      position: absolute;
 
-      position:
-        absolute;
+      top: 7px;
+      right: 7px;
 
-      top:
-        7px;
+      width: 28px;
+      height: 28px;
 
-      right:
-        7px;
+      border: none;
+      border-radius: 50%;
 
-      width:
-        28px;
-
-      height:
-        28px;
-
-      border:
-        none;
-
-      border-radius:
-        50%;
-
-      color:
-        white;
+      color: white;
 
       background:
         rgba(0,0,0,0.65);
 
-      cursor:
-        pointer;
+      cursor: pointer;
     }
 
-
-    /* =============================================
-       BUTTON
-    ============================================= */
-
     .upload-button {
+      width: 100%;
 
-      width:
-        100%;
+      margin-top: 20px;
 
-      margin-top:
-        20px;
+      padding: 17px;
 
-      padding:
-        17px;
+      border: none;
+      border-radius: 15px;
 
-      border:
-        none;
-
-      border-radius:
-        15px;
-
-      color:
-        white;
+      color: white;
 
       font-family:
         "DM Sans",
         sans-serif;
 
-      font-weight:
-        700;
+      font-weight: 700;
+      font-size: 0.82rem;
 
-      font-size:
-        0.82rem;
-
-      cursor:
-        pointer;
+      cursor: pointer;
 
       background:
         linear-gradient(
@@ -463,123 +317,92 @@
         filter 0.2s ease;
     }
 
-
     .upload-button:hover {
-
-      transform:
-        translateY(-2px);
-
-      filter:
-        brightness(1.08);
+      transform: translateY(-2px);
+      filter: brightness(1.08);
     }
-
 
     .upload-button:disabled {
-
-      opacity:
-        0.45;
-
-      cursor:
-        not-allowed;
-
-      transform:
-        none;
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
     }
-
-
-    /* =============================================
-       STATUS
-    ============================================= */
 
     .status {
+      min-height: 25px;
 
-      min-height:
-        25px;
+      margin-top: 15px;
 
-      margin-top:
-        15px;
+      color: var(--muted);
 
-      color:
-        var(--muted);
+      font-size: 0.72rem;
 
-      font-size:
-        0.72rem;
-
-      line-height:
-        1.5;
+      line-height: 1.5;
     }
-
 
     .status.success {
-
-      color:
-        var(--pink-light);
+      color: var(--pink-light);
     }
-
 
     .status.error {
-
-      color:
-        #ff9dca;
+      color: #ff9dca;
     }
 
-
-    /* =============================================
-       BACK
-    ============================================= */
-
     .back-link {
+      display: inline-block;
 
-      display:
-        inline-block;
+      margin-top: 25px;
 
-      margin-top:
-        25px;
+      color: var(--muted);
 
-      color:
-        var(--muted);
+      text-decoration: none;
 
-      text-decoration:
-        none;
-
-      font-size:
-        0.72rem;
+      font-size: 0.72rem;
 
       transition:
         color 0.2s ease;
     }
 
-
     .back-link:hover {
-
-      color:
-        var(--pink-light);
+      color: var(--pink-light);
     }
 
+    .debug {
+      margin-top: 12px;
 
-    /* =============================================
-       MOBILE
-    ============================================= */
+      padding: 10px;
+
+      border-radius: 10px;
+
+      background:
+        rgba(255,255,255,0.04);
+
+      color:
+        rgba(255,255,255,0.45);
+
+      font-size: 0.62rem;
+
+      line-height: 1.5;
+
+      word-break: break-word;
+
+      display: none;
+    }
+
+    .debug.show {
+      display: block;
+    }
 
     @media (max-width: 550px) {
 
       .page {
-
-        padding:
-          32px 17px;
-
-        border-radius:
-          24px;
+        padding: 32px 17px;
+        border-radius: 24px;
       }
 
-
       .preview-grid {
-
         grid-template-columns:
-          repeat(
-            2,
-            minmax(0, 1fr)
-          );
+          repeat(2, minmax(0, 1fr));
       }
 
     }
@@ -588,39 +411,28 @@
 
 </head>
 
-
 <body>
 
-
   <main class="page">
-
 
     <div class="heart">
       ♡
     </div>
 
-
     <p class="eyebrow">
       our little collection
     </p>
-
 
     <h1>
       Add some
       <span>memories.</span>
     </h1>
 
-
     <p class="intro">
       Choose the pictures you want to add.
       They'll appear on Riti's birthday page
       automatically.
     </p>
-
-
-    <!-- =========================================
-         UPLOAD
-    ========================================== -->
 
     <label
       class="upload-area"
@@ -641,7 +453,6 @@
 
     </label>
 
-
     <input
       id="fileInput"
       type="file"
@@ -649,20 +460,10 @@
       multiple
     >
 
-
-    <!-- =========================================
-         PREVIEWS
-    ========================================== -->
-
     <div
       class="preview-grid"
       id="previewGrid"
     ></div>
-
-
-    <!-- =========================================
-         UPLOAD BUTTON
-    ========================================== -->
 
     <button
       class="upload-button"
@@ -672,12 +473,15 @@
       Upload Memories ♡
     </button>
 
-
     <div
       class="status"
       id="status"
     ></div>
 
+    <div
+      class="debug"
+      id="debug"
+    ></div>
 
     <a
       class="back-link"
@@ -686,25 +490,23 @@
       ← Back to Riti's birthday
     </a>
 
-
   </main>
-
 
   <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 
   <script>
 
     /* =================================================
        SUPABASE CONFIG
+       REPLACE THESE TWO VALUES
     ================================================= */
 
     const SUPABASE_URL =
-      "https://gedmzmvuzifqrzmarknh.supabase.co/rest/v1/";
+      "YOUR_SUPABASE_PROJECT_URL";
 
     const SUPABASE_ANON_KEY =
-      "sb_publishable_V_Lg9lEjfA_t6TBRROu6sg_kps8oQup";
+      "YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY";
 
     const SUPABASE_BUCKET =
       "birthday-photos";
@@ -715,16 +517,12 @@
     ================================================= */
 
     const hasAccess =
-      sessionStorage.getItem(
-        "addpicsAccess"
-      );
+      sessionStorage.getItem("addpicsAccess");
 
     if (hasAccess !== "true") {
 
       const password =
-        prompt(
-          "Enter the upload password:"
-        );
+        prompt("Enter the upload password:");
 
       if (password === "addpics") {
 
@@ -744,10 +542,38 @@
 
 
     /* =================================================
-       SUPABASE
+       CHECK CONFIG
     ================================================= */
 
-    const supabase =
+    if (
+      SUPABASE_URL.includes("YOUR_") ||
+      SUPABASE_ANON_KEY.includes("YOUR_")
+    ) {
+
+      document.getElementById("status").className =
+        "status error";
+
+      document.getElementById("status").textContent =
+        "Supabase isn't connected yet.";
+
+      document.getElementById("debug").className =
+        "debug show";
+
+      document.getElementById("debug").textContent =
+        "Replace SUPABASE_URL and SUPABASE_ANON_KEY in addpics.html with your real Supabase Project URL and Publishable/Anon key.";
+
+      throw new Error(
+        "Supabase credentials have not been configured."
+      );
+
+    }
+
+
+    /* =================================================
+       CREATE SUPABASE CLIENT
+    ================================================= */
+
+    const supabaseClient =
       window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_ANON_KEY
@@ -759,24 +585,19 @@
     ================================================= */
 
     const fileInput =
-      document.getElementById(
-        "fileInput"
-      );
+      document.getElementById("fileInput");
 
     const previewGrid =
-      document.getElementById(
-        "previewGrid"
-      );
+      document.getElementById("previewGrid");
 
     const uploadButton =
-      document.getElementById(
-        "uploadButton"
-      );
+      document.getElementById("uploadButton");
 
     const status =
-      document.getElementById(
-        "status"
-      );
+      document.getElementById("status");
+
+    const debug =
+      document.getElementById("debug");
 
 
     let selectedFiles = [];
@@ -791,30 +612,40 @@
       () => {
 
         const files =
-          Array.from(
-            fileInput.files
-          );
+          Array.from(fileInput.files);
 
+        const maxSize =
+          6 * 1024 * 1024;
 
-        const validFiles =
-          files.filter(
-            (file) => {
+        const validFiles = [];
 
-              const isImage =
-                file.type.startsWith(
-                  "image/"
-                );
+        const rejectedFiles = [];
 
-              const maxSize =
-                10 * 1024 * 1024;
+        files.forEach(file => {
 
-              return (
-                isImage &&
-                file.size <= maxSize
-              );
+          if (!file.type.startsWith("image/")) {
 
-            }
-          );
+            rejectedFiles.push(
+              file.name + " is not an image."
+            );
+
+            return;
+
+          }
+
+          if (file.size > maxSize) {
+
+            rejectedFiles.push(
+              file.name + " is larger than 6 MB."
+            );
+
+            return;
+
+          }
+
+          validFiles.push(file);
+
+        });
 
 
         selectedFiles =
@@ -822,6 +653,26 @@
 
 
         renderPreviews();
+
+
+        if (rejectedFiles.length > 0) {
+
+          status.className =
+            "status error";
+
+          status.textContent =
+            rejectedFiles.join(" ");
+
+        } else {
+
+          status.className =
+            "status";
+
+          status.textContent =
+            selectedFiles.length +
+            " photo(s) ready to upload ♡";
+
+        }
 
       }
     );
@@ -835,38 +686,22 @@
 
       previewGrid.innerHTML = "";
 
-
-      if (
-        selectedFiles.length === 0
-      ) {
-
-        uploadButton.disabled =
-          true;
-
-        return;
-      }
-
-
       uploadButton.disabled =
-        false;
+        selectedFiles.length === 0;
 
 
       selectedFiles.forEach(
         (file, index) => {
 
           const wrapper =
-            document.createElement(
-              "div"
-            );
+            document.createElement("div");
 
           wrapper.className =
             "preview";
 
 
           const image =
-            document.createElement(
-              "img"
-            );
+            document.createElement("img");
 
 
           const reader =
@@ -881,15 +716,12 @@
           };
 
 
-          reader.readAsDataURL(
-            file
-          );
+          reader.readAsDataURL(file);
 
 
           const removeButton =
-            document.createElement(
-              "button"
-            );
+            document.createElement("button");
+
 
           removeButton.type =
             "button";
@@ -912,13 +744,15 @@
 
               renderPreviews();
 
+              status.textContent =
+                selectedFiles.length +
+                " photo(s) ready to upload ♡";
+
             }
           );
 
 
-          wrapper.appendChild(
-            image
-          );
+          wrapper.appendChild(image);
 
           wrapper.appendChild(
             removeButton
@@ -935,7 +769,7 @@
 
 
     /* =================================================
-       UPLOAD
+       UPLOAD BUTTON
     ================================================= */
 
     uploadButton.addEventListener(
@@ -944,11 +778,13 @@
     );
 
 
+    /* =================================================
+       UPLOAD PHOTOS
+    ================================================= */
+
     async function uploadPhotos() {
 
-      if (
-        selectedFiles.length === 0
-      ) {
+      if (selectedFiles.length === 0) {
         return;
       }
 
@@ -960,25 +796,47 @@
       status.className =
         "status";
 
-      status.textContent =
-        "Uploading your memories... ♡";
+      debug.className =
+        "debug";
 
 
-      let successful =
-        0;
+      let successful = 0;
+
+      const total =
+        selectedFiles.length;
 
 
       for (
-        const file of selectedFiles
+        let i = 0;
+        i < total;
+        i++
       ) {
+
+        const file =
+          selectedFiles[i];
+
+
+        status.textContent =
+          "Uploading " +
+          (i + 1) +
+          " of " +
+          total +
+          "... ♡";
+
 
         try {
 
+          /* -----------------------------------------
+             CREATE UNIQUE FILE NAME
+          ----------------------------------------- */
+
           const extension =
-            file.name
-              .split(".")
-              .pop()
-              .toLowerCase();
+            file.name.includes(".")
+              ? file.name
+                  .split(".")
+                  .pop()
+                  .toLowerCase()
+              : "jpg";
 
 
           const uniqueName =
@@ -994,31 +852,23 @@
             uniqueName;
 
 
-          /* =====================================
-             STORAGE UPLOAD
-          ====================================== */
+          /* -----------------------------------------
+             UPLOAD TO STORAGE
+          ----------------------------------------- */
 
           const {
-            error:
-              uploadError
+            error: uploadError
           } =
-            await supabase
+            await supabaseClient
               .storage
-              .from(
-                SUPABASE_BUCKET
-              )
+              .from(SUPABASE_BUCKET)
               .upload(
                 path,
                 file,
                 {
-                  cacheControl:
-                    "3600",
-
-                  contentType:
-                    file.type,
-
-                  upsert:
-                    false
+                  cacheControl: "3600",
+                  contentType: file.type,
+                  upsert: false
                 }
               );
 
@@ -1026,78 +876,115 @@
           if (uploadError) {
 
             console.error(
+              "STORAGE ERROR:",
               uploadError
             );
 
-            continue;
+            throw new Error(
+              "Storage upload failed: " +
+              uploadError.message
+            );
+
           }
 
 
-          /* =====================================
-             DATABASE RECORD
-          ====================================== */
+          /* -----------------------------------------
+             SAVE PATH TO DATABASE
+          ----------------------------------------- */
 
           const {
-            error:
-              databaseError
+            error: databaseError
           } =
-            await supabase
+            await supabaseClient
               .from("photos")
               .insert({
-                path:
-                  path
+                path: path
               });
 
 
           if (databaseError) {
 
             console.error(
+              "DATABASE ERROR:",
               databaseError
             );
 
-            continue;
+            throw new Error(
+              "Database save failed: " +
+              databaseError.message
+            );
+
           }
 
 
           successful++;
 
+
         } catch (error) {
 
           console.error(
+            "PHOTO UPLOAD ERROR:",
             error
           );
+
+
+          status.className =
+            "status error";
+
+          status.textContent =
+            error.message;
+
+
+          debug.className =
+            "debug show";
+
+          debug.textContent =
+            "Open your browser console (F12 → Console) for more details.";
 
         }
 
       }
 
 
-      /* =========================================
-         RESULT
-      ========================================== */
+      /* =================================================
+         FINAL RESULT
+      ================================================= */
 
-      if (
-        successful ===
-        selectedFiles.length
-      ) {
+      if (successful === total) {
 
         status.className =
           "status success";
 
         status.textContent =
-          "All the memories are now part of the gallery ♡";
+          "♡ All " +
+          successful +
+          " memories are now part of the gallery!";
 
 
-      } else if (
-        successful > 0
-      ) {
+        selectedFiles = [];
+
+        fileInput.value = "";
+
+        renderPreviews();
+
+
+      } else if (successful > 0) {
 
         status.className =
           "status success";
 
         status.textContent =
           successful +
-          " photo(s) uploaded successfully ♡";
+          " of " +
+          total +
+          " photos uploaded successfully ♡";
+
+
+        selectedFiles = [];
+
+        fileInput.value = "";
+
+        renderPreviews();
 
 
       } else {
@@ -1106,18 +993,16 @@
           "status error";
 
         status.textContent =
-          "Something went wrong. Check your Supabase setup.";
+          "No photos were uploaded.";
 
       }
 
 
-      selectedFiles = [];
-
-      fileInput.value = "";
-
-      renderPreviews();
+      uploadButton.disabled =
+        selectedFiles.length === 0;
 
     }
+
   </script>
 
 </body>
