@@ -1,387 +1,634 @@
 /* =====================================================
-   RITI — 18TH BIRTHDAY
-   MAIN PAGE JAVASCRIPT
+   RITI — MAIN SCRIPT
 ===================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
 
-  /* =====================================================
-     PASSWORD LOCK
-  ====================================================== */
+/* =====================================================
+   SUPABASE CONFIGURATION
+=====================================================
 
-  const CORRECT_PASSWORD = "Ilovemyriti18forever";
+   REPLACE THESE TWO VALUES.
 
-  const lockScreen =
-    document.getElementById("lockScreen");
+   Supabase Dashboard
+   → Project Settings
+   → API
 
-  const mainContent =
-    document.getElementById("mainContent");
+===================================================== */
 
-  const passwordInput =
-    document.getElementById("passwordInput");
+const SUPABASE_URL =
+  "YOUR_SUPABASE_PROJECT_URL";
 
-  const unlockButton =
-    document.getElementById("unlockButton");
+const SUPABASE_ANON_KEY =
+  "YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY";
 
-  const passwordError =
-    document.getElementById("passwordError");
-
-  const lockCard =
-    document.querySelector(".lock-card");
+const SUPABASE_BUCKET =
+  "birthday-photos";
 
 
-  function unlockPage() {
+/* =====================================================
+   SUPABASE CLIENT
+===================================================== */
 
-    const enteredPassword =
-      passwordInput.value;
+let supabaseClient = null;
 
-    if (enteredPassword === CORRECT_PASSWORD) {
+function setupSupabase() {
 
-      passwordError.classList.remove("show");
+  if (
+    SUPABASE_URL.includes("YOUR_") ||
+    SUPABASE_ANON_KEY.includes("YOUR_")
+  ) {
+    console.warn(
+      "Supabase is not configured yet."
+    );
 
-      unlockButton.disabled = true;
+    return null;
+  }
 
-      createUnlockCelebration();
+  if (
+    typeof window.supabase === "undefined"
+  ) {
+    console.warn(
+      "Supabase library has not loaded."
+    );
 
-      lockScreen.classList.add("hidden");
+    return null;
+  }
 
-      mainContent.classList.add("unlocked");
+  return window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
+}
 
-      setTimeout(() => {
-        startFloatingHearts();
-      }, 700);
 
-    } else {
+/* =====================================================
+   DOM
+===================================================== */
 
-      passwordError.classList.add("show");
+const lockScreen =
+  document.getElementById("lockScreen");
 
-      lockCard.classList.remove("shake");
+const mainContent =
+  document.getElementById("mainContent");
 
-      /*
-        Force browser to restart the animation
-        if the user enters the wrong password
-        multiple times.
-      */
+const passwordInput =
+  document.getElementById("passwordInput");
 
-      void lockCard.offsetWidth;
+const unlockButton =
+  document.getElementById("unlockButton");
 
-      lockCard.classList.add("shake");
+const lockError =
+  document.getElementById("lockError");
 
+const envelopeWrapper =
+  document.getElementById("envelopeWrapper");
+
+const celebration =
+  document.getElementById("celebration");
+
+const floatingHearts =
+  document.getElementById("floatingHearts");
+
+const galleryGrid =
+  document.getElementById("galleryGrid");
+
+const galleryLoading =
+  document.getElementById("galleryLoading");
+
+const galleryEmpty =
+  document.getElementById("galleryEmpty");
+
+
+/* =====================================================
+   PASSWORDS
+===================================================== */
+
+const MAIN_PASSWORD =
+  "Ilovemyriti18forever";
+
+const UPLOAD_PASSWORD =
+  "addpics";
+
+
+/* =====================================================
+   UNLOCK MAIN PAGE
+===================================================== */
+
+function showMainPage() {
+
+  if (!lockScreen || !mainContent) {
+    return;
+  }
+
+  lockScreen.classList.add("hidden");
+
+  mainContent.classList.add("unlocked");
+
+  document.body.style.overflow = "";
+
+  createCelebration();
+
+  createFloatingHearts();
+
+  loadGallery();
+
+  setTimeout(() => {
+
+    if (passwordInput) {
       passwordInput.value = "";
-
-      passwordInput.focus();
     }
+
+  }, 300);
+}
+
+
+/* =====================================================
+   PASSWORD CHECK
+===================================================== */
+
+function checkPassword() {
+
+  if (!passwordInput) {
+    return;
+  }
+
+  const entered =
+    passwordInput.value.trim();
+
+  if (entered === MAIN_PASSWORD) {
+
+    lockError.classList.remove("show");
+
+    showMainPage();
+
+    return;
   }
 
 
-  if (unlockButton) {
-    unlockButton.addEventListener(
-      "click",
-      unlockPage
+  /* ===============================================
+     ADDPICS PASSWORD
+  =============================================== */
+
+  if (entered === UPLOAD_PASSWORD) {
+
+    sessionStorage.setItem(
+      "addpicsAccess",
+      "true"
     );
+
+    window.location.href =
+      "addpics.html";
+
+    return;
   }
 
 
-  if (passwordInput) {
+  /* ===============================================
+     WRONG PASSWORD
+  =============================================== */
 
-    passwordInput.addEventListener(
-      "keydown",
-      (event) => {
+  lockError.classList.add("show");
 
-        if (event.key === "Enter") {
-          unlockPage();
-        }
+  passwordInput.classList.add("shake");
 
+  setTimeout(() => {
+    passwordInput.classList.remove("shake");
+  }, 400);
+
+  passwordInput.select();
+}
+
+
+/* =====================================================
+   PASSWORD EVENTS
+===================================================== */
+
+if (unlockButton) {
+
+  unlockButton.addEventListener(
+    "click",
+    checkPassword
+  );
+
+}
+
+if (passwordInput) {
+
+  passwordInput.addEventListener(
+    "keydown",
+    (event) => {
+
+      if (event.key === "Enter") {
+        checkPassword();
       }
-    );
 
-    /*
-      Automatically place the cursor
-      in the password field.
-    */
+    }
+  );
 
-    setTimeout(() => {
-      passwordInput.focus();
-    }, 500);
+}
+
+
+/* =====================================================
+   ENVELOPE
+===================================================== */
+
+function openEnvelope() {
+
+  if (!envelopeWrapper) {
+    return;
   }
 
-
-  /* =====================================================
-     ENVELOPE
-  ====================================================== */
-
-  const envelopeWrapper =
-    document.getElementById(
-      "envelopeWrapper"
+  const alreadyOpened =
+    envelopeWrapper.classList.contains(
+      "opened"
     );
 
+  if (alreadyOpened) {
+    return;
+  }
 
-  if (envelopeWrapper) {
+  envelopeWrapper.classList.add(
+    "opened"
+  );
 
-    function openEnvelope() {
+  createCelebration();
+
+}
+
+
+if (envelopeWrapper) {
+
+  envelopeWrapper.addEventListener(
+    "click",
+    openEnvelope
+  );
+
+  envelopeWrapper.addEventListener(
+    "keydown",
+    (event) => {
 
       if (
-        envelopeWrapper.classList.contains(
-          "opened"
-        )
+        event.key === "Enter" ||
+        event.key === " "
       ) {
-        return;
-      }
 
-      envelopeWrapper.classList.add(
-        "opened"
-      );
+        event.preventDefault();
 
-      createEnvelopeCelebration();
-    }
-
-
-    envelopeWrapper.addEventListener(
-      "click",
-      openEnvelope
-    );
-
-
-    envelopeWrapper.addEventListener(
-      "keydown",
-      (event) => {
-
-        if (
-          event.key === "Enter" ||
-          event.key === " "
-        ) {
-
-          event.preventDefault();
-
-          openEnvelope();
-        }
+        openEnvelope();
 
       }
-    );
 
-  }
-
-
-  /* =====================================================
-     FLOATING HEARTS
-  ====================================================== */
-
-  function startFloatingHearts() {
-
-    const container =
-      document.getElementById(
-        "floatingHearts"
-      );
-
-    if (!container) {
-      return;
     }
+  );
 
-    /*
-      Small continuous background
-      heart animation.
-    */
+}
 
-    setInterval(() => {
 
-      createFloatingHeart(
-        container
-      );
+/* =====================================================
+   FLOATING HEARTS
+===================================================== */
 
-    }, 1800);
+function createFloatingHearts() {
 
+  if (!floatingHearts) {
+    return;
   }
 
+  const heartCount = 18;
 
-  function createFloatingHeart(container) {
+  for (
+    let i = 0;
+    i < heartCount;
+    i++
+  ) {
+
+    setTimeout(() => {
+
+      const heart =
+        document.createElement("span");
+
+      heart.className =
+        "floating-heart";
+
+      heart.textContent =
+        Math.random() > 0.5
+          ? "♡"
+          : "♥";
+
+      heart.style.left =
+        Math.random() * 100 + "%";
+
+      heart.style.bottom =
+        "-30px";
+
+      heart.style.fontSize =
+        (10 + Math.random() * 16) + "px";
+
+      heart.style.setProperty(
+        "--drift",
+        (-60 + Math.random() * 120) + "px"
+      );
+
+      heart.style.setProperty(
+        "--rotation",
+        (-30 + Math.random() * 60) + "deg"
+      );
+
+      heart.style.animationDelay =
+        Math.random() * 2 + "s";
+
+      floatingHearts.appendChild(
+        heart
+      );
+
+      setTimeout(() => {
+
+        heart.remove();
+
+      }, 7000);
+
+    }, i * 300);
+
+  }
+}
+
+
+/* =====================================================
+   CELEBRATION
+===================================================== */
+
+function createCelebration() {
+
+  if (!celebration) {
+    return;
+  }
+
+  for (
+    let i = 0;
+    i < 18;
+    i++
+  ) {
 
     const heart =
-      document.createElement("div");
+      document.createElement("span");
 
     heart.className =
-      "floating-heart";
-
-    const symbols = [
-      "♡",
-      "♥",
-      "✦",
-      "⋆"
-    ];
+      "celebration-heart";
 
     heart.textContent =
-      symbols[
-        Math.floor(
-          Math.random() * symbols.length
-        )
-      ];
+      Math.random() > 0.5
+        ? "♡"
+        : "♥";
 
     heart.style.left =
-      Math.random() * 100 + "%";
+      (35 + Math.random() * 30) + "%";
 
     heart.style.bottom =
-      "-30px";
+      "35%";
 
     heart.style.fontSize =
-      (10 + Math.random() * 15) + "px";
+      (12 + Math.random() * 20) + "px";
 
     heart.style.setProperty(
       "--drift",
-      (-40 + Math.random() * 80) + "px"
+      (-140 + Math.random() * 280) + "px"
     );
 
     heart.style.setProperty(
       "--rotation",
-      (-25 + Math.random() * 50) + "deg"
+      (-45 + Math.random() * 90) + "deg"
     );
 
-    heart.style.animationDuration =
-      (4 + Math.random() * 3) + "s";
+    heart.style.animationDelay =
+      Math.random() * 0.6 + "s";
 
-    container.appendChild(heart);
+    celebration.appendChild(
+      heart
+    );
 
     setTimeout(() => {
+
       heart.remove();
-    }, 7500);
 
+    }, 3500);
+
+  }
+}
+
+
+/* =====================================================
+   GALLERY
+===================================================== */
+
+async function loadGallery() {
+
+  if (!galleryGrid) {
+    return;
+  }
+
+  supabaseClient =
+    supabaseClient || setupSupabase();
+
+
+  /* ===============================================
+     SUPABASE NOT CONFIGURED
+  =============================================== */
+
+  if (!supabaseClient) {
+
+    if (galleryLoading) {
+      galleryLoading.style.display =
+        "none";
+    }
+
+    if (galleryEmpty) {
+
+      galleryEmpty.classList.add(
+        "show"
+      );
+
+      const paragraph =
+        galleryEmpty.querySelector("p");
+
+      const small =
+        galleryEmpty.querySelector("small");
+
+      if (paragraph) {
+        paragraph.textContent =
+          "The memory gallery is getting ready.";
+      }
+
+      if (small) {
+        small.textContent =
+          "Add your Supabase details to activate it.";
+      }
+    }
+
+    return;
   }
 
 
-  /* =====================================================
-     UNLOCK CELEBRATION
-  ====================================================== */
+  /* ===============================================
+     FETCH PHOTOS
+  =============================================== */
 
-  function createUnlockCelebration() {
+  const {
+    data,
+    error
+  } = await supabaseClient
+    .from("photos")
+    .select(
+      "id, path, created_at"
+    )
+    .order(
+      "created_at",
+      {
+        ascending: false
+      }
+    );
 
-    const container =
-      document.getElementById(
-        "celebration"
+
+  if (galleryLoading) {
+    galleryLoading.style.display =
+      "none";
+  }
+
+
+  if (error) {
+
+    console.error(
+      "Gallery error:",
+      error
+    );
+
+    if (galleryEmpty) {
+
+      galleryEmpty.classList.add(
+        "show"
       );
 
-    if (!container) {
-      return;
+      const paragraph =
+        galleryEmpty.querySelector("p");
+
+      const small =
+        galleryEmpty.querySelector("small");
+
+      if (paragraph) {
+        paragraph.textContent =
+          "The memories couldn't be loaded.";
+      }
+
+      if (small) {
+        small.textContent =
+          "Check your Supabase setup.";
+      }
     }
 
-    const symbols = [
-      "♡",
-      "♥",
-      "✦",
-      "✧"
-    ];
+    return;
+  }
 
-    for (let i = 0; i < 24; i++) {
 
-      const heart =
+  if (!data || data.length === 0) {
+
+    if (galleryEmpty) {
+      galleryEmpty.classList.add(
+        "show"
+      );
+    }
+
+    return;
+  }
+
+
+  /* ===============================================
+     DISPLAY PHOTOS
+  =============================================== */
+
+  data.forEach(
+    (photo, index) => {
+
+      if (!photo.path) {
+        return;
+      }
+
+      const {
+        data: publicData
+      } =
+        supabaseClient
+          .storage
+          .from(SUPABASE_BUCKET)
+          .getPublicUrl(
+            photo.path
+          );
+
+      if (
+        !publicData ||
+        !publicData.publicUrl
+      ) {
+        return;
+      }
+
+
+      const item =
         document.createElement("div");
 
-      heart.className =
-        "celebration-heart";
+      item.className =
+        "gallery-item";
 
-      heart.textContent =
-        symbols[
-          Math.floor(
-            Math.random() * symbols.length
-          )
-        ];
-
-      heart.style.left =
-        (35 + Math.random() * 30) + "%";
-
-      heart.style.top =
-        (45 + Math.random() * 15) + "%";
-
-      heart.style.fontSize =
-        (12 + Math.random() * 18) + "px";
-
-      heart.style.setProperty(
-        "--drift",
-        (-140 + Math.random() * 280) + "px"
-      );
-
-      heart.style.setProperty(
-        "--rotation",
-        (-80 + Math.random() * 160) + "deg"
-      );
-
-      heart.style.animationDelay =
-        (Math.random() * 0.5) + "s";
-
-      container.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 3500);
-
-    }
-
-  }
+      item.style.animationDelay =
+        (index * 0.06) + "s";
 
 
-  /* =====================================================
-     ENVELOPE CELEBRATION
-  ====================================================== */
+      const image =
+        document.createElement("img");
 
-  function createEnvelopeCelebration() {
+      image.src =
+        publicData.publicUrl;
 
-    const container =
-      document.getElementById(
-        "celebration"
-      );
+      image.alt =
+        "A birthday memory";
 
-    if (!container) {
-      return;
-    }
+      image.loading =
+        "lazy";
 
-    const symbols = [
-      "♡",
-      "♥",
-      "✦"
-    ];
 
-    for (let i = 0; i < 14; i++) {
-
-      const heart =
+      const overlay =
         document.createElement("div");
 
-      heart.className =
-        "celebration-heart";
+      overlay.className =
+        "gallery-overlay";
 
-      heart.textContent =
-        symbols[
-          Math.floor(
-            Math.random() * symbols.length
-          )
-        ];
+      overlay.textContent =
+        "♡ memory";
 
-      heart.style.left =
-        (25 + Math.random() * 50) + "%";
 
-      heart.style.top =
-        "45%";
+      item.appendChild(image);
 
-      heart.style.fontSize =
-        (10 + Math.random() * 15) + "px";
+      item.appendChild(overlay);
 
-      heart.style.setProperty(
-        "--drift",
-        (-100 + Math.random() * 200) + "px"
-      );
-
-      heart.style.setProperty(
-        "--rotation",
-        (-60 + Math.random() * 120) + "deg"
-      );
-
-      heart.style.animationDelay =
-        (Math.random() * 0.3) + "s";
-
-      container.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 3500);
+      galleryGrid.appendChild(item);
 
     }
+  );
+
+}
+
+
+/* =====================================================
+   INITIALISE
+===================================================== */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    document.body.style.overflow =
+      "hidden";
+
+    /*
+      We intentionally do NOT load the gallery
+      until the correct main password is entered.
+    */
 
   }
-
-});
+);
