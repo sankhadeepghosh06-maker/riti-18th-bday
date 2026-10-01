@@ -1801,3 +1801,320 @@ footer {
       auto !important;
   }
 }
+
+/* =====================================================
+   FINAL LETTER / ENVELOPE FIX
+   ===================================================== */
+
+.letter-area {
+  position: relative;
+  width: 100%;
+  min-height: 680px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 120px;
+  overflow: visible;
+}
+
+.envelope-wrapper {
+  position: relative;
+  width: 360px;
+  height: 430px;
+  margin: 0 auto;
+  cursor: pointer;
+  perspective: 1200px;
+  overflow: visible;
+}
+
+/* Shadow */
+
+.envelope-shadow {
+  position: absolute;
+  width: 320px;
+  height: 35px;
+  left: 20px;
+  bottom: 25px;
+  border-radius: 50%;
+  background: rgba(70, 20, 70, 0.18);
+  filter: blur(18px);
+  z-index: 1;
+}
+
+/* Envelope body */
+
+.envelope {
+  position: absolute;
+  width: 100%;
+  height: 240px;
+  left: 0;
+  top: 70px;
+  transform-style: preserve-3d;
+  z-index: 5;
+}
+
+/* Back */
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background:
+    linear-gradient(
+      145deg,
+      #f9c9df,
+      #efafd0
+    );
+  box-shadow:
+    0 18px 45px rgba(94, 28, 91, 0.20),
+    0 5px 12px rgba(94, 28, 91, 0.12);
+  z-index: 1;
+}
+
+/* Pocket */
+
+.envelope-pocket {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 72%;
+  background:
+    linear-gradient(
+      145deg,
+      #f5b9d5,
+      #eaa4c8
+    );
+  clip-path: polygon(
+    0 0,
+    50% 58%,
+    100% 0,
+    100% 100%,
+    0 100%
+  );
+  border-radius: 0 0 8px 8px;
+  z-index: 5;
+}
+
+/* Flap */
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 58%;
+  background:
+    linear-gradient(
+      135deg,
+      #ffd7e7,
+      #f2b4d1
+    );
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    50% 100%
+  );
+  transform-origin: top center;
+  transition:
+    transform 0.9s cubic-bezier(.22,.61,.36,1);
+  z-index: 7;
+  backface-visibility: hidden;
+}
+
+/* Seal */
+
+.envelope-seal {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  left: 50%;
+  top: 42%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #b84c8c;
+  color: white;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 24px;
+  box-shadow:
+    0 5px 14px rgba(100, 20, 75, 0.22);
+  z-index: 9;
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+/* Letter */
+
+.envelope-letter {
+  position: absolute;
+  left: 20px;
+  top: 18px;
+  width: calc(100% - 40px);
+  height: 200px;
+  z-index: 3;
+  transform: translateY(0);
+  transition:
+    transform 1s cubic-bezier(.22,.61,.36,1);
+  pointer-events: none;
+}
+
+/* Paper */
+
+.letter-paper {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+  padding: 22px 24px;
+  border-radius: 4px;
+  background:
+    linear-gradient(
+      180deg,
+      #fffdfd 0%,
+      #fff7fb 100%
+    );
+  color: #57314f;
+  box-shadow:
+    0 8px 25px rgba(77, 24, 68, 0.15);
+  overflow: hidden;
+}
+
+/* Letter heading */
+
+.letter-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+  color: #b84c8c;
+  font-family: "Great Vibes", cursive;
+  font-size: 22px;
+}
+
+/* Message */
+
+.letter-message {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.letter-message p {
+  margin: 0 0 9px;
+}
+
+.letter-signature {
+  margin-top: 12px;
+  text-align: right;
+  font-family: "Great Vibes", cursive;
+  font-size: 22px;
+  line-height: 1.1;
+  color: #a73e7d;
+}
+
+/* Hint */
+
+.envelope-hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 35px;
+  margin: 0;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(100, 45, 90, 0.62);
+}
+
+/* =====================================================
+   OPEN STATE
+   ===================================================== */
+
+.envelope-wrapper.opened .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 2;
+}
+
+.envelope-wrapper.opened .envelope-letter {
+  transform: translateY(-155px);
+  z-index: 12;
+}
+
+.envelope-wrapper.opened .envelope-seal {
+  opacity: 0;
+  transform:
+    translate(-50%, -50%)
+    scale(0.7);
+  pointer-events: none;
+}
+
+.envelope-wrapper.opened .envelope-pocket {
+  z-index: 5;
+}
+
+/* =====================================================
+   MOBILE LETTER
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+  .letter-area {
+    min-height: 650px;
+    padding-top: 100px;
+  }
+
+  .envelope-wrapper {
+    width: min(330px, 88vw);
+    height: 410px;
+  }
+
+  .envelope {
+    height: 220px;
+    top: 65px;
+  }
+
+  .envelope-letter {
+    left: 16px;
+    width: calc(100% - 32px);
+    height: 190px;
+    top: 16px;
+  }
+
+  .letter-paper {
+    padding: 18px 18px;
+  }
+
+  .letter-top {
+    font-size: 19px;
+    margin-bottom: 10px;
+  }
+
+  .letter-message {
+    font-size: 14px;
+    line-height: 1.28;
+  }
+
+  .letter-message p {
+    margin-bottom: 7px;
+  }
+
+  .letter-signature {
+    font-size: 19px;
+    margin-top: 8px;
+  }
+
+  .envelope-wrapper.opened .envelope-letter {
+    transform: translateY(-145px);
+  }
+
+  .envelope-hint {
+    bottom: 28px;
+    font-size: 10px;
+  }
+}
