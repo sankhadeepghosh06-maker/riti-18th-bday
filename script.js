@@ -428,6 +428,194 @@ async function loadGallery() {
   supabaseClient =
     supabaseClient || setupSupabase();
 
+  if (!supabaseClient) {
+    if (galleryLoading) {
+      galleryLoading.style.display = "none";
+    }
+
+    if (galleryEmpty) {
+      galleryEmpty.classList.add("show");
+
+      const paragraph =
+        galleryEmpty.querySelector("p");
+
+      const small =
+        galleryEmpty.querySelector("small");
+
+      if (paragraph) {
+        paragraph.textContent =
+          "The memory gallery isn't connected yet.";
+      }
+
+      if (small) {
+        small.textContent =
+          "Please check the Supabase URL and key.";
+      }
+    }
+
+    return;
+  }
+
+  try {
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("photos")
+        .select("id, path, created_at")
+        .order("created_at", {
+          ascending: false
+        });
+
+    if (galleryLoading) {
+      galleryLoading.style.display = "none";
+    }
+
+    if (error) {
+
+      console.error(
+        "GALLERY DATABASE ERROR:",
+        error
+      );
+
+      if (galleryEmpty) {
+
+        galleryEmpty.classList.add("show");
+
+        const paragraph =
+          galleryEmpty.querySelector("p");
+
+        const small =
+          galleryEmpty.querySelector("small");
+
+        if (paragraph) {
+          paragraph.textContent =
+            "The memories couldn't be loaded.";
+        }
+
+        if (small) {
+          small.textContent =
+            error.message ||
+            "Supabase couldn't read the photos table.";
+        }
+      }
+
+      return;
+    }
+
+    if (!data || data.length === 0) {
+
+      if (galleryEmpty) {
+        galleryEmpty.classList.add("show");
+      }
+
+      return;
+    }
+
+    galleryGrid.innerHTML = "";
+
+    data.forEach((photo, index) => {
+
+      if (!photo.path) {
+        return;
+      }
+
+      const {
+        data: publicData
+      } =
+        supabaseClient
+          .storage
+          .from(SUPABASE_BUCKET)
+          .getPublicUrl(photo.path);
+
+      if (
+        !publicData ||
+        !publicData.publicUrl
+      ) {
+        return;
+      }
+
+      const item =
+        document.createElement("div");
+
+      item.className =
+        "gallery-item";
+
+      item.style.animationDelay =
+        (index * 0.06) + "s";
+
+      const image =
+        document.createElement("img");
+
+      image.src =
+        publicData.publicUrl;
+
+      image.alt =
+        "A birthday memory";
+
+      image.loading =
+        "lazy";
+
+      image.onerror = () => {
+        console.error(
+          "IMAGE FAILED TO LOAD:",
+          publicData.publicUrl
+        );
+      };
+
+      const overlay =
+        document.createElement("div");
+
+      overlay.className =
+        "gallery-overlay";
+
+      overlay.textContent =
+        "♡ memory";
+
+      item.appendChild(image);
+      item.appendChild(overlay);
+
+      galleryGrid.appendChild(item);
+
+    });
+
+  } catch (error) {
+
+    console.error(
+      "GALLERY ERROR:",
+      error
+    );
+
+    if (galleryLoading) {
+      galleryLoading.style.display = "none";
+    }
+
+    if (galleryEmpty) {
+
+      galleryEmpty.classList.add("show");
+
+      const paragraph =
+        galleryEmpty.querySelector("p");
+
+      const small =
+        galleryEmpty.querySelector("small");
+
+      if (paragraph) {
+        paragraph.textContent =
+          "Something went wrong with the gallery.";
+      }
+
+      if (small) {
+        small.textContent =
+          error.message ||
+          "Unknown error.";
+      }
+    }
+  }
+}
+
 
   /* ===============================================
      SUPABASE NOT CONFIGURED
