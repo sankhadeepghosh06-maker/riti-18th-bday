@@ -670,15 +670,15 @@ body {
 }
 
 .section-intro {
+  max-width: 550px;
+
+  margin: 0 auto 34px;
+
   text-align: center;
-
-  max-width: 540px;
-
-  margin: 0 auto 42px;
 
   color: var(--muted);
 
-  font-size: 0.9rem;
+  font-size: 0.82rem;
 
   line-height: 1.8;
 }
@@ -689,19 +689,26 @@ body {
 ===================================================== */
 
 .photo-card {
+  width: min(560px, 100%);
+
+  margin: 0 auto;
+
   position: relative;
 
-  width: min(430px, 90vw);
+  padding: 12px;
 
-  margin: 45px auto 0;
+  border-radius: 25px;
 
-  padding: 10px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,0.11),
+      rgba(255,255,255,0.03)
+    );
 
-  background: rgba(255,255,255,0.07);
-
-  border: 1px solid var(--border);
-
-  border-radius: 24px;
+  border:
+    1px solid
+    rgba(255,255,255,0.12);
 
   box-shadow:
     0 30px 80px rgba(0,0,0,0.35);
@@ -717,6 +724,13 @@ body {
   object-fit: cover;
 
   border-radius: 17px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #2b1730,
+      #160c1e
+    );
 }
 
 .photo-glow {
@@ -724,18 +738,18 @@ body {
 
   inset: -30px;
 
-  border-radius: 40px;
+  z-index: -1;
+
+  border-radius: 50%;
 
   background:
     radial-gradient(
       circle,
-      rgba(255,115,183,0.17),
+      rgba(255,115,183,0.2),
       transparent 65%
     );
 
-  filter: blur(20px);
-
-  z-index: -1;
+  filter: blur(25px);
 }
 
 .photo-caption {
@@ -743,15 +757,23 @@ body {
 
   justify-content: space-between;
 
-  padding: 14px 7px 5px;
+  align-items: center;
 
-  color: var(--pink-light);
+  padding: 13px 4px 2px;
 
-  font-family: "Cormorant Garamond", serif;
+  color: var(--muted);
+
+  font-size: 0.65rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.18em;
+}
+
+.photo-caption span:last-child {
+  color: var(--pink);
 
   font-size: 1rem;
-
-  font-style: italic;
 }
 
 
@@ -760,7 +782,7 @@ body {
 ===================================================== */
 
 .letter-area {
-  min-height: 520px;
+  min-height: 590px;
 
   display: flex;
 
@@ -768,7 +790,11 @@ body {
 
   align-items: flex-start;
 
-  padding-top: 25px;
+  padding-top: 105px;
+
+  position: relative;
+
+  overflow: visible;
 }
 
 .envelope-wrapper {
@@ -802,15 +828,18 @@ body {
   height: 35px;
 
   left: 7.5%;
-  bottom: 35px;
+  bottom: 20px;
 
   border-radius: 50%;
 
-  background: rgba(0,0,0,0.5);
+  background:
+    rgba(0,0,0,0.5);
 
   filter: blur(18px);
 
-  transition: 0.8s ease;
+  transition:
+    transform 0.8s ease,
+    opacity 0.8s ease;
 }
 
 .envelope {
@@ -820,7 +849,9 @@ body {
 
   height: 230px;
 
-  margin-top: 30px;
+  margin-top: 0;
+
+  perspective: 900px;
 }
 
 .envelope-back {
@@ -840,17 +871,20 @@ body {
     );
 
   box-shadow:
-    0 25px 55px rgba(0,0,0,0.35);
+    0 25px 55px
+    rgba(0,0,0,0.35);
 }
 
 .envelope-letter {
   position: absolute;
 
   left: 5%;
+
   bottom: 6px;
 
   width: 90%;
-  height: 190px;
+
+  height: 205px;
 
   z-index: 2;
 
@@ -863,13 +897,14 @@ body {
 
 .letter-paper {
   width: 100%;
+
   height: 100%;
 
   overflow: hidden;
 
-  padding: 23px 24px;
+  padding: 20px 22px;
 
-  border-radius: 5px;
+  border-radius: 6px;
 
   background:
     linear-gradient(
@@ -881,7 +916,8 @@ body {
   color: var(--dark-text);
 
   box-shadow:
-    0 10px 30px rgba(0,0,0,0.18);
+    0 10px 30px
+    rgba(0,0,0,0.18);
 }
 
 .letter-top {
@@ -889,45 +925,51 @@ body {
 
   justify-content: space-between;
 
+  align-items: center;
+
   color: #b5578e;
 
-  font-family: "Cormorant Garamond", serif;
+  font-family:
+    "Cormorant Garamond",
+    serif;
 
   font-size: 0.9rem;
 
-  margin-bottom: 13px;
+  margin-bottom: 10px;
 }
 
 .letter-message {
   opacity: 0;
 
-  transform: translateY(10px);
+  transform: translateY(8px);
 
   transition:
-    opacity 0.9s ease 0.55s,
-    transform 0.9s ease 0.55s;
+    opacity 0.8s ease 0.55s,
+    transform 0.8s ease 0.55s;
 
-  font-family: "Cormorant Garamond", serif;
+  font-family:
+    "Cormorant Garamond",
+    serif;
 
-  font-size: 1rem;
+  font-size: 0.95rem;
 
-  line-height: 1.35;
+  line-height: 1.3;
 }
 
 .letter-message p {
   color: var(--dark-text);
 
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .letter-signature {
-  margin-top: 13px;
+  margin-top: 10px;
 
   text-align: right;
 
   color: #794268;
 
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .letter-signature span {
@@ -964,9 +1006,11 @@ body {
   position: absolute;
 
   top: 0;
+
   left: 0;
 
   width: 100%;
+
   height: 125px;
 
   z-index: 6;
@@ -988,7 +1032,8 @@ body {
   transform-origin: top center;
 
   transition:
-    transform 0.8s cubic-bezier(.2,.75,.2,1);
+    transform 0.8s
+    cubic-bezier(.2,.75,.2,1);
 }
 
 .envelope-seal {
@@ -997,16 +1042,20 @@ body {
   z-index: 8;
 
   left: 50%;
+
   top: 92px;
 
-  transform: translateX(-50%);
+  transform:
+    translateX(-50%);
 
   width: 48px;
+
   height: 48px;
 
   display: flex;
 
   justify-content: center;
+
   align-items: center;
 
   border-radius: 50%;
@@ -1022,31 +1071,45 @@ body {
       #d64f96
     );
 
-  border: 3px solid rgba(255,255,255,0.45);
+  border:
+    3px solid
+    rgba(255,255,255,0.45);
 
   box-shadow:
-    0 8px 25px rgba(0,0,0,0.25);
+    0 8px 25px
+    rgba(0,0,0,0.25);
 
   transition:
     opacity 0.35s ease,
     transform 0.45s ease;
 }
 
-.envelope-wrapper.opened .envelope-flap {
-  transform: rotateX(180deg);
+
+/* =====================================================
+   LETTER OPEN STATE
+===================================================== */
+
+.envelope-wrapper.opened
+.envelope-flap {
+  transform:
+    rotateX(180deg);
 }
 
-.envelope-wrapper.opened .envelope-letter {
-  transform: translateY(-125px);
+.envelope-wrapper.opened
+.envelope-letter {
+  transform:
+    translateY(-72px);
 
   z-index: 5;
 
   transition:
-    transform 1s cubic-bezier(.18,.85,.2,1),
+    transform 0.9s
+    cubic-bezier(.18,.85,.2,1),
     z-index 0s;
 }
 
-.envelope-wrapper.opened .envelope-seal {
+.envelope-wrapper.opened
+.envelope-seal {
   opacity: 0;
 
   transform:
@@ -1054,14 +1117,18 @@ body {
     scale(0.5);
 }
 
-.envelope-wrapper.opened .letter-message {
+.envelope-wrapper.opened
+.letter-message {
   opacity: 1;
 
-  transform: translateY(0);
+  transform:
+    translateY(0);
 }
 
-.envelope-wrapper.opened .envelope-shadow {
-  transform: scale(1.15);
+.envelope-wrapper.opened
+.envelope-shadow {
+  transform:
+    scale(1.1);
 
   opacity: 0.7;
 }
@@ -1079,10 +1146,12 @@ body {
 
   letter-spacing: 0.18em;
 
-  transition: opacity 0.4s ease;
+  transition:
+    opacity 0.4s ease;
 }
 
-.envelope-wrapper.opened .envelope-hint {
+.envelope-wrapper.opened
+.envelope-hint {
   opacity: 0;
 }
 
@@ -1100,12 +1169,15 @@ body {
 
   border-radius: 18px;
 
-  background: rgba(255,255,255,0.06);
+  background:
+    rgba(255,255,255,0.06);
 
-  border: 1px solid var(--border);
+  border:
+    1px solid var(--border);
 
   box-shadow:
-    0 20px 50px rgba(0,0,0,0.25);
+    0 20px 50px
+    rgba(0,0,0,0.25);
 }
 
 .spotify-card iframe {
@@ -1143,7 +1215,8 @@ body {
       rgba(255,115,183,0.12)
     );
 
-  border: 1px solid var(--border);
+  border:
+    1px solid var(--border);
 
   border-radius: 20px;
 
@@ -1154,9 +1227,11 @@ body {
 }
 
 .games-button:hover {
-  transform: translateY(-5px);
+  transform:
+    translateY(-5px);
 
-  border-color: rgba(255,115,183,0.45);
+  border-color:
+    rgba(255,115,183,0.45);
 
   background:
     linear-gradient(
@@ -1173,7 +1248,9 @@ body {
 .games-button strong {
   display: block;
 
-  font-family: "Cormorant Garamond", serif;
+  font-family:
+    "Cormorant Garamond",
+    serif;
 
   font-size: 1.45rem;
 
@@ -1237,7 +1314,8 @@ body {
     rgba(255,255,255,0.055);
 
   box-shadow:
-    0 18px 40px rgba(0,0,0,0.28);
+    0 18px 40px
+    rgba(0,0,0,0.28);
 
   animation:
     galleryIn 0.6s ease both;
@@ -1251,6 +1329,7 @@ body {
   display: block;
 
   width: 100%;
+
   height: 100%;
 
   min-height: 180px;
@@ -1263,17 +1342,21 @@ body {
 }
 
 .gallery-item:hover img {
-  transform: scale(1.06);
+  transform:
+    scale(1.06);
 
-  filter: brightness(1.08);
+  filter:
+    brightness(1.08);
 }
 
 .gallery-overlay {
   position: absolute;
 
-  inset: auto 0 0;
+  inset:
+    auto 0 0;
 
-  padding: 35px 14px 12px;
+  padding:
+    35px 14px 12px;
 
   color: white;
 
@@ -1288,22 +1371,28 @@ body {
 
   opacity: 0;
 
-  transition: opacity 0.3s ease;
+  transition:
+    opacity 0.3s ease;
 }
 
-.gallery-item:hover .gallery-overlay {
+.gallery-item:hover
+.gallery-overlay {
   opacity: 1;
 }
 
 @keyframes galleryIn {
   from {
     opacity: 0;
-    transform: translateY(15px);
+
+    transform:
+      translateY(15px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+
+    transform:
+      translateY(0);
   }
 }
 
@@ -1341,7 +1430,8 @@ body {
     2px solid
     rgba(255,255,255,0.12);
 
-  border-top-color: var(--pink);
+  border-top-color:
+    var(--pink);
 
   animation:
     spin 0.8s linear infinite;
@@ -1349,7 +1439,8 @@ body {
 
 @keyframes spin {
   to {
-    transform: rotate(360deg);
+    transform:
+      rotate(360deg);
   }
 }
 
@@ -1404,6 +1495,7 @@ body {
   display: flex;
 
   justify-content: space-between;
+
   align-items: center;
 
   padding: 18px 22px;
@@ -1412,19 +1504,24 @@ body {
 
   color: var(--white);
 
-  border: 1px solid var(--border);
+  border:
+    1px solid var(--border);
 
   border-radius: 16px;
 
-  background: var(--glass);
+  background:
+    var(--glass);
 
-  transition: 0.25s ease;
+  transition:
+    0.25s ease;
 }
 
 .instagram-button:hover {
-  transform: translateY(-3px);
+  transform:
+    translateY(-3px);
 
-  border-color: rgba(255,115,183,0.45);
+  border-color:
+    rgba(255,115,183,0.45);
 }
 
 .instagram-button span:first-child {
@@ -1473,9 +1570,12 @@ body {
 .finale h2 {
   margin-top: 20px;
 
-  font-family: "Cormorant Garamond", serif;
+  font-family:
+    "Cormorant Garamond",
+    serif;
 
-  font-size: clamp(4rem, 15vw, 7rem);
+  font-size:
+    clamp(4rem, 15vw, 7rem);
 
   font-weight: 500;
 
@@ -1523,7 +1623,8 @@ footer {
 
 .celebration-heart {
   animation:
-    celebrationFloat 2.8s ease-out forwards;
+    celebrationFloat
+    2.8s ease-out forwards;
 }
 
 @keyframes celebrationFloat {
@@ -1611,8 +1712,12 @@ footer {
       18px;
   }
 
+  /* FIXED LETTER MOBILE LAYOUT */
+
   .letter-area {
-    min-height: 480px;
+    min-height: 560px;
+
+    padding-top: 85px;
   }
 
   .envelope-wrapper {
@@ -1623,18 +1728,24 @@ footer {
     height: 215px;
   }
 
-  .envelope-wrapper.opened .envelope-letter {
-    transform: translateY(-115px);
+  .envelope-wrapper.opened
+  .envelope-letter {
+    transform:
+      translateY(-62px);
   }
 
   .letter-paper {
-    padding: 19px 20px;
+    padding:
+      18px
+      19px;
   }
 
   .letter-message {
-    font-size: 0.9rem;
+    font-size:
+      0.86rem;
 
-    line-height: 1.28;
+    line-height:
+      1.25;
   }
 
   .games-button {
@@ -1643,7 +1754,10 @@ footer {
 
   .gallery-grid {
     grid-template-columns:
-      repeat(2, minmax(0, 1fr));
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
 
     gap: 10px;
   }
@@ -1683,6 +1797,7 @@ footer {
     transition-duration:
       0.01ms !important;
 
-    scroll-behavior: auto !important;
+    scroll-behavior:
+      auto !important;
   }
 }
