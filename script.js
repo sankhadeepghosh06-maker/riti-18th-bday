@@ -5,14 +5,6 @@
 
 /* =====================================================
    SUPABASE CONFIGURATION
-=====================================================
-
-   REPLACE THESE TWO VALUES.
-
-   Supabase Dashboard
-   → Project Settings
-   → API
-
 ===================================================== */
 
 const SUPABASE_URL =
@@ -21,7 +13,19 @@ const SUPABASE_URL =
 const SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdlZG16bXZ1emlmcXJ6bWFya25oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkyMDAzOTEsImV4cCI6MjEwNDc3NjM5MX0.UjaOzxfsYL70HMh1px8wnsz30K8llSdzrt6PFE5M4k8";
 
-const SUPABASE_BUCKET = "birthday-photos";
+const SUPABASE_BUCKET =
+  "birthday-photos";
+
+
+/* =====================================================
+   PASSWORDS
+===================================================== */
+
+const MAIN_PASSWORD =
+  "Ilovemyriti18forever";
+
+const UPLOAD_PASSWORD =
+  "addpics";
 
 
 /* =====================================================
@@ -33,11 +37,13 @@ let supabaseClient = null;
 function setupSupabase() {
 
   if (
+    !SUPABASE_URL ||
+    !SUPABASE_ANON_KEY ||
     SUPABASE_URL.includes("YOUR_") ||
     SUPABASE_ANON_KEY.includes("YOUR_")
   ) {
     console.warn(
-      "Supabase is not configured yet."
+      "Supabase is not configured."
     );
 
     return null;
@@ -53,10 +59,22 @@ function setupSupabase() {
     return null;
   }
 
-  return window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-  );
+  try {
+
+    return window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+
+  } catch (error) {
+
+    console.error(
+      "Supabase initialization error:",
+      error
+    );
+
+    return null;
+  }
 }
 
 
@@ -99,31 +117,32 @@ const galleryEmpty =
 
 
 /* =====================================================
-   PASSWORDS
-===================================================== */
-
-const MAIN_PASSWORD =
-  "Ilovemyriti18forever";
-
-const UPLOAD_PASSWORD =
-  "addpics";
-
-
-/* =====================================================
-   UNLOCK MAIN PAGE
+   SHOW MAIN PAGE
 ===================================================== */
 
 function showMainPage() {
 
-  if (!lockScreen || !mainContent) {
-    return;
+  /*
+    Hide password screen
+  */
+
+  if (lockScreen) {
+    lockScreen.classList.add("hidden");
   }
 
-  lockScreen.classList.add("hidden");
+  /*
+    Show main website
+  */
 
-  mainContent.classList.add("unlocked");
+  if (mainContent) {
+    mainContent.classList.add("unlocked");
+  }
 
   document.body.style.overflow = "";
+
+  /*
+    Start website effects
+  */
 
   createCelebration();
 
@@ -131,13 +150,19 @@ function showMainPage() {
 
   loadGallery();
 
-  setTimeout(() => {
+  /*
+    Clear password field
+  */
 
-    if (passwordInput) {
+  if (passwordInput) {
+
+    setTimeout(() => {
+
       passwordInput.value = "";
-    }
 
-  }, 300);
+    }, 300);
+
+  }
 }
 
 
@@ -148,15 +173,26 @@ function showMainPage() {
 function checkPassword() {
 
   if (!passwordInput) {
+    console.error(
+      "Password input #passwordInput was not found."
+    );
+
     return;
   }
 
   const entered =
     passwordInput.value.trim();
 
+
+  /* =================================================
+     MAIN PASSWORD
+  ================================================= */
+
   if (entered === MAIN_PASSWORD) {
 
-    lockError.classList.remove("show");
+    if (lockError) {
+      lockError.classList.remove("show");
+    }
 
     showMainPage();
 
@@ -164,11 +200,15 @@ function checkPassword() {
   }
 
 
-  /* ===============================================
+  /* =================================================
      ADDPICS PASSWORD
-  =============================================== */
+  ================================================= */
 
   if (entered === UPLOAD_PASSWORD) {
+
+    if (lockError) {
+      lockError.classList.remove("show");
+    }
 
     sessionStorage.setItem(
       "addpicsAccess",
@@ -182,16 +222,22 @@ function checkPassword() {
   }
 
 
-  /* ===============================================
+  /* =================================================
      WRONG PASSWORD
-  =============================================== */
+  ================================================= */
 
-  lockError.classList.add("show");
+  if (lockError) {
+    lockError.classList.add("show");
+  }
 
   passwordInput.classList.add("shake");
 
   setTimeout(() => {
-    passwordInput.classList.remove("shake");
+
+    passwordInput.classList.remove(
+      "shake"
+    );
+
   }, 400);
 
   passwordInput.select();
@@ -199,7 +245,7 @@ function checkPassword() {
 
 
 /* =====================================================
-   PASSWORD EVENTS
+   PASSWORD BUTTON
 ===================================================== */
 
 if (unlockButton) {
@@ -211,6 +257,11 @@ if (unlockButton) {
 
 }
 
+
+/* =====================================================
+   ENTER KEY
+===================================================== */
+
 if (passwordInput) {
 
   passwordInput.addEventListener(
@@ -218,7 +269,11 @@ if (passwordInput) {
     (event) => {
 
       if (event.key === "Enter") {
+
+        event.preventDefault();
+
         checkPassword();
+
       }
 
     }
@@ -237,12 +292,11 @@ function openEnvelope() {
     return;
   }
 
-  const alreadyOpened =
+  if (
     envelopeWrapper.classList.contains(
       "opened"
-    );
-
-  if (alreadyOpened) {
+    )
+  ) {
     return;
   }
 
@@ -251,7 +305,6 @@ function openEnvelope() {
   );
 
   createCelebration();
-
 }
 
 
@@ -428,198 +481,10 @@ async function loadGallery() {
   supabaseClient =
     supabaseClient || setupSupabase();
 
-  if (!supabaseClient) {
-    if (galleryLoading) {
-      galleryLoading.style.display = "none";
-    }
 
-    if (galleryEmpty) {
-      galleryEmpty.classList.add("show");
-
-      const paragraph =
-        galleryEmpty.querySelector("p");
-
-      const small =
-        galleryEmpty.querySelector("small");
-
-      if (paragraph) {
-        paragraph.textContent =
-          "The memory gallery isn't connected yet.";
-      }
-
-      if (small) {
-        small.textContent =
-          "Please check the Supabase URL and key.";
-      }
-    }
-
-    return;
-  }
-
-  try {
-
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-        .from("photos")
-        .select("id, path, created_at")
-        .order("created_at", {
-          ascending: false
-        });
-
-    if (galleryLoading) {
-      galleryLoading.style.display = "none";
-    }
-
-    if (error) {
-
-      console.error(
-        "GALLERY DATABASE ERROR:",
-        error
-      );
-
-      if (galleryEmpty) {
-
-        galleryEmpty.classList.add("show");
-
-        const paragraph =
-          galleryEmpty.querySelector("p");
-
-        const small =
-          galleryEmpty.querySelector("small");
-
-        if (paragraph) {
-          paragraph.textContent =
-            "The memories couldn't be loaded.";
-        }
-
-        if (small) {
-          small.textContent =
-            error.message ||
-            "Supabase couldn't read the photos table.";
-        }
-      }
-
-      return;
-    }
-
-    if (!data || data.length === 0) {
-
-      if (galleryEmpty) {
-        galleryEmpty.classList.add("show");
-      }
-
-      return;
-    }
-
-    galleryGrid.innerHTML = "";
-
-    data.forEach((photo, index) => {
-
-      if (!photo.path) {
-        return;
-      }
-
-      const {
-        data: publicData
-      } =
-        supabaseClient
-          .storage
-          .from(SUPABASE_BUCKET)
-          .getPublicUrl(photo.path);
-
-      if (
-        !publicData ||
-        !publicData.publicUrl
-      ) {
-        return;
-      }
-
-      const item =
-        document.createElement("div");
-
-      item.className =
-        "gallery-item";
-
-      item.style.animationDelay =
-        (index * 0.06) + "s";
-
-      const image =
-        document.createElement("img");
-
-      image.src =
-        publicData.publicUrl;
-
-      image.alt =
-        "A birthday memory";
-
-      image.loading =
-        "lazy";
-
-      image.onerror = () => {
-        console.error(
-          "IMAGE FAILED TO LOAD:",
-          publicData.publicUrl
-        );
-      };
-
-      const overlay =
-        document.createElement("div");
-
-      overlay.className =
-        "gallery-overlay";
-
-      overlay.textContent =
-        "♡ memory";
-
-      item.appendChild(image);
-      item.appendChild(overlay);
-
-      galleryGrid.appendChild(item);
-
-    });
-
-  } catch (error) {
-
-    console.error(
-      "GALLERY ERROR:",
-      error
-    );
-
-    if (galleryLoading) {
-      galleryLoading.style.display = "none";
-    }
-
-    if (galleryEmpty) {
-
-      galleryEmpty.classList.add("show");
-
-      const paragraph =
-        galleryEmpty.querySelector("p");
-
-      const small =
-        galleryEmpty.querySelector("small");
-
-      if (paragraph) {
-        paragraph.textContent =
-          "Something went wrong with the gallery.";
-      }
-
-      if (small) {
-        small.textContent =
-          error.message ||
-          "Unknown error.";
-      }
-    }
-  }
-}
-
-
-  /* ===============================================
-     SUPABASE NOT CONFIGURED
-  =============================================== */
+  /* =================================================
+     SUPABASE NOT AVAILABLE
+  ================================================= */
 
   if (!supabaseClient) {
 
@@ -642,51 +507,220 @@ async function loadGallery() {
 
       if (paragraph) {
         paragraph.textContent =
-          "The memory gallery is getting ready.";
+          "The memory gallery isn't connected yet.";
       }
 
       if (small) {
         small.textContent =
-          "Add your Supabase details to activate it.";
+          "Please check the Supabase URL and key.";
       }
+
     }
 
     return;
   }
 
 
-  /* ===============================================
+  /* =================================================
      FETCH PHOTOS
-  =============================================== */
+  ================================================= */
 
-  const {
-    data,
-    error
-  } = await supabaseClient
-    .from("photos")
-    .select(
-      "id, path, created_at"
-    )
-    .order(
-      "created_at",
-      {
-        ascending: false
+  try {
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("photos")
+        .select(
+          "id, path, created_at"
+        )
+        .order(
+          "created_at",
+          {
+            ascending: false
+          }
+        );
+
+
+    if (galleryLoading) {
+      galleryLoading.style.display =
+        "none";
+    }
+
+
+    /* ===============================================
+       DATABASE ERROR
+    =============================================== */
+
+    if (error) {
+
+      console.error(
+        "GALLERY DATABASE ERROR:",
+        error
+      );
+
+      if (galleryEmpty) {
+
+        galleryEmpty.classList.add(
+          "show"
+        );
+
+        const paragraph =
+          galleryEmpty.querySelector("p");
+
+        const small =
+          galleryEmpty.querySelector("small");
+
+        if (paragraph) {
+          paragraph.textContent =
+            "The memories couldn't be loaded.";
+        }
+
+        if (small) {
+          small.textContent =
+            error.message ||
+            "Supabase couldn't read the photos table.";
+        }
+
+      }
+
+      return;
+    }
+
+
+    /* ===============================================
+       NO PHOTOS
+    =============================================== */
+
+    if (
+      !data ||
+      data.length === 0
+    ) {
+
+      if (galleryEmpty) {
+        galleryEmpty.classList.add(
+          "show"
+        );
+      }
+
+      return;
+    }
+
+
+    /* ===============================================
+       CLEAR OLD GALLERY
+    =============================================== */
+
+    galleryGrid.innerHTML = "";
+
+
+    /* ===============================================
+       DISPLAY PHOTOS
+    =============================================== */
+
+    data.forEach(
+      (photo, index) => {
+
+        if (!photo.path) {
+          return;
+        }
+
+        const {
+          data: publicData
+        } =
+          supabaseClient
+            .storage
+            .from(SUPABASE_BUCKET)
+            .getPublicUrl(
+              photo.path
+            );
+
+
+        if (
+          !publicData ||
+          !publicData.publicUrl
+        ) {
+          return;
+        }
+
+
+        const item =
+          document.createElement(
+            "div"
+          );
+
+        item.className =
+          "gallery-item";
+
+        item.style.animationDelay =
+          (index * 0.06) + "s";
+
+
+        const image =
+          document.createElement(
+            "img"
+          );
+
+        image.src =
+          publicData.publicUrl;
+
+        image.alt =
+          "A birthday memory";
+
+        image.loading =
+          "lazy";
+
+
+        image.onerror = () => {
+
+          console.error(
+            "IMAGE FAILED TO LOAD:",
+            publicData.publicUrl
+          );
+
+        };
+
+
+        const overlay =
+          document.createElement(
+            "div"
+          );
+
+        overlay.className =
+          "gallery-overlay";
+
+        overlay.textContent =
+          "♡ memory";
+
+
+        item.appendChild(
+          image
+        );
+
+        item.appendChild(
+          overlay
+        );
+
+        galleryGrid.appendChild(
+          item
+        );
+
       }
     );
 
-
-  if (galleryLoading) {
-    galleryLoading.style.display =
-      "none";
-  }
-
-
-  if (error) {
+  } catch (error) {
 
     console.error(
-      "Gallery error:",
+      "GALLERY ERROR:",
       error
     );
+
+    if (galleryLoading) {
+      galleryLoading.style.display =
+        "none";
+    }
 
     if (galleryEmpty) {
 
@@ -702,102 +736,18 @@ async function loadGallery() {
 
       if (paragraph) {
         paragraph.textContent =
-          "The memories couldn't be loaded.";
+          "Something went wrong with the gallery.";
       }
 
       if (small) {
         small.textContent =
-          "Check your Supabase setup.";
+          error.message ||
+          "Unknown error.";
       }
+
     }
 
-    return;
   }
-
-
-  if (!data || data.length === 0) {
-
-    if (galleryEmpty) {
-      galleryEmpty.classList.add(
-        "show"
-      );
-    }
-
-    return;
-  }
-
-
-  /* ===============================================
-     DISPLAY PHOTOS
-  =============================================== */
-
-  data.forEach(
-    (photo, index) => {
-
-      if (!photo.path) {
-        return;
-      }
-
-      const {
-        data: publicData
-      } =
-        supabaseClient
-          .storage
-          .from(SUPABASE_BUCKET)
-          .getPublicUrl(
-            photo.path
-          );
-
-      if (
-        !publicData ||
-        !publicData.publicUrl
-      ) {
-        return;
-      }
-
-
-      const item =
-        document.createElement("div");
-
-      item.className =
-        "gallery-item";
-
-      item.style.animationDelay =
-        (index * 0.06) + "s";
-
-
-      const image =
-        document.createElement("img");
-
-      image.src =
-        publicData.publicUrl;
-
-      image.alt =
-        "A birthday memory";
-
-      image.loading =
-        "lazy";
-
-
-      const overlay =
-        document.createElement("div");
-
-      overlay.className =
-        "gallery-overlay";
-
-      overlay.textContent =
-        "♡ memory";
-
-
-      item.appendChild(image);
-
-      item.appendChild(overlay);
-
-      galleryGrid.appendChild(item);
-
-    }
-  );
-
 }
 
 
@@ -809,13 +759,27 @@ document.addEventListener(
   "DOMContentLoaded",
   () => {
 
+    /*
+      Keep the site locked initially.
+    */
+
     document.body.style.overflow =
       "hidden";
 
     /*
-      We intentionally do NOT load the gallery
-      until the correct main password is entered.
+      DO NOT automatically unlock.
+      The user must enter the password.
     */
+
+    if (passwordInput) {
+
+      setTimeout(() => {
+
+        passwordInput.focus();
+
+      }, 100);
+
+    }
 
   }
 );
