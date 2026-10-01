@@ -19,7 +19,7 @@ const SUPABASE_URL =
   "https://gedmzmvuzifqrzmarknh.supabase.co";
 
 const SUPABASE_ANON_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdlZG16bXZ1emlmcXJ6bWFya25oIiwiaWF0IjoxNzg5MjAwMzkxLCJleHAiOjIxMDQ3NzYzOTF9.UjaOzxfsYL70HMh1px8wnsz30K8llSdzrt6PFE5M4k8";
+  "sb_publishable_V_Lg9lEjfA_t6TBRROu6sg_kps8oQup";
 
 const SUPABASE_BUCKET = "birthday-photos";
 
